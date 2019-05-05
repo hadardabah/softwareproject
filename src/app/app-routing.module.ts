@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomePage } from './home/home.page';
+import { SinginPage } from './singin/singin.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+  { path: 'singin', loadChildren: './singin/singin.module#SinginPageModule' },
+ //{ path: 'home', component: HomePage },
+ //{ path: 'singin', component: SinginPage },
+ //{ path: 'singup', component: SingupPage },
 ];
 
 @NgModule({
