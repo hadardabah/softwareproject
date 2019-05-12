@@ -1,0 +1,101 @@
+ /*.ios ion-badge {
+    text-transform: uppercase;
+  }*/
+  body{
+    width: 100%;
+    height: 100%;
+ }
+  .right{
+    float: right;
+     width: 18%;
+    height: 100%;
+    background-color:#324851; 
+  }
+  .logo{
+    padding-top: 10%;
+    width:157px;
+    height: 150px;
+    margin: top;
+    margin: auto;
+    padding-bottom: 10%;
+  }
+  .left{
+    width: 81.8%;
+    height: 100%;
+    
+
+    margin-right: 30%;
+   background-color:blue;
+
+  }
+  .mod{
+    width: 100%;
+    height: 100%; 
+  }
+ 
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: #324851;
+    
+    
+    
+  }
+
+
+#userName{
+    font-size: 20px;
+    text-align: right;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 16px 16px;
+    text-decoration: none;
+    background-color: #324851;
+    color: #ffffff;
+
+}
+  
+  li  {
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: block;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    background-color: #324851;
+    color: #ffffff;
+
+  }
+  #password{
+    font-size: 20px;
+    text-align: right;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 16px 16px;
+    text-decoration: none;
+    background-color: #324851;
+    color: #ffffff;
+ 
+  }
+  #button{
+    font-size: 20px;
+    margin-left: 40%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 16px 16px;
+    text-decoration: none;
+    background-color: #474f52;
+    color: #ffffff;
+    margin-top: 10%;
+    
+
+  }
+ 
