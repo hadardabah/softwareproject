@@ -13,8 +13,8 @@
   }
   .logo{
     padding-top: 10%;
-    width:157px;
-    height: 150px;
+    width:145px;
+    height: 156px;
     margin: top;
     margin: auto;
     padding-bottom: 10%;
@@ -39,11 +39,7 @@
     padding: 0;
     width: 100%;
     height: 100%;
-
-    background-color: #324851;
-    
-    
-    
+    background-color: #324851;    
   }
 
 
@@ -57,7 +53,6 @@
     text-decoration: none;
     background-color: #324851;
     color: #ffffff;
-
 }
   
   li  {
@@ -68,9 +63,9 @@
     color: rgb(255, 255, 255);
     text-decoration: none;
     background-color: #324851;
-    color: #ffffff;
-
+    width: 100%;
   }
+
   #password{
     font-size: 20px;
     text-align: right;
@@ -82,6 +77,14 @@
     background-color: #324851;
     color: #ffffff;
  
+  }
+
+  input[type=text] {
+    width: 85%;
+    padding: 7px 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    color: #324851;
   }
   #button{
     font-size: 20px;
@@ -97,7 +100,12 @@
     margin-top: 10%;
     border-block-start-width: 5px;
     border: 2px solid rgb(255, 255, 255);
-    
 
+  }
+
+  #forgetpass{
+    margin-left: 60%;  
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #ffffff; 
   }
  

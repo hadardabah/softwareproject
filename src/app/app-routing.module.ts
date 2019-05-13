@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'singin', loadChildren: './singin/singin.module#SinginPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'eventsboard', loadChildren: './eventsboard/eventsboard.module#EventsboardPageModule' },
  //{ path: 'home', component: HomePage },
  //{ path: 'singin', component: SinginPage },
  //{ path: 'singup', component: SingupPage },
