@@ -86,28 +86,28 @@
   </ion-content>
 </div>
     -->
-    <body>
+    <div>
       <div class="right">
         <div class ="logo">
             <img class="mod" src="http://www.up2me.co.il/images/60215606.png">
         </div>
-        
-          <ul>
-            <ion-label id=userName>:שם משתמש</ion-label>
-              <li><input type="text" name="firstname"></li>
-              <ion-label id=password>:סיסמא</ion-label>
-              <li><input type="text" name="firstname"></li>
-              <span class="psw" id=forgetpass><a href="#">שכחתי סיסמא</a></span>
-              <button class = "button button-assertive button-outline" id=button >
-                כניסה
-              </button>
-              
 
+          <ul>
+              <ion-label>:שם משתמש</ion-label>
+              <ion-input  #email></ion-input>
+              <ion-label>:סיסמא</ion-label>
+              <ion-input type='password' #password></ion-input>
+              <ion-row>
+                <button ion-button  id=button (click)="forgotPassword()">שכחתי סיסמה</button>
+                <button ion-button id=button (click)="login()">כניסה</button>  
+              </ion-row>              
             </ul>  
       </div> 
       <div class="left"> 
           <img class="mod" src="http://www.up2me.co.il/images/63432205.jpg">
       </div> 
-  </body>
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+</div>
      
 

@@ -1,10 +1,7 @@
  /*.ios ion-badge {
     text-transform: uppercase;
   }*/
-  body{
-    width: 100%;
-    height: 100%;
- }
+
   .right{
     float: right;
      width: 18%;
@@ -13,7 +10,7 @@
   }
   .logo{
     padding-top: 10%;
-    width:145px;
+    width:140px;
     height: 156px;
     margin: top;
     margin: auto;
@@ -22,12 +19,9 @@
   .left{
     width: 81.8%;
     height: 100%;
-    
-
     margin-right: 30%;
-   background-color:blue;
-
   }
+  
   .mod{
     width: 100%;
     height: 100%; 
@@ -43,7 +37,7 @@
   }
 
 
-#userName{
+ion-label{
     font-size: 20px;
     text-align: right;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -66,7 +60,15 @@
     width: 100%;
   }
 
-  #password{
+  input[type=text] {
+    width: 85%;
+    padding: 7px 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    color: #324851;
+  }
+
+  ion-input{
     font-size: 20px;
     text-align: right;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -76,16 +78,8 @@
     text-decoration: none;
     background-color: #324851;
     color: #ffffff;
- 
   }
 
-  input[type=text] {
-    width: 85%;
-    padding: 7px 8px;
-    margin: 4px 0;
-    box-sizing: border-box;
-    color: #324851;
-  }
   #button{
     font-size: 20px;
     margin: auto;
@@ -102,10 +96,11 @@
     border: 2px solid rgb(255, 255, 255);
 
   }
+  
 
-  #forgetpass{
-    margin-left: 60%;  
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: #ffffff; 
+  ion-input{
+    background-color:#ffffff;
+    color:#324851; 
+    text-align:left;
   }
  
