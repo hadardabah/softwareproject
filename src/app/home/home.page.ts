@@ -9,9 +9,21 @@ import { Router } from '@angular/router';
 export class HomePage {
 
   constructor(private router: Router) {}
-
   goToOtherPage() {
     this.router.navigateByUrl('/singin')
   }
 
+
 }
+
+var clickListener = function() {
+
+      alert("Enter your age");
+ 
+  
+};
+var loadPage = function() {
+  document.getElementById("logo").addEventListener("click", clickListener, false);
+  
+ 
+ };

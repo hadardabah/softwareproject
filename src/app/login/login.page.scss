@@ -1,0 +1,106 @@
+ /*.ios ion-badge {
+    text-transform: uppercase;
+  }*/
+
+  .right{
+    float: right;
+     width: 18%;
+    height: 100%;
+    background-color:#324851; 
+  }
+  .logo{
+    padding-top: 10%;
+    width:140px;
+    height: 156px;
+    margin: top;
+    margin: auto;
+    padding-bottom: 10%;
+  }
+  .left{
+    width: 81.8%;
+    height: 100%;
+    margin-right: 30%;
+  }
+  
+  .mod{
+    width: 100%;
+    height: 100%; 
+  }
+ 
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #324851;    
+  }
+
+
+ion-label{
+    font-size: 20px;
+    text-align: right;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 16px 16px;
+    text-decoration: none;
+    background-color: #324851;
+    color: #ffffff;
+}
+  
+  li  {
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: block;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    background-color: #324851;
+    width: 100%;
+  }
+
+  input[type=text] {
+    width: 85%;
+    padding: 7px 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    color: #324851;
+  }
+
+  ion-input{
+    font-size: 20px;
+    text-align: right;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: block;
+    color: #324851;
+    padding: 16px 16px;
+    text-decoration: none;
+    background-color: #324851;
+    color: #ffffff;
+  }
+
+  #button{
+    font-size: 20px;
+    margin: auto;
+    margin: top;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: block;
+    padding: 10px 24px;
+    text-decoration: none;
+    background-color: #acacac;
+    color: #363636;
+    margin-top: 10%;
+    border-block-start-width: 5px;
+    border: 2px solid rgb(255, 255, 255);
+
+  }
+  
+
+  ion-input{
+    background-color:#ffffff;
+    color:#324851; 
+    text-align:left;
+  }
+ 

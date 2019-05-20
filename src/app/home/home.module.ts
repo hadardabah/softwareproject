@@ -21,4 +21,5 @@ import { GenericButtonComponent } from '../components/generic-button/generic-but
   ],
   declarations: [HomePage, GenericButtonComponent]
 })
-export class HomePageModule {}
+export class HomePageModule {    
+}
