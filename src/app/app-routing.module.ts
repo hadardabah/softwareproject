@@ -4,7 +4,7 @@ import { HomePage } from './home/home.page';
 import { SinginPage } from './singin/singin.page';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'singin', loadChildren: './singin/singin.module#SinginPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
