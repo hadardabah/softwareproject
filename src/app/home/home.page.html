@@ -95,8 +95,8 @@
             <img class="mod" src="http://www.up2me.co.il/images/60215606.png">
         </div>
           <ul>
-              <li><a href="#home" >לוח אירועים</a></li>
-              <li><a href="#news">קטלוג מופעים</a></li>
+              <li><a routerLink="/home/events" >לוח אירועים</a></li>
+              <li><a routerLink="/home/catalog">קטלוג מופעים</a></li>
               <li><a href="#contact">משאבי אנוש</a></li>
               <li><a href="#about">דוחות</a></li>
               <li><a href="#contact">תקציבים</a></li>
@@ -104,7 +104,21 @@
             </ul>  
       </div> 
       <div class="left" > 
-          <img class="mod" src="http://www.up2me.co.il/images/63432205.jpg">
+          
+        <div style='border: 2px solid red; border-radius: 10px; height: 200px; width: 200px;'  *ngFor='let doc of dataFromDatabase'>
+          <h1>Name: {{doc.name}}</h1>
+          <p>
+              Age: {{doc.age}}
+          </p>
+        </div>
+        
+        <!-- <ion-router-outlet></ion-router-outlet> -->
+
+
+        <!-- <input #name placeholder='name' />
+        <input #age placeholder='age' />
+        <button (click)='saveData()'>Save!</button> -->
+          <!-- <img class="mod" src="http://www.up2me.co.il/images/63432205.jpg"> -->
       </div> 
   </body>
      
