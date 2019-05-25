@@ -14,7 +14,7 @@ export class HomePage {
 
   dataFromDatabase = []
 
-  constructor(private router: Router, private db: AngularFirestore) { }
+  constructor(private router: Router, private db: AngularFirestore,) { }
 
   ngOnInit() {
     // this.db.collection('Events').add({...})

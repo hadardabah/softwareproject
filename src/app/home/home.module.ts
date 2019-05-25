@@ -20,6 +20,10 @@ import { GenericButtonComponent } from '../components/generic-button/generic-but
         children: [
           { path: 'events', loadChildren: '../eventsboard/eventsboard.module#EventsboardPageModule' },
           { path: 'catalog', loadChildren: '../catalog/catalog.module#CatalogPageModule' },
+          { path: 'human', loadChildren: '../human/human.module#HumanPageModule' },
+          { path: 'reports', loadChildren: '../reports/reports.module#ReportsPageModule' },
+          { path: 'budgets', loadChildren: '../budgets/budgets.module#BudgetsPageModule' },
+          { path: 'data', loadChildren: '../data/data.module#DataPageModule' },
         ]
       }
     ]
