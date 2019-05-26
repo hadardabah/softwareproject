@@ -1,3 +1,136 @@
 <ion-content padding class="background">
     <h1>CATALOG</h1>
+    <ion-col>
+            <fieldset>
+               <legend> על המופע...</legend>
+                <ion-row>
+                        <ion-input [(ngModel)]="show"></ion-input>
+                        <ion-label>:שם המופע</ion-label>
+       
+                         <ion-input  [(ngModel)]="artist"></ion-input>
+                         <ion-label>:שם האומן</ion-label>
+
+                         <ion-list>
+   
+                                <ion-item>
+                                  
+                                  <ion-select multiple="true">
+                                    <ion-select-option value="child" selected>ילדים</ion-select-option>
+                                    <ion-select-option value="women">נשים</ion-select-option>
+                                    <ion-select-option value="dog" selected>נערות</ion-select-option>
+                                    <ion-select-option value="honeybadger">בנים </ion-select-option>
+                                    <ion-select-option value="honeybadger">נשים  </ion-select-option>
+                                    <ion-select-option value="honeybadger">אבות ובנים </ion-select-option>
+                                    <ion-select-option value="honeybadger">גיל הזהב - נשים </ion-select-option>
+                                    <ion-select-option value="honeybadger">בנות היסודי </ion-select-option>
+                                  </ion-select>
+                                </ion-item>
+                              </ion-list>
+                              <ion-label>אוכלוסיית יעד</ion-label>
+         
+                </ion-row>
+            </fieldset>
+            
+            <fieldset>
+              <legend>זמן ועלוית</legend>
+                <ion-row>    
+                    
+                 
+                  <ion-item #timeShow>
+                  <ion-datetime   display-format="HH:mm"  max= "12:00"> </ion-datetime>
+                  </ion-item>
+                  <ion-label>:משך זמן מופע</ion-label>
+
+                  <ion-item #timeBefore>
+                  <ion-datetime  display-format="HH:mm"  max= "12:00"> </ion-datetime>
+                  </ion-item>
+                  <ion-label>:משך זמן נדרש לפני המופע</ion-label> 
+
+                 <ion-item #timeAfter>
+                 <ion-datetime  display-format="HH:mm"  max= "12:00"> </ion-datetime>
+                 </ion-item>
+                 <ion-label>:משך זמן נדרש לנקיון אחרי  המופע</ion-label> 
+
+                 <ion-input type=number min ="00" #priceShow>₪</ion-input>
+                 <ion-label>:עלות  המופע</ion-label>
+
+                 <ion-input type=number min ="00" #priceDrive>₪</ion-input>
+                 <ion-label>:עלות  נסיעות</ion-label>
+
+    
+
+                  </ion-row>
+            </fieldset>
+            <fieldset>
+                    <legend>  אמנים וספקים </legend>
+                    <ion-row>
+   <ion-input #Provider></ion-input>
+   <ion-label>:שם ספק</ion-label>
+      
+    <ion-input #poneProvid></ion-input>
+    <ion-label>:טלפון ספק</ion-label>
+  
+        <ion-input #phon2provide></ion-input>
+    <ion-label>:טלפון נוסף ספק</ion-label>
+       
+        <ion-input #mailprovids></ion-input>
+        <ion-label>:דוא"ל ספק</ion-label>
+  
+        <ion-input #phoneArt></ion-input>
+        <ion-label>:טלפון ישיר לאומן</ion-label>
+  
+        <ion-input #mailArt></ion-input>
+        <ion-label>:דוא"ל ישיר לאומן</ion-label>
+  
+        
+
+    
+          </ion-row>
+       </fieldset>
+       <fieldset>
+            <legend>שונות </legend>
+            <ion-row>
+                    <ion-input #howWatch></ion-input>
+                    <ion-label>?מי צפה במופע לדוגמא</ion-label>
+
+            <ion-list>
+                    <ion-item>
+                        <ion-select multiple="true">
+                        <ion-select-option value="child" selected>ילדים</ion-select-option>
+                        <ion-select-option value="women">נשים</ion-select-option>
+                        <ion-select-option value="dog" selected>נערות</ion-select-option>
+                        <ion-select-option value="honeybadger">בנים </ion-select-option>
+                        <ion-select-option value="honeybadger">נשים  </ion-select-option>
+                        <ion-select-option value="honeybadger">אבות ובנים </ion-select-option>
+                        <ion-select-option value="honeybadger">גיל הזהב - נשים </ion-select-option>
+                        <ion-select-option value="honeybadger">בנות היסודי </ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
+                  <ion-label>:ציוד נדרש</ion-label>
+
+                  <ion-item>
+                        <ion-label>graphics</ion-label>
+                        <ion-select placeholder="Select One">
+                          <ion-select-option value="yesgraphics">כן</ion-select-option>
+                          <ion-select-option value="graphics">לא</ion-select-option>
+                        </ion-select>
+                      </ion-item>
+                    <ion-label>?האם יש גרפיקה של המופע</ion-label>
+
+                    <ion-item>
+                            <ion-select placeholder="Select One">
+                              <ion-select-option value="wageEarne">שכיר</ion-select-option>
+                              <ion-select-option value="ExemptDealer">פטור</ion-select-option>
+                              <ion-select-option value="allowed">מורשה</ion-select-option>
+                            </ion-select>
+                          </ion-item>
+                        <ion-label>:סוג עוסק</ion-label>
+                </ion-row>
+           </fieldset>
+
+    
+    </ion-col>
+
+      <button ion-button id=button (click)="addShow()">הוספה</button>  
 </ion-content>
