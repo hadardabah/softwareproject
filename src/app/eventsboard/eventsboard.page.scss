@@ -1,34 +1,6 @@
- /*.ios ion-badge {
-    text-transform: uppercase;
-  }*/
-  body{
-    width: 100%;
-    height: 100%;
- }
-  .right{
-    float: right;
-     width: 18%;
-    height: 100%;
-    background-color:#324851; 
-  }
-  .logo{
-    padding-top: 10%;
-    width:145px;
-    height: 156px;
-    margin: top;
-    margin: auto;
-    padding-bottom: 10%;
-  }
-  .left{
-    width: 81.8%;
-    height: 100%;
-    margin-right: 30%;
-
-  }
-  .mod{
-    width: 100%;
-    height: 100%; 
-  }
+ion-content.background{
+    --background: url(http://www.up2me.co.il/images/69528473.jpg) 0 0/100% 100% no-repeat;
+}
   ul {
     list-style-type: none;
     margin: 0;

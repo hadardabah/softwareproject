@@ -12,14 +12,25 @@ import { GenericButtonComponent } from '../components/generic-button/generic-but
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild([
+    RouterModule.forChild(
+      [
       {
         path: '',
-        component: HomePage
+        component: HomePage,
+        children: [
+          { path: 'events', loadChildren: '../eventsboard/eventsboard.module#EventsboardPageModule' },
+          { path: 'catalog', loadChildren: '../catalog/catalog.module#CatalogPageModule' },
+          { path: 'human', loadChildren: '../human/human.module#HumanPageModule' },
+          { path: 'reports', loadChildren: '../reports/reports.module#ReportsPageModule' },
+          { path: 'budgets', loadChildren: '../budgets/budgets.module#BudgetsPageModule' },
+          { path: 'data', loadChildren: '../data/data.module#DataPageModule' },
+        ]
       }
-    ])
+    ]
+    )
   ],
-  declarations: [HomePage, GenericButtonComponent]
+  declarations: [HomePage, GenericButtonComponent],
+  providers: []
 })
 export class HomePageModule {    
 }
