@@ -1,0 +1,32 @@
+<ion-content padding class="background">
+    <div class="rtl">
+    <table>
+        <tr>
+            <th>שם המופע</th>
+            <th>שם האומן</th>
+            <th>קהל יעד</th>
+            <th>משך זמן המופע</th>
+            <th>שם  ספק</th>
+            <th>מי צפה במופע</th>
+          </tr>
+         
+          <tr *ngFor='let doc of dataFromDatabase'>
+            <td> {{doc.show}}</td> 
+            <td>{{doc.artist}}</td>
+            <td>{{doc.audience}}</td>
+            <td>{{doc.artist}}</td>
+            <td> {{doc.Provider}}</td>
+            <td>{{doc.whoWatch}}</td>
+          </tr>
+           
+         
+     
+         
+       
+      </table>
+
+
+
+
+      </div>
+</ion-content>

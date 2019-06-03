@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'singin', loadChildren: './singin/singin.module#SinginPageModule' },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },  { path: 'catalog-table', loadChildren: './catalog-table/catalog-table.module#CatalogTablePageModule' },
+
 
    //{ path: 'home', component: HomePage },
  //{ path: 'singin', component: SinginPage },

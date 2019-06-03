@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Window } from 'selenium-webdriver';
+import { defineBase } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-eventsboard',
@@ -23,15 +25,32 @@ export class EventsboardPage implements OnInit {
   @ViewChild('advertising_status') advertising_statusField
   @ViewChild('order_status_purchase') order_status_purchaseField
   @ViewChild('payment_status') payment_statusField
+  @ViewChild('show') nameField
+  @ViewChild('doc.id') idField
+
+
 
   dataFromDatabase = []
 
   constructor(private router: Router, private db: AngularFirestore,) { }
 
+  ngOnInit() {
+    // this.db.collection('Events').add({...})
 
-  ngOnInit() {}
+    this.db.collection('Show').get().subscribe(result => {
+      debugger
+      const docs = result.docs.map(doc => doc.data())
+      this.dataFromDatabase = docs
+
+
+    })
+   
+  }
+  s: string="";
 
   /*
+  ngOnInit() {}
+
   onSelect(countryId) { 
     this.listField = null;
     for (var i = 0; i < this.countries.length; i++)
@@ -62,4 +81,23 @@ export class EventsboardPage implements OnInit {
     })
   window.alert("האירוע נוסף בהצלחה")
   }
+
+  try(d){
+   
+
+   console.log(this.target_audienceField.nativeElement.value)
+    var a=this.db.collection('Events').doc(d).get().subscribe
+    (result => {
+      const data = result.data().season
+      const data1 = result.data().hebrew_year
+      console.log(data);
+      this.hebrew_yearField.nativeElement.value=data1
+
+    })
+
+
+ 
+ }
+
+
 }

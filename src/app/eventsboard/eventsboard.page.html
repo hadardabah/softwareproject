@@ -3,8 +3,13 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
+                    <select  class=input  [(ngModel)] ="s" (ngModelChange)="try('SxmLJSyPecH8gqxefkzu')" >
+                        <option value="" disabled selected>שם המופע</option>
+                        <option [value]="doc.id"  *ngFor='let doc of dataFromDatabase' id = 's'  >{{doc.show}}</option>
+                    </select>
+                   
                     <input class=input #season placeholder='עונת אירועים' />
-                    <input class=input #hebrew_year placeholder='שנה עברית' />
+                    <input class=input #hebrew_year placeholder='שנה עברית'  />
                     <input placeholder="תאריך לועזי" class=input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" #date>
                     <input placeholder="שעת פתיחת דלתות" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #time>
                     <input placeholder="שעת התחלת אירוע בפועל" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #Actual_show_time>
@@ -25,7 +30,7 @@
                         <option value="yes">כן</option>
                         <option value="no">לא</option>
                     </select> 
-                    <select class=input #target_audience>
+                    <select id ="cal" class=input #target_audience>
                         <option value="" disabled selected>קהל יעד</option>
                         <option value="children">ילדים</option>
                         <option value="girls">ילדות</option>
@@ -36,7 +41,7 @@
                         <option value="women_golden_age">גיל הזהב - נשים</option>
                         <option value="elementary_girls">בנות היסודי</option>
                     </select> 
-                    <select class=input #advertising_status>
+                    <select  id ="list" class=input #advertising_status>
                         <option value="" disabled selected>מצב פרסום</option>
                         <option value="not_yet_treated">טרם טופל</option>
                         <option value="artist">ממתין לגרפיקה מהאומן/ית</option>
@@ -51,12 +56,14 @@
                         <option value="ordering">נמצא בריכוז להכנת הזמנה</option>
                         <option value="request_price">נשלחה בקשה להצע"מ</option>
                         <option value="arrived">הגיעה הצע"מ</option>
-                        <option value="request_procurement">נשלח בקשה לרכש</option>                            <option value="return_procurement">חזר מהרכש - לטיפול</option>
+                        <option value="request_procurement">נשלח בקשה לרכש</option>                            
+                        <option value="return_procurement">חזר מהרכש - לטיפול</option>
                     </select> 
                     <select class=input #payment_status>
                         <option value="" disabled selected>סטטוס תשלום</option>
                         <option value="invoice_not_arrived">טרם הגיעה חשבונית / דרישה לתשלום</option>
-                        <option value="invoice_arrived">הגיעה חשבונית / דרישה, טרם טופל</option>                            <option value="invoice_payment">הועברה חשבונית לתשלום</option>
+                        <option value="invoice_arrived">הגיעה חשבונית / דרישה, טרם טופל</option>                            
+                        <option value="invoice_payment">הועברה חשבונית לתשלום</option>
                         <option value="paid_up">שולם</option>
                     </select>
                     <input class=input type="file" #upload>

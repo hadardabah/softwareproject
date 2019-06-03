@@ -60,3 +60,16 @@ button{
   color: #ffffff;
   margin-right: 91%; 
 }
+
+::placeholder {
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color:black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: black;
+}

@@ -2,41 +2,89 @@
 <ion-content padding class="background">
  
  
-  <h1>הכנסת מופע</h1>
+    <form  #testForm="ngForm"  (ngSubmit)="addShow()" ngNativeValidate>
      <div class="rtl">
-            <ion-col>
-                    <input class=input #show placeholder='שם המופע' />
-                    <input class=input #artist placeholder='שם האמן' />
-                    <input class=input #whoWatch placeholder='מי צפה במופע לדוגומא' />
-                    <input class=input #priceShow placeholder='עלות המופע' />
-                    <input class=input #priceDriver placeholder='עלות נסיעות' />
-                    <input class=input #Provider placeholder='שם ספק' />
+            <ion-row>
+              
+                    <input [(ngModel)]="test" required class=input #show placeholder='שם המופע' />
+                    <input [(ngModel)]="test" required class=input #artist placeholder='שם האמן' />
+                    <input class=input #whoWatch placeholder='מי צפה במופע לדוגמא' />
+                    <input [(ngModel)]="test" required class=input #priceShow placeholder='עלות המופע' />
+                    <input [(ngModel)]="test" required class=input #priceDriver placeholder='עלות נסיעות' />
+                    <input [(ngModel)]="test" required class=input #Provider placeholder='שם ספק' />
 
-                    <input class=input #phoneProvid placeholder='טלפון ספק' />
+                    <input [(ngModel)]="test" required class=input #phoneProvid placeholder='טלפון ספק' />
 
                     <input class=input #phone2Provid placeholder='טלפון נוסף של ספק' />
 
-                    <input class=input #mailProvid placeholder='דוא"ל ספק' />
+                    <input [(ngModel)]="test" required class=input #mailProvid placeholder='דוא"ל ספק' />
 
                     <input class=input #phoneArt placeholder='טלפון ישיר לאומן' />
                     
                     <input class=input #mailArt placeholder='דוא"ל ישיר לאומן' />
-                    <input class=input #numB placeholder='מספר עוסק' />
+                    <input [(ngModel)]="test" required class=input #numB placeholder='מספר עוסק' />
 
-                    
-             </ion-col>
-               
-                  
-          
-         
-            
-           
+                    <select [(ngModel)]="test" required class=input #business>
+                        <option value="" disabled selected>סוג עוסק</option>
+                        <option value="שכיר">שכיר</option>
+                        <option value="עוסק פטור">עוסק פטור</option>
+                        <option value="עוסק מורשה">עוסק מורשה</option>
+                    </select>
+
+                    <select [(ngModel)]="test" required class=input #graphics>
+                        <option value="" disabled selected>יש גרפיקה במופע?</option>
+                        <option value="כן">כן</option>
+                        <option value="לא">לא</option>
+                    </select>
+
+                    <input [(ngModel)]="test" required class=input #equipment placeholder='ציוד נדרש' />
+
                  
-                   
-                
-                  
-                      <ion-col>
-                      <ion-item>
+                   <!-- <select class=input multiple="true" [(ngModel)]="audience">
+                        <option value="" disabled selected>קהל יעד</option>
+                        <option ion-select-option value="ילדים" > ילדים
+                        <option ion-select-option value="ילדות" > ילדות
+                        <option ion-select-option value="נערות" > נערות
+                        <option ion-select-option value="בנים" > בנים
+                        <option ion-select-option value="נשים" > נשים
+                        <option ion-select-option value="אבות ובנים" > אבות ובנים
+                        <option ion-select-option value="גיל הזהב - נשים" > גיל הזהב - נשים
+                        <option ion-select-option value="בנות היסודי" > בנות היסודי  
+                    </select> 
+                    -->
+             </ion-row>
+          
+             
+    
+            <ion-col>
+              
+                <input [(ngModel)]="test" required placeholder="זמן אחרי המופע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #timeAfter>
+                <input [(ngModel)]="test" required placeholder="זמן לפני המופע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #timeBefore>
+                <input [(ngModel)]="test" required placeholder="משך זמן המופע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #timeShow>
+
+               
+            </ion-col>
+
+
+ </div>
+      <button ion-button id=button routerLink="/home/catalog-table">מעבר לטבלת מופעים</button>
+      <button ion-button id=button  type="submit">הוספה</button>
+    </form>
+    <select class=input multiple="true" [(ngModel)]="audience">
+        <option value="" disabled selected>קהל יעד</option>
+        <option ion-select-option value="ילדים" > ילדים
+        <option ion-select-option value="ילדות" > ילדות
+        <option ion-select-option value="נערות" > נערות
+        <option ion-select-option value="בנים" > בנים
+        <option ion-select-option value="נשים" > נשים
+        <option ion-select-option value="אבות ובנים" > אבות ובנים
+        <option ion-select-option value="גיל הזהב - נשים" > גיל הזהב - נשים
+        <option ion-select-option value="בנות היסודי" > בנות היסודי  
+    </select> 
+
+</ion-content>
+<!--
+  <ion-item>
                           <ion-label>קהל יעד</ion-label>
                           <ion-select multiple="true" [(ngModel)]="population" cancelText="ביטול" okText="אישור">
                             <ion-select-option value="ילדים">ילדים</ion-select-option>
@@ -53,22 +101,7 @@
                       
                 
   
-                      <ion-item>
-                          <ion-label>ציוד</ion-label>
-
-                          <ion-select multiple="true" [(ngModel)]=" equipment"  cancelText="ביטול" okText="אישור">
-                            <ion-select-option value="ילדים">ילדים</ion-select-option>
-                            <ion-select-option value="נשים">נשים</ion-select-option>
-                            <ion-select-option value="נערות">נערות</ion-select-option>
-                            <ion-select-option value="בנים">בנים</ion-select-option>
-                            <ion-select-option value="נשים">נשים</ion-select-option>
-                            <ion-select-option value="אבות ובנים">אבות ובנים</ion-select-option>
-                            <ion-select-option value="גיל הזהב- נשים">גיל הזהב- נשים</ion-select-option>
-                            <ion-select-option value="בנות היסודי">בנות היסודי</ion-select-option>
-                           
-                          </ion-select>
-                        </ion-item>
-                      
+                  
                       
                        
                     
@@ -84,50 +117,5 @@
                               </ion-select>
                             </ion-item>
 
-                            <ion-item>
-                                <ion-label>סוג עוסק</ion-label>
-                                <ion-select multiple="true"   [(ngModel)]="business"cancelText="ביטול" okText="אישור">
-                                  <ion-select-option value="שכיר">שכיר</ion-select-option>
-                                  <ion-select-option value="עוסק פטור">עוסק פטור</ion-select-option>
-                                  <ion-select-option value="עוסק מורשה">עוסק מורשה</ion-select-option>
-                                </ion-select>
-                              </ion-item>
-                              </ion-col>
-                              <ion-col>
 
-                      <ion-item #timeShow [(ngModel)]="time" >
-                          <ion-label>:משך זמן מופע</ion-label>  
-                  <ion-datetime   display-format="HH:mm"  max= "12:00"  hoursValues="00,01,02,03,04,05,06,07,08,09,10,11,12"  > </ion-datetime>
-                  </ion-item>
-              
-
-                  <ion-item #timeBefore>
-                    <ion-label>:זמן לפני המופע</ion-label> 
-                  <ion-datetime  display-format="HH:mm"  max= "12:00"> </ion-datetime>
-                  </ion-item>
-                  
-
-                 <ion-item #timeAfter>
-                     <ion-label>:זמן אחרי המופע</ion-label> 
-                 <ion-datetime  display-format="HH:mm"  max= "12:00"> </ion-datetime>
-                 </ion-item>
-                 </ion-col>
-                 
-
-                 
-  
-
-                       
-                    
-                    
-                 
-  
-
-       
-
-
-        
-      </div>
-      <button ion-button id=button (click)="addShow()">הוספה</button>
-
-</ion-content>
+-->
