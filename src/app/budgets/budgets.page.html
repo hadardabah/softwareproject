@@ -1,3 +1,33 @@
 <ion-content padding class="background">
-    <h1>BUDGETS</h1>
+    <div class = "rtl">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+
+                    <input class=input #origain_f placeholder='מקור ממון' />
+                    <input class=input #name_f placeholder='שם סעיף תקציבי'  />
+                    <input class=input #sum_f placeholder='סכום'  />
+            
+                  
+                </ion-col>
+
+                <ion-col> 
+                    <select [(ngModel)]="test" required class=input #business placeholder='סוג עוסק'>
+                        <option value="" disabled selected>סוג עוסק</option>
+                        <option value="הוגש">הוגש</option>
+                        <option value="בבדיקה">בבדיקה</option>
+                        <option value="אושר">אושר</option>
+                    </select>
+
+                    <input class=input #mimosh placeholder='סטטוס מימוש'  />
+                   
+
+                </ion-col>
+                
+
+              
+            </ion-row>
+        </ion-grid> 
+        <button (click)='saveData()'>יצירת טופס</button>       
+    </div>      
 </ion-content>
