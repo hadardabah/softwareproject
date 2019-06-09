@@ -5,23 +5,7 @@ ion-content.background{
 
 .rtl{
   direction: rtl;
-}
-
-ion-item{
-  margin: 1%;
-  padding-left: 5%; 
-  float: right;
-  text-align: right;
-  color: grey;
-  width: 230px;
-  height: 20%;
-
-}
-
-
-h1{
-  text-align: right;
-
+  overflow:auto;
 }
 
 
@@ -41,13 +25,11 @@ h1{
 .input{
   
   width: 500px;
-  margin-bottom:10%; 
   margin: 1%;
+  margin-bottom: 2.5%;
   float: right;
   text-align: right;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-  
 }
 button{
   font-size: 16px;
@@ -60,9 +42,12 @@ button{
   //margin-right: 10%; 
   margin: 4px 2px;
   float: left;
-  margin-top:10%;
-
-
+  
 }
+
+ion-grid{
+  --ion-grid-column-padding: 10px;
+}
+
 
 

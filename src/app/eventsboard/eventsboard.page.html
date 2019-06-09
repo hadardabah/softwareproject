@@ -3,21 +3,80 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <select  class=input  [(ngModel)] ="s" (ngModelChange)="try('SxmLJSyPecH8gqxefkzu')" >
+                    <select class=input #show (change)='try($event)' >
                         <option value="" disabled selected>שם המופע</option>
-                        <option [value]="doc.id"  *ngFor='let doc of dataFromDatabase' id = 's'  >{{doc.show}}</option>
+                        <option [value]="doc.show"  *ngFor='let doc of dataFromDatabase'>{{doc.show}}</option>
                     </select>
                    
                     <input class=input #season placeholder='עונת אירועים' />
                     <input class=input #hebrew_year placeholder='שנה עברית'  />
                     <input placeholder="תאריך לועזי" class=input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" #date>
-                    <input placeholder="שעת פתיחת דלתות" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #time>
+                    <input class=input #hebrew_date placeholder='תאריך עברי'  />
+                    <select class=input #day_of_week>
+                        <option value="" disabled selected>יום בשבוע</option>
+                        <option value="ראשון" >ראשון</option>
+                        <option value="שני">שני</option>
+                        <option value="שלישי">שלישי</option>
+                        <option value="רביעי">רביעי</option>
+                        <option value="חמישי">חמישי</option>
+                        <option value="שישי">שישי</option>
+                        <option value="מוצאי שבת">מוצ"ש</option>
+                   </select>
+                    <input placeholder="שעת פתיחת דלתות" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #open_doors>
                     <input placeholder="שעת התחלת אירוע בפועל" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #Actual_show_time>
+
+                    <select class=input #building>
+                        <option value="" disabled selected>מבנה</option>
+                        <option value="הופעה" >הופעה</option>
+                        <option value="סדנא">סדנא</option>
+                    </select>
+                    <select class=input #building_status>
+                        <option value="" disabled selected>סטטוס שריון מבנה</option>
+                        <option value="חסר שיבוץ" >חסר שיבוץ</option>
+                        <option value="משוריין">משוריין</option>
+                        <option value="ממתין לתשובת שריון">ממתין לתשובת שריון</option>
+                        <option value="סגור">סגור</option>
+                   </select>
+
+                    
                 </ion-col>
                 <ion-col> 
                     <input placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity> 
                     <input placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost>
                     <input placeholder="מספר סדרנים נדרש" class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #ushers>
+                    <input class=input  #before_show placeholder='משך זמן ניקיון/הכנות לפני אירוע' />
+                    <input class=input  #show_time placeholder='משך זמן האירוע' />
+
+                    <input placeholder="שעת סיום האירוע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #end_of_show>
+                    <input class=input #after_show placeholder='משך זמן פירוק/ניקיון לאחר האירוע' />
+                    <input placeholder="שעה שבה משוחרר המבנה לאחר האירוע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #release_building>
+
+                    <select class=input #budgets>
+                        <option value="" disabled selected>סעיף תקציבי</option>
+                        <option value="הופעה" >הופעה</option>
+                        <option value="סדנא">סדנא</option>
+                    </select>
+
+                    <select class=input #agent>
+                        <option value="" disabled selected>מפעיל/ה</option>
+                        <option value="הופעה" >הופעה</option>
+                        <option value="סדנא">סדנא</option>
+                    </select>
+
+                    <select class=input #in_charge_of_show>
+                        <option value="" disabled selected>אחראי/ת לאירוע</option>
+                        <option value="הופעה" >הופעה</option>
+                        <option value="סדנא">סדנא</option>
+                    </select>
+
+                    <select class=input #usher1>
+                        <option value="" disabled selected>סדרן 1</option>
+                        <option value="הופעה" >הופעה</option>
+                        <option value="סדנא">סדנא</option>
+                    </select>
+
+                    <input class=input #equipment placeholder='ציוד נדרש' />
+
                 </ion-col>
                 <ion-col>
                     <select class=input #event_type>
@@ -30,17 +89,9 @@
                         <option value="yes">כן</option>
                         <option value="no">לא</option>
                     </select> 
-                    <select id ="cal" class=input #target_audience>
-                        <option value="" disabled selected>קהל יעד</option>
-                        <option value="children">ילדים</option>
-                        <option value="girls">ילדות</option>
-                        <option value="youth">נערות</option>
-                        <option value="boys">בנים</option>
-                        <option value="women">נשים</option>
-                        <option value="fathers_sons">אבות ובנים</option>
-                        <option value="women_golden_age">גיל הזהב - נשים</option>
-                        <option value="elementary_girls">בנות היסודי</option>
-                    </select> 
+
+                    <input class=input #target_audience placeholder='קהל יעד' />
+
                     <select  id ="list" class=input #advertising_status>
                         <option value="" disabled selected>מצב פרסום</option>
                         <option value="not_yet_treated">טרם טופל</option>

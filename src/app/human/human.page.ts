@@ -28,15 +28,14 @@ export class HumanPage implements OnInit {
 
   ngOnInit() {
     // this.db.collection('Events').add({...})
-/*
-    this.db.collection('Show').get().subscribe(result => {
+    this.db.collection('Human').get().subscribe(result => {
       debugger
       const docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = docs
 
 
     })
-   */
+   
   }
   s: string="";
 
@@ -66,22 +65,5 @@ export class HumanPage implements OnInit {
   window.alert("הדוח נוסף בהצלחה")
   }
 
- /* try(d){
-   
-
-   //console.log(this.target_audienceField.nativeElement.value)
-    var a=this.db.collection('Events').doc(d).get().subscribe
-    (result => {
-      const data = result.data().season
-      const data1 = result.data().hebrew_year
-      console.log(data);
-      this.hebrew_yearField.nativeElement.value=data1
-
-    })
-
-
- 
- }
-*/
 
 }

@@ -1,7 +1,7 @@
  /*.ios ion-badge {
     text-transform: uppercase;
   }*/
- body{
+  body{
     width: 100%;
     height: 100%;
  }
@@ -9,7 +9,7 @@
     float: right;
      width: 18%;
     height: 100%;
-    background-color:#324851; 
+    background-color:#456471; 
   }
   .logo{
     padding-top: 10%;
@@ -36,7 +36,7 @@
     width: 100%;
     height: 100%;
 
-    background-color: #324851;
+    background-color: #456471;
   }
   
   li a {
@@ -55,8 +55,8 @@
   }
   
   li a:hover:not(.active) {
-    background-color: #cdb579;
-    color: #ffffff;
+    background-color: whitesmoke;
+    color: #000000;
 
   }
   

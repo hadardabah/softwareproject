@@ -3,25 +3,40 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
-
                     <input class=input #first_name placeholder='שם פרטי' />
                     <input class=input #last_name placeholder='שם משפחה'  />
                     <input class=input #id placeholder='מס זהות'  />
-                    <input class=input #email placeholder='כתובת מייל' />
-            
-                  
+                    <input class=input #email placeholder='כתובת מייל' /> 
                 </ion-col>
-
                 <ion-col> 
                     <input class=input #phone placeholder='מספר טלפון' />
                     <input class=input #phone2 placeholder='מספר טלפון נוסף'  />
                     <input class=input #comma placeholder='הערות נוספות'  />
-                </ion-col>
-                
-
-              
+                </ion-col>  
             </ion-row>
         </ion-grid> 
-        <button (click)='saveData()'>יצירת טופס</button>       
+        <button (click)='saveData()'>יצירת טופס</button> 
+        
+        <table>
+            <tr>
+                <th>שם פרטי</th>
+                <th>שם משפחה</th>
+                <th>מס זהות</th>
+                <th>כתובת מייל</th>
+                <th>מס טלפון</th>
+                <th>מס טלפון נוסף</th>
+                <th>הערות נוספות</th>
+              </tr>
+             
+              <tr *ngFor='let doc of dataFromDatabase'>
+                <td> {{doc.first_name}}</td> 
+                <td>{{doc.last_name}}</td>
+                <td>{{doc.id}}</td>
+                <td>{{doc.email}}</td>
+                <td> {{doc.phone}}</td>
+                <td>{{doc.phone2}}</td>
+                <td>{{doc.comma}}</td>
+              </tr> 
+          </table>
     </div>      
 </ion-content>
