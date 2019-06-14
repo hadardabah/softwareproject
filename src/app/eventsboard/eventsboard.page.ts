@@ -120,7 +120,7 @@ export class EventsboardPage implements OnInit {
     const selectedObj = this.dataFromDatabase.find(i => i.show === d.currentTarget.value)
       
     // setting the appropriate value to each field(s)
-    // this.target_audienceField.nativeElement.value = selectedObj.audience.join(', ')
+    this.target_audienceField.nativeElement.value = selectedObj.audience.join(', ')
     this.equipmentField.nativeElement.value = selectedObj.equipment
     this.before_showField.nativeElement.value = selectedObj.timeBefore
     this.show_timeField.nativeElement.value = selectedObj.timeShow

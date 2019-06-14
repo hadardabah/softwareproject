@@ -27,6 +27,7 @@ export class HumanPage implements OnInit {
 
   dataFromDatabase = []
   old_id: any;
+  time: any;
   
   constructor(private router: Router, private db: AngularFirestore,private ngZone:NgZone ) { }
 
@@ -67,8 +68,11 @@ export class HumanPage implements OnInit {
       phone: this.phoneField.nativeElement.value,
       phone2: this.phone2Field.nativeElement.value,
       comma: this.commaField.nativeElement.value,
+      time:new Date(),
       
-    })
+    }).then(()=>{
+      this.ngOnInit()
+    });
     window.alert("הדוח נוסף בהצלחה")
   }
   edit(d) {
@@ -82,6 +86,7 @@ export class HumanPage implements OnInit {
     this.phone2Field.nativeElement.value = d.phone2
     this.commaField.nativeElement.value = d.comma
     this.old_id=d.id
+    this.time =  d.time
 
     //console.log(d)
     // if(d == MouseEvent){
@@ -95,15 +100,15 @@ export class HumanPage implements OnInit {
     // this.whoWatch_filed.nativeElement.value ='chen'
   }
   edit_db() {
-    if ( this.old_id == undefined || this.old_id == '')
-      return
-      
+    //if ( this.time== undefined || this.time == '')
+     // return
+     // debugger
     // window.alert("in edit_db")
-    console.log()
-    this.db.collection('Human', ref => ref.where('id', '==',this.old_id)).get().subscribe(result => {
+    console.log(this.time)
+    this.db.collection('Human', ref => ref.where('time', '==',this.time)).get().subscribe(result => {
       this.updateData(result.docs[0].id)
     })
-    
+  
   
   }
 
@@ -120,7 +125,7 @@ updateData(docid)
 
     }).then(()=>{
       this.ngOnInit()
-      alert('after change')
+      alert('הרשומה התעדכנה')
     });
 
 
@@ -128,7 +133,7 @@ updateData(docid)
 
 
 
-  delet(docParam) {
+  delete(docParam) {
 
     if (confirm(" האם להסיר רשומה זאת?")) {
       this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.id !== item.id)
