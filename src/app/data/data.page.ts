@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Window } from 'selenium-webdriver';
 import { defineBase } from '@angular/core/src/render3';
 import { initDomAdapter } from '@angular/platform-browser/src/browser';
+import {FormControl, Validators, NgForm} from '@angular/forms';
+
 @Component({
   selector: 'app-data',
   templateUrl: './data.page.html',
@@ -19,42 +21,20 @@ export class DataPage implements OnInit {
   @ViewChild('contact_phone')contact_phoneField
   @ViewChild('mailcontact')mailcontactField
   @ViewChild('comma')commaField
- 
-
-
 
   dataFromDatabase = []
+  time: any;
 
   constructor(private router: Router, private db: AngularFirestore,) { }
 
   ngOnInit() {
-    // this.db.collection('Events').add({...})
-
     this.db.collection('Data').get().subscribe(result => {
-      debugger
       const docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = docs
-
-
     })
-   
   }
-  s: string="";
 
-  /*
-  ngOnInit() {}
-
-  onSelect(countryId) { 
-    this.listField = null;
-    for (var i = 0; i < this.countries.length; i++)
-    {
-      if (this.countries[i].id == countryId) {
-        this.selectedCountry = this.countries[i];
-      }
-    }
-}
-*/
-  saveData() {
+  saveData(form: NgForm) {
     this.db.collection('Data').add({
       Building_name: this.Building_nameField.nativeElement.value,
       type_building: this.type_buildingField.nativeElement.value,
@@ -63,30 +43,52 @@ export class DataPage implements OnInit {
       contact_name: this.contact_nameField.nativeElement.value,
       contact_phone: this.contact_phoneField.nativeElement.value,
       mailcontact: this.mailcontactField.nativeElement.value,
-      comma: this.commaField.nativeElement.value
-    })
+      comma: this.commaField.nativeElement.value,
+      time:new Date(),
+    }).then(()=>{
+      this.ngOnInit()
+    });
   window.alert("הטופס נוסף בהצלחה")
   }
 
- /* try(d){
-   //console.log(this.target_audienceField.nativeElement.value)
-    var a=this.db.collection('Events').doc(d).get().subscribe
-    (result => {
-      const data = result.data().season
-      const data1 = result.data().hebrew_year
-      console.log(data);
-      this.hebrew_yearField.nativeElement.value=data1
+  edit(d) {
+    this.Building_nameField.nativeElement.value = d.Building_name
+    this.type_buildingField.nativeElement.value = d.type_building
+    this.Building_addressField.nativeElement.value = d.Building_address
+    this.capacityField.nativeElement.value = d.capacity
+    this.contact_nameField.nativeElement.value = d.contact_name
+    this.contact_phoneField.nativeElement.value = d.contact_phone
+    this.mailcontactField.nativeElement.value = d.mailcontact
+    this.commaField.nativeElement.value = d.comma
+    this.time = d.time
+  }
 
+  edit_db() {
+    this.db.collection('Data', ref => ref.where('time', '==',this.time)).get().subscribe(result => {
+      this.updateData(result.docs[0].id)
     })
- }
-*/
+  }
 
-onDoubleClick(docParam){
-  var txt;
+updateData(docid){
+  this.db.collection('Data').doc(docid).update({
+    Building_name: this.Building_nameField.nativeElement.value,
+      type_building: this.type_buildingField.nativeElement.value,
+      Building_address: this.Building_addressField.nativeElement.value,
+      capacity: this.capacityField.nativeElement.value,
+      contact_name: this.contact_nameField.nativeElement.value,
+      contact_phone: this.contact_phoneField.nativeElement.value,
+      mailcontact: this.mailcontactField.nativeElement.value,
+      comma: this.commaField.nativeElement.value,
+    }).then(()=>{
+      this.ngOnInit()
+      alert('הרשומה התעדכנה')
+    });
+}
+
+delete(docParam){
 if(confirm("האם להסיר את הרשומה מהטבלה?"))
- this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.Data !== item.Data)
- this.db.collection('Data' , ref => ref.where('data' , '==' , docParam.Data)).get().subscribe(result => {
+ this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.time !== item.time)
+ this.db.collection('Data' , ref => ref.where('time' , '==' , docParam.time)).get().subscribe(result => {
     this.db.collection('Data').doc(result.docs[0].id).delete()
  })}
-
 }

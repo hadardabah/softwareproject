@@ -86,7 +86,7 @@ export class HumanPage implements OnInit {
     this.phone2Field.nativeElement.value = d.phone2
     this.commaField.nativeElement.value = d.comma
     this.old_id=d.id
-    this.time =  d.time
+    this.time = d.time
 
     //console.log(d)
     // if(d == MouseEvent){
