@@ -23,6 +23,7 @@ export class HumanPage implements OnInit {
  // @ViewChild('show') nameField
   //@ViewChild('doc.id') idField
 //hi i am liel
+// hi i am chen
 
   dataFromDatabase = []
 
