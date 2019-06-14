@@ -1,5 +1,12 @@
+<head>
+        <title>Font Awesome 5 Icons</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+            </head>
 <ion-content padding class="background">
     <div class = "rtl">
+            <form  #testForm="ngForm"  (ngSubmit)="saveData(testForm)"  ngNativeValidate>
+
         <ion-grid>
             <ion-row>
                 <ion-col>
@@ -35,8 +42,10 @@
               
             </ion-row>
         </ion-grid> 
-        <button (click)='saveData()'>יצירת טופס</button>    
-        
+        <button  ion-button id=button  type="submit" >יצירת טופס</button> 
+
+    </form>
+    <button  (click)='edit_db()'>עדכון</button>         
         <table>
             <tr>
                 <th>מקור מימון</th>
@@ -44,6 +53,8 @@
                 <th>סכום</th>
                 <th>סטטוס תקצוב</th>
                 <th>סטטוס מימוש</th>
+                <th>מחיקה</th>
+                <th>עריכה</th>
               
               </tr>
              
@@ -53,6 +64,8 @@
                 <td>{{doc.sum_f}}</td>
                 <td>{{doc.buget_stat}}</td>
                 <td> {{doc.mimosh}}</td>
+                <td><i class="fas fa-trash-alt"    (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
+               <td><i class= "fas fa-pen"   (click)='edit(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
               </tr> 
           </table>
     </div>      
