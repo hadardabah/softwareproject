@@ -22,7 +22,7 @@ export class HumanPage implements OnInit {
   @ViewChild('comma')commaField
  // @ViewChild('show') nameField
   //@ViewChild('doc.id') idField
-
+//hi i am liel
 
   dataFromDatabase = []
 
