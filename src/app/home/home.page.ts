@@ -20,7 +20,7 @@ export class HomePage {
     // this.db.collection('Events').add({...})
 
     this.db.collection('Events').get().subscribe(result => {
-      debugger
+      
       const docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = docs
     })

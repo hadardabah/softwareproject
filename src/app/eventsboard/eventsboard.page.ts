@@ -118,7 +118,7 @@ export class EventsboardPage implements OnInit {
   try(d){
     // finding the selected value from the array
     const selectedObj = this.dataFromDatabase.find(i => i.show === d.currentTarget.value)
-      debugger
+      
     // setting the appropriate value to each field(s)
     // this.target_audienceField.nativeElement.value = selectedObj.audience.join(', ')
     this.equipmentField.nativeElement.value = selectedObj.equipment

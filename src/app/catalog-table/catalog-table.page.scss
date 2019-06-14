@@ -2,7 +2,12 @@ ion-content.background{
   --background: url(http://www.up2me.co.il/images/69528473.jpg) 0 0/100% 100% no-repeat;
   
 }
-
+.search{
+  background-color: red;
+  width: 100%;
+  height: 30%;
+  margin-bottom: 3%;
+}
 table{
   border: 1px solid black;
   width: 100%;
@@ -27,3 +32,4 @@ td{
   height: 79%;
   overflow:auto;
 }
+ 

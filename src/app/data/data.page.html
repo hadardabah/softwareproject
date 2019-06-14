@@ -1,3 +1,55 @@
 <ion-content padding class="background">
-    <h1>DATA</h1>
-</ion-content>
+        <div class = "rtl">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <input class=input #Building_name required placeholder='שם המבנה' />
+                        <select class=input required #type_building>
+                                <option value="" disabled selected>אופי המבנה</option>
+                                <option value="אולם מדורג" >אולם מדורג </option>
+                                <option value="אולם שטוח">אולם שטוח</option>
+                                <option value="חדר סדנא עם מקרן" >חדר סדנא עם מקרן</option>
+                                <option value="חדר סדנא בלי מקרן">חדר סדנא בלי מקרן</option>
+                        </select>  
+                        <input class=input required #Building_address placeholder='כתובת המבנה' />
+                        <input class=input required type="number" #capacity placeholder='קיבולת '  />
+                    </ion-col>
+                    <ion-col> 
+                        <input class=input required #contact_name placeholder='שם איש קשר לשריון ' />
+                        <input class=input required #contact_phone placeholder='טלפון איש קשר לשריון' />
+                        <input [(ngModel)]="test" required class=input #mailcontact placeholder='דוא"ל איש קשר לשריון ' />
+                        <input class=input #comma placeholder='הערות נוספות'  />
+                    </ion-col>
+                </ion-row>
+            </ion-grid> 
+            <button (click)='saveData()'>צור טופס</button>       
+        </div>      
+    
+        <div class="rtl">
+            <table>
+                <tr>
+                    <th>שם המבנה</th>
+                    <th>אופי המבנה</th>
+                    <th>כתובת המבנה</th>
+                    <th>קיבולת</th>
+                    <th>שם איש קשר לשריון</th>
+                    <th>טלפון איש קשר לשריון</th>
+                    <th>דוא"ל איש קשר לשריון</th>
+                    <th>הערות</th>
+                  </tr>
+                 
+                  <tr *ngFor='let doc of dataFromDatabase' (dbclick)='onDoubleClick(doc)'> 
+                    <td> {{doc.Building_name}}</td> 
+                    <td>{{doc.type_building}}</td>
+                    <td>{{doc.Building_address}}</td>
+                    <td>{{doc.capacity}}</td>
+                    <td> {{doc.contact_name}}</td>
+                    <td>{{doc.contact_phone}}</td>
+                    <td>{{doc.mailcontact}}</td>
+                    <td>{{doc.comma}}</td>
+                  </tr>
+                     
+              </table>
+              </div>
+              
+    </ion-content>

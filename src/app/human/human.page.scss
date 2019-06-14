@@ -12,8 +12,12 @@ ion-content.background{
 }
 
 .rtl{
+
   direction: rtl;
+  height: 79%;
   overflow:auto;
+  padding-bottom: 3%;
+
 }
 
 ion-grid{
@@ -27,9 +31,12 @@ button{
   padding: 8px 12px;
   background-color: #363636;
   color: #ffffff;
-  margin-right: 91%; 
+  //margin-left: 10%; 
+  //margin-right: 10%; 
+  margin: 4px 2px;
+  float: left;
+  
 }
-
 ::placeholder {
   color: black;
   opacity: 1; /* Firefox */
@@ -44,13 +51,22 @@ button{
 }
 
 
-table{
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 380px;
+  overflow: auto;
+ margin-right: 1%;
+  width:95%; 
+ 
+
+  }
+  .table-wrapper-scroll-y {
+  display: block;
   border: 1px solid black;
-  width: 100%;
   background-color: whitesmoke;
-  overflow:auto;
-  margin-top: 3%;
-}
+
+  }
 th{
   border: 1px solid black;
   height: 50px;

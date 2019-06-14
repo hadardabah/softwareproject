@@ -8,6 +8,13 @@
                     <input class=input #name_f placeholder='שם סעיף תקציבי'  />
                     <input class=input #sum_f placeholder='סכום'  />
             
+                    <ng-container *ngFor='let field of fields'>
+                        <input *ngIf='field.type !== "select"' [type]='field.type' [placeholder]='field.placeholder' />
+                        <select *ngIf='field.type === "select"'>
+                            <option *ngFor='let option of field.options' [value]='option.value'>{{option.label}}</option>
+                        </select>
+                    </ng-container>
+           
                   
                 </ion-col>
 
@@ -28,6 +35,25 @@
               
             </ion-row>
         </ion-grid> 
-        <button (click)='saveData()'>יצירת טופס</button>       
+        <button (click)='saveData()'>יצירת טופס</button>    
+        
+        <table>
+            <tr>
+                <th>מקור מימון</th>
+                <th>שם סעיף תקציבי</th>
+                <th>סכום</th>
+                <th>סטטוס תקצוב</th>
+                <th>סטטוס מימוש</th>
+              
+              </tr>
+             
+              <tr *ngFor='let doc of dataFromDatabase'  (dblclick)='onDoubleClick(doc)' (contextmenu)="onRightClick(doc)">
+                <td> {{doc.origain_f}}</td> 
+                <td>{{doc.name_f}}</td>
+                <td>{{doc.sum_f}}</td>
+                <td>{{doc.buget_stat}}</td>
+                <td> {{doc.mimosh}}</td>
+              </tr> 
+          </table>
     </div>      
 </ion-content>

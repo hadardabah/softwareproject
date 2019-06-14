@@ -24,7 +24,8 @@ import { GenericButtonComponent } from '../components/generic-button/generic-but
           { path: 'reports', loadChildren: '../reports/reports.module#ReportsPageModule' },
           { path: 'budgets', loadChildren: '../budgets/budgets.module#BudgetsPageModule' },
           { path: 'data', loadChildren: '../data/data.module#DataPageModule' },
-          { path: 'catalog-table', loadChildren: '../catalog-table/catalog-table.module#CatalogTablePageModule'}
+          { path: 'catalog-table', loadChildren: '../catalog-table/catalog-table.module#CatalogTablePageModule'},
+          { path: 'catalog-edit', loadChildren: '../catalog-edit/catalog-edit.module#CatalogEditPageModule'}
         ]
       }
     ]

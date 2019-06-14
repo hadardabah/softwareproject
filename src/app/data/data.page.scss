@@ -1,3 +1,58 @@
 ion-content.background{
   --background: url(http://www.up2me.co.il/images/69528473.jpg) 0 0/100% 100% no-repeat;
 }
+  
+.input{
+  text-align: right;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 5px;
+  width: 300px;
+}
+
+.rtl{
+  direction: rtl;
+}
+
+ion-grid{
+  --ion-grid-column-padding: 10px;
+}
+
+button{
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 8px 12px;
+  background-color: #363636;
+  color: #ffffff;
+  margin-right: 91%; 
+}
+
+::placeholder {
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color:black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: black;
+}
+
+table{
+  border: 1px solid black;
+  width: 100%;
+
+}
+th{
+  border: 1px solid black;
+  height: 50px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+td{
+  border: 1px solid black;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}

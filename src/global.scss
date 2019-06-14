@@ -9,3 +9,39 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+.my-alert {
+  
+    color: black; // text color for basic alerts
+    direction: rtl;
+    button {
+        color: white !important;
+        background-color: black !important;
+    }
+    
+    .alert-message {
+        direction: rtl;
+        color: black; // text color for confirm alerts
+    }
+    .alert-wrapper {
+        margin: auto;
+        width: 900px !important;
+    //    height: 800px !important;
+        $popover-ios-width: 300px;
+        background-color: white;
+    }
+    input::placeholder{
+        color: black !important;
+        font-size: 20px !important;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+  
+
+    }
+    input{
+        color: black !important;
+        font-size: 20px !important;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+    }
+
+    
+
+  }

@@ -1,6 +1,38 @@
+<head>
+  <title>Font Awesome 5 Icons</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+      </head>
 <ion-content padding class="background">
+  
   <div class="rtl">
-  <table>
+    <div class="search">
+        <select class=input #show (change)='filter_table($event)' >
+            <option value="" disabled selected>שם המופע</option>
+            <option value="כל המופעים" >כל המופעים</option>
+
+            <option [value]="doc.show"  *ngFor='let doc of newArray'>{{doc.show}}</option>
+            
+        </select>
+        
+        <select class=input #audience  (change)='filter_audience($event)'> 
+          <option value="" disabled selected>קהל יעד</option>
+          <option value="כלל האוכלוסיות" > כלל האוכלוסיות</option>
+          <option value="ילדים" > ילדים</option>
+          <option value="ילדות" > ילדות</option>
+          <option value="נערות" > נערות</option>
+          <option value="בנים" > בנים</option>
+          <option value="נשים" > נשים</option>
+          <option value="אבות ובנים" > אבות ובנים</option>
+          <option value="גיל הזהב - נשים" > גיל הזהב - נשים</option>
+          <option value="בנות היסודי" > בנות היסודי  </option>
+      </select> 
+      <!--<input  class=input  #artist  placeholder='שם האומן'  (click)='filter_table($event)' />-->
+      <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
+
+      </div>
+
+  <table >
       <tr>
           <th>שם המופע</th>
           <th>שם האומן</th>
@@ -8,21 +40,21 @@
           <th>משך זמן המופע</th>
           <th>שם  ספק</th>
           <th>מי צפה במופע</th>
+          <th></th>
+          <th></th>
         </tr>
        
-        <tr *ngFor='let doc of dataFromDatabase'  (dblclick)='onDoubleClick(doc)' (contextmenu)="onRightClick(doc)">
-          <td> {{doc.show}}</td> 
+        <tr *ngFor='let doc of dataFromDatabase '  (contextmenu)="onRightClick(doc)">
+          <td>  {{doc.show}}</td> 
           <td>{{doc.artist}}</td>
           <td>{{doc.audience}}</td>
           <td>{{doc.artist}}</td>
           <td> {{doc.Provider}}</td>
           <td>{{doc.whoWatch}}</td>
+          <td><i class="fas fa-trash-alt"  (click)='onDoubleClick(doc)' style="font-size:20px;margin-right: 23%;color:red;"></i></td>
+          <td><i class= "fas fa-pen"  (click)='onRightClick(doc)' style="font-size:20px;margin-right: 23%;color:red;"></i></td>
+
         </tr>
-         
-       
-   
-       
-     
     </table>
 
 
