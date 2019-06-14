@@ -27,6 +27,7 @@ export class HumanPage implements OnInit {
 
   dataFromDatabase = []
   old_id: any;
+  
   constructor(private router: Router, private db: AngularFirestore,private ngZone:NgZone ) { }
 
 
@@ -35,8 +36,6 @@ export class HumanPage implements OnInit {
     this.db.collection('Human').get().subscribe(result => {
       const docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = docs
-
-
     })
 
   }
@@ -67,7 +66,8 @@ export class HumanPage implements OnInit {
       id: this.idField.nativeElement.value,
       phone: this.phoneField.nativeElement.value,
       phone2: this.phone2Field.nativeElement.value,
-      comma: this.commaField.nativeElement.value
+      comma: this.commaField.nativeElement.value,
+      
     })
     window.alert("הדוח נוסף בהצלחה")
   }
@@ -101,22 +101,32 @@ export class HumanPage implements OnInit {
     // window.alert("in edit_db")
     console.log()
     this.db.collection('Human', ref => ref.where('id', '==',this.old_id)).get().subscribe(result => {
-      this.db.collection('Human').doc(result.docs[0].id).update({
-        first_name: this.first_nameField.nativeElement.value,
-        last_name: this.last_nameField.nativeElement.value,
-        email: this.emailField.nativeElement.value,
-        id: this.idField.nativeElement.value,
-        phone: this.phoneField.nativeElement.value,
-        phone2: this.phone2Field.nativeElement.value,
-        comma: this.commaField.nativeElement.value,
-
-        }).then(()=>{
-          this.ngOnInit()
-        });
-
+      this.updateData(result.docs[0].id)
     })
+    
   
   }
+
+updateData(docid)
+{
+  this.db.collection('Human').doc(docid).update({
+    first_name: this.first_nameField.nativeElement.value,
+    last_name: this.last_nameField.nativeElement.value,
+    email: this.emailField.nativeElement.value,
+    id: this.idField.nativeElement.value,
+    phone: this.phoneField.nativeElement.value,
+    phone2: this.phone2Field.nativeElement.value,
+    comma: this.commaField.nativeElement.value,
+
+    }).then(()=>{
+      this.ngOnInit()
+      alert('after change')
+    });
+
+
+}
+
+
 
   delet(docParam) {
 
