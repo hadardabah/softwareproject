@@ -1,54 +1,204 @@
-ion-content.background{
-    --background: url(http://www.up2me.co.il/images/69528473.jpg) 0 0/100% 100% no-repeat;
-    
-  }
-  
-  .rtl{
-    direction: rtl;
-    overflow:auto;
-  }
-  
-  
-  ::placeholder {
-    color: black;
-    opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:black;
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-   color: black;
-  }
-  
-  .input{
-    
-    width: 500px;
-    margin: 1%;
-    margin-bottom: 2.5%;
-    float: right;
-    text-align: right;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  }
-  button{
-    font-size: 16px;
-    text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding: 8px 12px;
-    background-color: #363636;
-    color: #ffffff;
-    //margin-left: 10%; 
-    //margin-right: 10%; 
-    margin: 4px 2px;
-    float: left;
-    
-  }
-  
-  ion-grid{
-    --ion-grid-column-padding: 10px;
-  }
-  
-  
-  
-  
+body{
+  background-color: whitesmoke;
+}
+
+.input{
+  width: 200px;
+  float: right;
+  text-align: right;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-bottom: 7%;
+}
+
+.rtl{
+  direction: rtl;
+  overflow:auto;
+}
+
+ion-grid{
+  --ion-grid-column-padding: 10px;
+}
+
+.ok_button{
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 8px 12px;
+  background-color: #aec33a;
+  color: #ffffff;
+  position: absolute;
+  top: 78%;
+  left: 10%;
+  transform: translateY(-50%);
+  border-radius: 5px;
+}
+
+.cancel_button{
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 8px 12px;
+  background-color: #d92139;
+  color: #ffffff;
+  position: absolute;
+  top: 78%;
+  left: 4%;
+  transform: translateY(-50%);
+  border-radius: 5px;
+}
+
+::placeholder {
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color:black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: black;
+}
+
+h1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: #253f58;
+}
+
+.border_show{
+  border-radius: 5px;
+  border-color: #363636;
+  border: 1px solid;
+  width: 95%;
+  height: 200px;
+  margin: auto;
+  margin-bottom: 2%;
+}
+
+.border_show h2{
+  display: table;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: -.75em;
+  margin-bottom: 0.5%;
+  background: whitesmoke;
+}
+
+.border_communication{
+  border-radius: 5px;
+  border-color: #363636;
+  border: 1px solid;
+  width: 95%;
+  height: 120px;
+  margin: auto;
+  margin-bottom: 2%;
+}
+
+.border_communication h2{
+  display: table;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: -.75em;
+  margin-bottom: 0.5%;
+  background: whitesmoke;
+}
+
+.border_general{
+  border-radius: 5px;
+  border-color: #363636;
+  border: 1px solid;
+  width: 95%;
+  height: 152px;
+  margin: auto;
+  margin-bottom: 2%;
+}
+
+.border_general h2{
+  display: table;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: -.75em;
+  margin-bottom: 0.5%;
+  background: whitesmoke;
+}
+/*
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  font-weight: 0px;
+  color: black;
+  background-color: white;
+  display: inline-block;
+  cursor: pointer; 
+  width: 200px;
+  outline: 1px solid #000;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: red;
+  outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+	pointer-events: none;
+}
+*/
+
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;  
+}
+
+[type="file"] + label {
+  background-color: #212221;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  width: 200px;
+  height: 2rem;
+  line-height: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+ 
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+    background-color: #f15d22;
+}
+ 
+[type="file"]:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+[type="file"] + label * {
+  pointer-events: none;
+}

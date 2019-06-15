@@ -18,49 +18,70 @@ import { isNgTemplate } from '@angular/compiler';
 })
 export class CatalogTablePage implements OnInit {
   @ViewChild('show') show_field
-  @ViewChild('artist') artist_filed
-  @ViewChild('whoWatch') whoWatch_filed
-  @ViewChild('priceShow') priceShow_filed
-  @ViewChild('priceDriver') priceDriver_filed
-  @ViewChild('Provider') Provider_filed
-  @ViewChild('phoneProvid') phoneProvid_filed
-  @ViewChild('phone2Provid') phone2Provid_filed
-  @ViewChild('mailProvid') mailProvid_filed
-  @ViewChild('phoneArt') phoneArt_filed
-  @ViewChild('mailArt') mailArt_filed
-  @ViewChild('businessNum') businessNum_filed
-  @ViewChild('businessType') businessType_filed
-  @ViewChild('graphics') graphics_filed
-  @ViewChild('equipment') equipment_filed
-  @ViewChild('timeBefore') timeBefore_filed
-  @ViewChild('timeAfter') timeAfter_filed
-  @ViewChild('timeShow') timeShow_filed
+  @ViewChild('artist') artist_field
+  @ViewChild('whoWatch') whoWatch_field
+  @ViewChild('priceFirstShow') priceFirstShow_field
+  @ViewChild('priceSecondShow') priceSecondShow_field
+  @ViewChild('priceDriver') priceDriver_field
+  @ViewChild('Provider') Provider_field
+  @ViewChild('phoneProvid') phoneProvid_field
+  @ViewChild('phone2Provid') phone2Provid_field
+  @ViewChild('mailProvid') mailProvid_field
+  @ViewChild('phoneArt') phoneArt_field
+  @ViewChild('mailArt') mailArt_field
+  @ViewChild('businessNum') businessNum_field
+  @ViewChild('businessType') businessType_field
+  @ViewChild('graphics') graphics_field
+  @ViewChild('equipment') equipment_field
+  @ViewChild('timeAfter') timeAfter_field
+  @ViewChild('timeBefore') timeBefore_field
+  @ViewChild('timeShow') timeShow_field
+  @ViewChild('showType') showType_field
+  @ViewChild('showCharacter') showCharacter_field
+  @ViewChild('limitParticipants') limitParticipants_field
+  @ViewChild('nuclearPrice') nuclearPrice_field
+  @ViewChild('extraParticipants') extraParticipants_field
+  @ViewChild('extraPrice') extraPrice_field
+  @ViewChild('bid') bid_field
+  @ViewChild('imgGraphics') imgGraphics_field
+  @ViewChild('commants') commants_field
 
   audience: string="";
   docs=[]
-   doc:any
+  doc:any
   dataFromDatabase = []
   newArray =[]
+  time: any;
 
   static s_show_field:any
-  static s_artist_filed:any
-  static s_whoWatch_filed:any
-  static s_priceShow_filed:any
-  static s_priceDriver_filed:any
-  static s_Provider_filed:any
+  static s_artist_field:any
+  static s_whoWatch_field:any
+  static s_priceFirstShow_field:any
+  static s_priceSecondShow_field:any
+  static s_priceDriver_field:any
+  static s_Provider_field:any
   static s_phoneProvid_field:any
-  static s_phone2Provid_filed:any
-  static s_mailProvid_filed:any
+  static s_phone2Provid_field:any
+  static s_mailProvid_field:any
   static s_phoneArt_field:any
-  static s_mailArt_filed:any
-  static s_businessNum_filed:any
+  static s_mailArt_field:any
+  static s_businessNum_field:any
   static s_businessType_field:any
-  static s_graphics_filed:any
-  static s_equipment_filed:any
+  static s_graphics_field:any
+  static s_equipment_field:any
   static s_timeBefore_field:any
-  static s_timeAfter_filed:any
-  static s_timeShow_filed:any
-
+  static s_timeAfter_field:any
+  static s_timeShow_field:any
+  static s_showType_field:any
+  static s_showCharacter_field:any
+  static s_limitParticipants_field:any
+  static s_nuclearPrice_field:any
+  static s_extraParticipants_field:any
+  static s_extraPrice_field:any
+  static s_bid_field:any
+  static s_imgGraphics_field:any
+  static s_commants_field:any
+  static s_time: any;
 
   constructor(
     private router: Router,
@@ -84,7 +105,7 @@ export class CatalogTablePage implements OnInit {
     
   }
 
-  onDoubleClick(docParam) {
+  delete(docParam) {
     var txt;
    // this.filter_table('try')
   if (confirm(" האם להסיר את המופע מהקטלוג?")) {
@@ -101,23 +122,17 @@ export class CatalogTablePage implements OnInit {
 
   filter_table(param){
     console.log(param);
-    //console.log("before filter")
-   // console.log( this.dataFromDatabase)
-  //console.log(  param.currentTarget.value)
     if(param.currentTarget.value== 'כל המופעים')
     {
       this.dataFromDatabase = this.docs
       return
     }
     this.dataFromDatabase = this.docs.filter(item => param.currentTarget.value == item.show)
-   // console.log("after filter")
-  // console.log( this.dataFromDatabase)
   }
 
   filter_audience(param){
     console.log("before filter")
     console.log( this.dataFromDatabase)
-    //console.log(  param.currentTarget.value)
     if(param.currentTarget.value== 'כלל האוכלוסיות')
     {
       this.dataFromDatabase = this.docs
@@ -153,37 +168,51 @@ export class CatalogTablePage implements OnInit {
     console.log("after filter")
    console.log( this.dataFromDatabase)
   }
-/*
-  applyFilter(filterValue: string) {
-    this.dataFromDatabase.filter = filterValue.trim().toLowerCase();
-  }
-*/
-  async onRightClick(docParam){
+
+  async edit(docParam){
     console.log(docParam);
     //this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.show !== item.show)
     this.db.collection('Show', ref => ref.where('show', '==', docParam.show))
     .get().subscribe(snapshot => {
      var x = snapshot.docs
      CatalogTablePage.s_show_field = docParam.show
-     CatalogTablePage.s_artist_filed = docParam.artist
-     CatalogTablePage.s_whoWatch_filed = docParam.whoWatch
-     CatalogTablePage.s_priceShow_filed = docParam.priceShow
-     CatalogTablePage.s_priceDriver_filed = docParam.priceDriver
+     CatalogTablePage.s_artist_field = docParam.artist
+     CatalogTablePage.s_whoWatch_field = docParam.whoWatch
+     CatalogTablePage.s_priceFirstShow_field = docParam.priceFirstShow
+     CatalogTablePage.s_priceSecondShow_field = docParam.priceSecondShow
+     CatalogTablePage.s_priceDriver_field = docParam.priceDriver
      CatalogTablePage.s_phoneProvid_field = docParam.phoneProvid
-     CatalogTablePage.s_phone2Provid_filed = docParam.phone2Provid
-     CatalogTablePage.s_Provider_filed = docParam.Provider
-     CatalogTablePage.s_mailProvid_filed = docParam.mailProvid
+     CatalogTablePage.s_phone2Provid_field = docParam.phone2Provid
+     CatalogTablePage.s_Provider_field = docParam.Provider
+     CatalogTablePage.s_mailProvid_field = docParam.mailProvid
      CatalogTablePage.s_phoneArt_field = docParam.phoneArt
-     CatalogTablePage.s_mailArt_filed = docParam.mailArt
-     CatalogTablePage.s_businessNum_filed = docParam.businessNum
+     CatalogTablePage.s_mailArt_field = docParam.mailArt
+     CatalogTablePage.s_businessNum_field = docParam.businessNum
      CatalogTablePage.s_businessType_field = docParam.businessType
-     CatalogTablePage.s_graphics_filed = docParam.graphics
-     CatalogTablePage.s_equipment_filed = docParam.equipment
-     CatalogTablePage.s_timeAfter_filed = docParam.timeAfter
+     CatalogTablePage.s_graphics_field = docParam.graphics
+     CatalogTablePage.s_equipment_field = docParam.equipment
+     CatalogTablePage.s_timeAfter_field = docParam.timeAfter
      CatalogTablePage.s_timeBefore_field = docParam.timeBefore
-     CatalogTablePage.s_timeShow_filed = docParam.timeShow
+     CatalogTablePage.s_timeShow_field = docParam.timeShow
+     CatalogTablePage.s_showType_field = docParam.showType
+     CatalogTablePage.s_showCharacter_field = docParam.showCharacter
+     CatalogTablePage.s_limitParticipants_field = docParam.limitParticipants
+     CatalogTablePage.s_nuclearPrice_field = docParam.nuclearPrice
+     CatalogTablePage.s_extraParticipants_field = docParam.extraParticipants
+     CatalogTablePage.s_extraPrice_field = docParam.extraPrice
+     CatalogTablePage.s_bid_field = docParam.bid
+     CatalogTablePage.s_imgGraphics_field = docParam.imgGraphics
+     CatalogTablePage.s_commants_field = docParam.commants
 this.router.navigateByUrl('/home/catalog-edit')
+     /*
+     @ViewChild('nuclearPrice') nuclearPrice_filed
+  @ViewChild('extraParticipants') extraParticipants_filed
+  @ViewChild('extraPrice') extraPrice_filed
+  @ViewChild('bid') bid_filed
+  @ViewChild('imgGraphics') imgGraphics_filed
+  @ViewChild('commants') commants_filed
      
+     */
     // snapshot.forEach(async doc => {
 //       //this.doc = doc
 //       // this.edit.doc =doc

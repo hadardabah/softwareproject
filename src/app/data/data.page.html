@@ -1,34 +1,52 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-<ion-content padding class="background">
+<body>
     <div class = "rtl">
+        <h1>נתוני תשתית</h1>
+        <div class="border">
         <form  #testForm="ngForm"  (ngSubmit)="saveData(testForm)"  ngNativeValidate>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <input ngModel name="Building_name" required class=input #Building_name placeholder='שם המבנה' />
+                    </ion-col>
+                    <ion-col>
                         <select ngModel name="type_building" required class=input #type_building>
-                                <option value="" disabled selected>אופי המבנה</option>
-                                <option value="אולם מדורג" >אולם מדורג </option>
-                                <option value="אולם שטוח">אולם שטוח</option>
-                                <option value="חדר סדנא עם מקרן" >חדר סדנא עם מקרן</option>
-                                <option value="חדר סדנא בלי מקרן">חדר סדנא בלי מקרן</option>
-                        </select>  
-                        <input ngModel name="Building_address" required class=input #Building_address placeholder='כתובת המבנה' />
+                            <option value="" disabled selected>אופי המבנה</option>
+                            <option value="אולם מדורג" >אולם מדורג </option>
+                            <option value="אולם שטוח">אולם שטוח</option>
+                            <option value="חדר סדנא עם מקרן" >חדר סדנא עם מקרן</option>
+                            <option value="חדר סדנא בלי מקרן">חדר סדנא בלי מקרן</option>
+                        </select> 
+                    </ion-col>
+                    <ion-col>
+                            <input ngModel name="Building_address" required class=input #Building_address placeholder='כתובת המבנה' />
+                    </ion-col>
+                    <ion-col>
                         <input ngModel name="capacity" required class=input type="number" #capacity placeholder='קיבולת '  />
                     </ion-col>
-                    <ion-col> 
+                </ion-row>
+                <ion-row>
+                    <ion-col>
                         <input ngModel name="contact_name" required class=input #contact_name placeholder='שם איש קשר לשריון ' />
-                        <input ngModel name="contact_phone" required class=input #contact_phone placeholder='טלפון איש קשר לשריון' />
+                    </ion-col>
+                    <ion-col>
+                        <input ngModel name="contact_phone" required class=input #contact_phone placeholder='טלפון איש קשר לשריון' /> 
+                    </ion-col>
+                    <ion-col>
                         <input ngModel name="mailcontact" required class=input #mailcontact placeholder='דוא"ל איש קשר לשריון ' />
+                    </ion-col>
+                    <ion-col>
                         <input class=input #comma placeholder='הערות נוספות'  />
                     </ion-col>
                 </ion-row>
             </ion-grid> 
-            <button ion-button id=button  type="submit">צור טופס</button> 
+            <button ion-button id=button class="add_button" type="submit">יצירת טופס</button> 
             </form>
-            <button  (click)='edit_db()'>עדכון</button> 
-            <table>
+        </div>
+            <button class="edit_button" (click)='edit_db()'>עדכון</button> 
+            <div id="scrolltable">  
+            <table id="data_table">
                 <tr>
                 <th>שם המבנה</th>
                 <th>אופי המבנה</th>
@@ -37,12 +55,12 @@
                 <th>שם איש קשר לשריון</th>
                 <th>טלפון איש קשר לשריון</th>
                 <th>דוא"ל איש קשר לשריון</th>
-                <th>הערות</th>
+                <th>הערות נוספות</th>
                 <th>מחיקה</th>
                 <th>עריכה</th>
              </tr>
                  
-              <tr *ngFor='let doc of dataFromDatabase' (dbclick)='onDoubleClick(doc)'> 
+              <tr *ngFor='let doc of dataFromDatabase'> 
                 <td> {{doc.Building_name}}</td> 
                 <td>{{doc.type_building}}</td>
                 <td>{{doc.Building_address}}</td>
@@ -51,9 +69,10 @@
                 <td>{{doc.contact_phone}}</td>
                 <td>{{doc.mailcontact}}</td>
                 <td>{{doc.comma}}</td>
-                <td><i class="fas fa-trash-alt"    (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
-                <td><i class= "fas fa-pen"   (click)='edit(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
+                <td><i class="fas fa-trash-alt" (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
+                <td><i class= "fas fa-pen" (click)='edit(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
             </tr>      
         </table>
+        </div>
     </div>      
-</ion-content>
+</body>

@@ -1,67 +1,59 @@
-<head>
-    <title>Font Awesome 5 Icons</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-        </head>
-<ion-content padding class="background">
-        <div class = "rtl">
-                <form  #testForm="ngForm"  (ngSubmit)="saveData(testForm)"  ngNativeValidate>
-
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-
-                        <input  name="first_name" required class=input type = "text" #first_name placeholder='שם פרטי' />
-                        <input class=input  name="last_name" required type = "text" #last_name placeholder='שם משפחה'  />
-                        <input class=input name="id" required type = "number" #id placeholder='מס זהות'  />
-                        <input class=input name="email" required type="email" #email placeholder='כתובת מייל' /> 
-                    </ion-col>
-                    <ion-col> 
-                        <input class=input  name ="phone" required type="number" #phone placeholder='מספר טלפון' />
-                        <input class=input name ="phone2" required type="number" #phone2 placeholder='מספר טלפון נוסף'  />
-                        <input class=input name ="comma" required type="text" #comma placeholder='הערות נוספות'  />
-                    </ion-col>  
-                </ion-row>
-           
-
-            </ion-grid> 
-
-            <button  ion-button id=button  type="submit" >יצירת טופס</button> 
-
-        </form>
-        <button  (click)='edit_db()'>עדכון</button> 
-
-
-            <div class="table-wrapper-scroll-y my-custom-scrollbar">
-
-                    <table class="table table-bordered table-striped mb-0">
-                <tr>
-                    <th>שם פרטי</th>
-                    <th>שם משפחה</th>
-                    <th>מס זהות</th>
-                    <th>כתובת מייל</th>
-                    <th>מס טלפון</th>
-                    <th>מס טלפון נוסף</th>
-                    <th>הערות נוספות</th>
-                    <th>מחיקה</th>
-                    <th>עריכה</th>
-                  </tr>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<body>
+    <div class = "rtl">
+    <h1>משאבי אנוש</h1>
+    <div class="border">
+    <form  #testForm="ngForm"  (ngSubmit)="saveData(testForm)"  ngNativeValidate>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <input  name="first_name" required class=input type = "text" #first_name placeholder='שם פרטי' />
+                <input class=input  name ="phone" required type="number" #phone placeholder='מספר טלפון' />
+            </ion-col>
+            <ion-col>
+                <input class=input  name="last_name" required type = "text" #last_name placeholder='שם משפחה' />
+                <input class=input name ="phone2" required type="number" #phone2 placeholder='מספר טלפון נוסף'/>
+            </ion-col>
+            <ion-col>
+                <input class=input name="id" required type = "number" #id placeholder='מס זהות'  />
+                <input class=input name ="comma" required type="text" #comma placeholder='הערות נוספות' />
+            </ion-col>
+            <ion-col>
+                <input class=input name="email" required type="email" #email placeholder='כתובת דוא"ל' /> 
+            </ion-col>
+        </ion-row>
+    </ion-grid> 
+        <button  ion-button id=button class="add_button" type="submit" >יצירת טופס</button> 
+    </form>
+        <button class="edit_button" (click)='edit_db()'>עדכון</button> 
+    </div>
+    <div id="scrolltable">     
+    <table id="human_table">
+    <tr>
+        <th>שם פרטי</th>
+        <th>שם משפחה</th>
+        <th>מס זהות</th>
+        <th>כתובת דוא"ל</th>
+        <th>מס טלפון</th>
+        <th>מס טלפון נוסף</th>
+        <th>הערות נוספות</th>
+        <th>מחיקה</th>
+        <th>עריכה</th>
+    </tr>
                  
-                  <tr *ngFor='let doc of dataFromDatabase'  (dblclick)='onDoubleClick(doc)' (contextmenu)="onRightClick(doc)">
-                    <td> {{doc.first_name}}</td> 
-                    <td>{{doc.last_name}}</td>
-                    <td>{{doc.id}}</td>
-                    <td>{{doc.email}}</td>
-                    <td> {{doc.phone}}</td>
-                    <td>{{doc.phone2}}</td>
-                    <td>{{doc.comma}}</td>
-                    <td><i class="fas fa-trash-alt"    (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
-                    <td><i class= "fas fa-pen"   (click)='edit(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
-
-                  </tr> 
-              </table>
-
-            </div>
-        </div>      
-
-    </ion-content>
+    <tr *ngFor='let doc of dataFromDatabase'>
+        <td> {{doc.first_name}}</td> 
+        <td>{{doc.last_name}}</td>
+        <td>{{doc.id}}</td>
+        <td>{{doc.email}}</td>
+        <td> {{doc.phone}}</td>
+        <td>{{doc.phone2}}</td>
+        <td>{{doc.comma}}</td>
+        <td><i class="fas fa-trash-alt" (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
+        <td><i class= "fas fa-pen" (click)='edit(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
+    </tr> 
+    </table>
+    </div>
+    </div>      
+</body>

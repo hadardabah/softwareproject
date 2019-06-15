@@ -1,42 +1,52 @@
-ion-content.background{
-  --background: url(http://www.up2me.co.il/images/69528473.jpg) 0 0/100% 100% no-repeat;
+body{
+  background-color: whitesmoke;
 }
 
 .input{
-  width: 500px;
-  margin: 1%;
+  width: 200px;
   float: right;
   text-align: right;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin-bottom: 2.5%;
+  margin-bottom: 7%;
 }
 
 .rtl{
-
   direction: rtl;
-  height: 79%;
   overflow:auto;
-  padding-bottom: 3%;
-
 }
 
 ion-grid{
   --ion-grid-column-padding: 10px;
 }
 
-button{
+.add_button{
   font-size: 16px;
   text-align: center;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   padding: 8px 12px;
-  background-color: #363636;
+  background-color: #aec33a;
   color: #ffffff;
-  //margin-left: 10%; 
-  //margin-right: 10%; 
-  margin: 4px 2px;
-  float: left;
-  
+  position: absolute;
+  top: 24%;
+  left: 10%;
+  transform: translateY(-50%);
+  border-radius: 5px;
 }
+
+.edit_button{
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 8px 12px;
+  background-color: #d92139;
+  color: #ffffff;
+  position: absolute;
+  top: 24%;
+  left: 4%;
+  transform: translateY(-50%);
+  border-radius: 5px;
+}
+
 ::placeholder {
   color: black;
   opacity: 1; /* Firefox */
@@ -50,31 +60,56 @@ button{
  color: black;
 }
 
-
-
-.my-custom-scrollbar {
-  position: relative;
-  height: 380px;
+#human_table {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border-collapse: collapse;
+  width: 95%;
+  margin:auto;
   overflow: auto;
- margin-right: 1%;
-  width:95%; 
- 
-
-  }
-  .table-wrapper-scroll-y {
-  display: block;
-  border: 1px solid black;
-  background-color: whitesmoke;
-
-  }
-th{
-  border: 1px solid black;
-  height: 50px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
 }
-td{
-  border: 1px solid black;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
+#human_table td, #human_table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  overflow: auto;
+}
+
+#human_table tr:nth-child(even){background-color: #f2f2f2;}
+
+#human_table tr:hover {background-color: #ddd;}
+
+#human_table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #253f58;
+  color: white;
+}
+
+#scrolltable { 
+  height: 380px; 
+  overflow: auto; 
+}
+
+#scrolltable th div { 
+  position: absolute; 
+}
+
+h1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: #253f58;
+}
+
+.border{
+  border-radius: 5px;
+  border-color: #363636;
+  border: 1px solid;
+  width: 95%;
+  height: 160px;
+  //margin-right: 2%;
+  margin: auto;
+  margin-bottom: 1%;
 }

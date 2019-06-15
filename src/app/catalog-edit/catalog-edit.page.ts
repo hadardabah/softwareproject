@@ -19,99 +19,82 @@ import { Time } from '@angular/common';*/
   styleUrls: ['./catalog-edit.page.scss'],
 })
 export class CatalogEditPage implements OnInit {
-
   @ViewChild('show') show_field
-  @ViewChild('artist') artist_filed
-  @ViewChild('whoWatch') whoWatch_filed
-  @ViewChild('priceShow') priceShow_filed
-  @ViewChild('priceDriver') priceDriver_filed
-  @ViewChild('Provider') Provider_filed
-  @ViewChild('phoneProvid') phoneProvid_filed
-  @ViewChild('phone2Provid') phone2Provid_filed
-  @ViewChild('mailProvid') mailProvid_filed
-  @ViewChild('phoneArt') phoneArt_filed
-  @ViewChild('mailArt') mailArt_filed
-  @ViewChild('businessNum') businessNum_filed
-  @ViewChild('businessType') businessType_filed
-  @ViewChild('graphics') graphics_filed
-  @ViewChild('equipment') equipment_filed
-  @ViewChild('timeAfter') timeAfter_filed
-  @ViewChild('timeBefore') timeBefore_filed
-  @ViewChild('timeShow') timeShow_filed
- // @ViewChild('audience') audience_filed
+  @ViewChild('artist') artist_field
+  @ViewChild('whoWatch') whoWatch_field
+  @ViewChild('priceFirstShow') priceFirstShow_field
+  @ViewChild('priceSecondShow') priceSecondShow_field
+  @ViewChild('priceDriver') priceDriver_field
+  @ViewChild('Provider') Provider_field
+  @ViewChild('phoneProvid') phoneProvid_field
+  @ViewChild('phone2Provid') phone2Provid_field
+  @ViewChild('mailProvid') mailProvid_field
+  @ViewChild('phoneArt') phoneArt_field
+  @ViewChild('mailArt') mailArt_field
+  @ViewChild('businessNum') businessNum_field
+  @ViewChild('businessType') businessType_field
+  @ViewChild('graphics') graphics_field
+  @ViewChild('equipment') equipment_field
+  @ViewChild('timeAfter') timeAfter_field
+  @ViewChild('timeBefore') timeBefore_field
+  @ViewChild('timeShow') timeShow_field
+  @ViewChild('showType') showType_field
+  @ViewChild('showCharacter') showCharacter_field
+  @ViewChild('limitParticipants') limitParticipants_field
+  @ViewChild('nuclearPrice') nuclearPrice_field
+  @ViewChild('extraParticipants') extraParticipants_field
+  @ViewChild('extraPrice') extraPrice_field
+  @ViewChild('bid') bid_field
+  @ViewChild('imgGraphics') imgGraphics_field
+  @ViewChild('commants') commants_field
 
 
   dataFromDatabase = []
   constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone) { }
   doc: any
-
-  // static s_priceShow_filed
-  // static s_priceDriver_filed
-  // static s_Provider_filed
-  // static s_phoneProvid_filed
-  // static s_phone2Provid_filed
-  // static s_mailProvid_filed
-  // static s_phoneArt_filed
-  // static s_mailArt_filed
-  // static s_businessNum_filed
-  // static s_businessType_filed
-  // static s_graphics_filed
-  // static s_equipment_filed
-  // static s_timeAfter_filed
-  // static s_timeBefore_filed
-  // static s_timeShow_filed
-
-
+  time: any;
 
   ngOnInit() {
-    // this.db.collection('Events').add({...})
-    
-    // if(this.doc !=null)
-    // {
-    //   alert('in');
-    // }
-
-
-    
-
-
-    // this.db.collection('Show').get().subscribe(result => {
-  
-    //   const docs = result.docs.map(doc => doc.data())
-    //   this.dataFromDatabase = docs
-
-
-    // })
-   
+    this.db.collection('Show').get().subscribe(result => {
+      const docs = result.docs.map(doc => doc.data())
+      this.dataFromDatabase = docs
+    })
   }
 
   ngAfterViewChecked()
   {
-    console.log("in catalog")
-
     if(CatalogTablePage.s_show_field!='' && CatalogTablePage.s_show_field!= this.show_field.nativeElement.value )
     { this.show_field.nativeElement.value =CatalogTablePage.s_show_field
-      this.artist_filed.nativeElement.value = CatalogTablePage.s_artist_filed
-      this.whoWatch_filed.nativeElement.value = CatalogTablePage.s_whoWatch_filed
-      this.priceShow_filed.nativeElement.value =CatalogTablePage.s_priceShow_filed
-      this.priceDriver_filed.nativeElement.value = CatalogTablePage.s_priceDriver_filed
-      this.Provider_filed.nativeElement.value = CatalogTablePage.s_Provider_filed
-      this.phoneProvid_filed.nativeElement.value =CatalogTablePage.s_phoneProvid_field
-      this.phone2Provid_filed.nativeElement.value = CatalogTablePage.s_phone2Provid_filed
-      this.mailProvid_filed.nativeElement.value = CatalogTablePage.s_mailProvid_filed
-      this.phoneArt_filed.nativeElement.value = CatalogTablePage.s_phoneArt_field
-      this.mailArt_filed.nativeElement.value = CatalogTablePage.s_mailArt_filed
-      this.businessNum_filed.nativeElement.value = CatalogTablePage.s_businessNum_filed
-      this.businessType_filed.nativeElement.value = CatalogTablePage.s_businessType_field
-      this.graphics_filed.nativeElement.value = CatalogTablePage.s_graphics_filed
-      this.equipment_filed.nativeElement.value = CatalogTablePage.s_equipment_filed
-      this.timeBefore_filed.nativeElement.value = CatalogTablePage.s_timeBefore_field
-      this.timeAfter_filed.nativeElement.value = CatalogTablePage.s_timeAfter_filed
-      this.timeShow_filed.nativeElement.value = CatalogTablePage.s_timeShow_filed
+      this.artist_field.nativeElement.value = CatalogTablePage.s_artist_field
+      this.whoWatch_field.nativeElement.value = CatalogTablePage.s_whoWatch_field
+      this.priceFirstShow_field.nativeElement.value =CatalogTablePage.s_priceFirstShow_field
+      this.priceSecondShow_field.nativeElement.value =CatalogTablePage.s_priceSecondShow_field
+      this.priceDriver_field.nativeElement.value = CatalogTablePage.s_priceDriver_field
+      this.Provider_field.nativeElement.value = CatalogTablePage.s_Provider_field
+      this.phoneProvid_field.nativeElement.value =CatalogTablePage.s_phoneProvid_field
+      this.phone2Provid_field.nativeElement.value = CatalogTablePage.s_phone2Provid_field
+      this.mailProvid_field.nativeElement.value = CatalogTablePage.s_mailProvid_field
+      this.phoneArt_field.nativeElement.value = CatalogTablePage.s_phoneArt_field
+      this.mailArt_field.nativeElement.value = CatalogTablePage.s_mailArt_field
+      this.businessNum_field.nativeElement.value = CatalogTablePage.s_businessNum_field
+      this.businessType_field.nativeElement.value = CatalogTablePage.s_businessType_field
+      this.graphics_field.nativeElement.value = CatalogTablePage.s_graphics_field
+      this.equipment_field.nativeElement.value = CatalogTablePage.s_equipment_field
+      this.timeBefore_field.nativeElement.value = CatalogTablePage.s_timeBefore_field
+      this.timeAfter_field.nativeElement.value = CatalogTablePage.s_timeAfter_field
+      this.timeShow_field.nativeElement.value = CatalogTablePage.s_timeShow_field
+      this.showType_field.nativeElement.value = CatalogTablePage.s_showType_field
+      this.showCharacter_field.nativeElement.value = CatalogTablePage.s_showCharacter_field
+      this.limitParticipants_field.nativeElement.value = CatalogTablePage.s_limitParticipants_field
+      this.nuclearPrice_field.nativeElement.value = CatalogTablePage.s_nuclearPrice_field
+      this.extraParticipants_field.nativeElement.value = CatalogTablePage.s_extraParticipants_field
+      this.extraPrice_field.nativeElement.value = CatalogTablePage.s_extraPrice_field
+      this.bid_field.nativeElement.value = CatalogTablePage.s_bid_field
+      this.imgGraphics_field.nativeElement.value = CatalogTablePage.s_imgGraphics_field
+      this.commants_field.nativeElement.value = CatalogTablePage.s_commants_field
+      this.time = CatalogTablePage.s_time
     }
   }
-
-
 
   audience: string="";
 
@@ -122,25 +105,38 @@ export class CatalogEditPage implements OnInit {
       audience: this.audience,
       //audience: this.audience_filed.nativeElement.value,
       show: this.show_field.nativeElement.value,
-      artist: this.artist_filed.nativeElement.value,
-      whoWatch: this.whoWatch_filed.nativeElement.value,
-      priceShow: this.priceShow_filed.nativeElement.value,
-      priceDriver: this.priceDriver_filed.nativeElement.value,
-      Provider: this.Provider_filed.nativeElement.value,
-      phoneProvid: this.phoneProvid_filed.nativeElement.value,
-      phone2Provid: this.phone2Provid_filed.nativeElement.value,
-      mailProvid: this.mailProvid_filed.nativeElement.value,
-      phoneArt: this.phoneArt_filed.nativeElement.value,
-      mailArt: this.mailArt_filed.nativeElement.value,
-      businessNum: this.businessNum_filed.nativeElement.value,
-      businessType: this.businessType_filed.nativeElement.value,
-      graphics: this.graphics_filed.nativeElement.value,
-      equipment: this.equipment_filed.nativeElement.value,
-      timeAfter: this.timeAfter_filed.nativeElement.value,
-      timeBefore: this.timeBefore_filed.nativeElement.value,
-      timeShow: this.timeShow_filed.nativeElement.value,
+      artist: this.artist_field.nativeElement.value,
+      whoWatch: this.whoWatch_field.nativeElement.value,
+      priceFirstShow: this.priceFirstShow_field.nativeElement.value,
+      priceSecondShow: this.priceSecondShow_field.nativeElement.value,
+      priceDriver: this.priceDriver_field.nativeElement.value,
+      Provider: this.Provider_field.nativeElement.value,
+      phoneProvid: this.phoneProvid_field.nativeElement.value,
+      phone2Provid: this.phone2Provid_field.nativeElement.value,
+      mailProvid: this.mailProvid_field.nativeElement.value,
+      phoneArt: this.phoneArt_field.nativeElement.value,
+      mailArt: this.mailArt_field.nativeElement.value,
+      businessNum: this.businessNum_field.nativeElement.value,
+      businessType: this.businessType_field.nativeElement.value,
+      graphics: this.graphics_field.nativeElement.value,
+      equipment: this.equipment_field.nativeElement.value,
+      timeAfter: this.timeAfter_field.nativeElement.value,
+      timeBefore: this.timeBefore_field.nativeElement.value,
+      timeShow: this.timeShow_field.nativeElement.value,
+      showType: this.showType_field.nativeElement.value,
+      showCharacter: this.showCharacter_field.nativeElement.value,
+      limitParticipants: this.limitParticipants_field.nativeElement.value,
+      nuclearPrice: this.nuclearPrice_field.nativeElement.value,
+      extraParticipants: this.extraParticipants_field.nativeElement.value,
+      extraPrice: this.extraPrice_field.nativeElement.value,
+      bid: this.bid_field.nativeElement.value,
+      imgGraphics: this.imgGraphics_field.nativeElement.value,
+      commants: this.commants_field.nativeElement.value,
+      time:new Date(),
 
-    })
+    }).then(()=>{
+      this.ngOnInit()
+    });
     window.alert("פרטי המופע עודכנו")
 
     
@@ -161,8 +157,8 @@ export class CatalogEditPage implements OnInit {
 //   });
 this.ngZone.run(()=>{
   this.show_field.nativeElement.value = d.data().show
-  this.artist_filed.nativeElement.value =d.data().artist
-  this.whoWatch_filed.nativeElement.value ='chen'
+  this.artist_field.nativeElement.value =d.data().artist
+  this.whoWatch_field.nativeElement.value ='chen'
 
 })
    /* this.priceShow_filed.nativeElement.value = d.data().priceShow

@@ -1,52 +1,43 @@
-<head>
-        <title>Font Awesome 5 Icons</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-            </head>
-<ion-content padding class="background">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<body>
     <div class = "rtl">
-            <form  #testForm="ngForm"  (ngSubmit)="saveData(testForm)"  ngNativeValidate>
-
+        <h1>תקציבים</h1>
+        <div class="border">
+        <form  #testForm="ngForm"  (ngSubmit)="saveData(testForm)"  ngNativeValidate>   
         <ion-grid>
             <ion-row>
                 <ion-col>
-
-                    <input class=input #origain_f placeholder='מקור ממון' />
-                    <input class=input #name_f placeholder='שם סעיף תקציבי'  />
-                    <input class=input #sum_f placeholder='סכום'  />
-            
-                    <ng-container *ngFor='let field of fields'>
+                    <input ngModel name="finance_source" required class=input #finance_source placeholder='מקור מימון' />
+                    <select ngModel name="budget_status" required class=input #budget_status>
+                            <option value="" disabled selected>סטטוס תקצוב</option>
+                            <option value="הוגש">הוגש</option>
+                            <option value="בבדיקה">בבדיקה</option>
+                            <option value="אושר">אושר</option>
+                        </select> 
+                </ion-col>
+                <ion-col>
+                    <input ngModel name="budget_name" required class=input #budget_name placeholder='שם סעיף תקציבי'  />
+                    <input ngModel name="execute_status" required class=input #execute_status placeholder='סטטוס מימוש'  />
+                </ion-col>
+                <ion-col>
+                    <input ngModel name="amount" required class=input #amount placeholder='סכום'  />
+                </ion-col>
+            </ion-row>
+        </ion-grid> 
+                    <!--<ng-container *ngFor='let field of fields'>
                         <input *ngIf='field.type !== "select"' [type]='field.type' [placeholder]='field.placeholder' />
                         <select *ngIf='field.type === "select"'>
                             <option *ngFor='let option of field.options' [value]='option.value'>{{option.label}}</option>
                         </select>
-                    </ng-container>
-           
-                  
-                </ion-col>
-
-                <ion-col> 
-                    
-                    <select class=input #buget_stat>
-                        <option value="" disabled selected>סטטוס תקצוב</option>
-                        <option value="הוגש">הוגש</option>
-                        <option value="בבדיקה">בבדיקה</option>
-                        <option value="אושר">אושר</option>
-                    </select> 
-                    <input class=input #mimosh placeholder='סטטוס מימוש'  />
-                   
-
-                </ion-col>
-                
-
-              
-            </ion-row>
-        </ion-grid> 
-        <button  ion-button id=button  type="submit" >יצירת טופס</button> 
-
-    </form>
-    <button  (click)='edit_db()'>עדכון</button>         
-        <table>
+                    </ng-container>-->
+    
+            <button  ion-button class="add_button" id=button  type="submit" >יצירת טופס</button> 
+        </form>
+            <button  class="edit_button" (click)='edit_db()'>עדכון</button>
+    </div>     
+    <div id="scrolltable">  
+        <table id="budgets_table">
             <tr>
                 <th>מקור מימון</th>
                 <th>שם סעיף תקציבי</th>
@@ -54,19 +45,18 @@
                 <th>סטטוס תקצוב</th>
                 <th>סטטוס מימוש</th>
                 <th>מחיקה</th>
-                <th>עריכה</th>
-              
-              </tr>
-             
-              <tr *ngFor='let doc of dataFromDatabase'  (dblclick)='onDoubleClick(doc)' (contextmenu)="onRightClick(doc)">
-                <td> {{doc.origain_f}}</td> 
-                <td>{{doc.name_f}}</td>
-                <td>{{doc.sum_f}}</td>
-                <td>{{doc.buget_stat}}</td>
-                <td> {{doc.mimosh}}</td>
-                <td><i class="fas fa-trash-alt"    (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
-               <td><i class= "fas fa-pen"   (click)='edit(doc)' style="font-size:15px;margin-right: 23%;color:red;"></i></td>
-              </tr> 
-          </table>
+                <th>עריכה</th>  
+            </tr>
+            <tr *ngFor='let doc of dataFromDatabase'>
+                <td> {{doc.finance_source}}</td> 
+                <td>{{doc.budget_name}}</td>
+                <td>{{doc.amount}}</td>
+                <td>{{doc.budget_status}}</td>
+                <td>{{doc.execute_status}}</td>
+                <td><i class="fas fa-trash-alt" (click)='delete(doc)' style="font-size:15px; margin-right:40%;color:red;"></i></td>
+                <td><i class= "fas fa-pen" (click)='edit(doc)' style="font-size:15px; margin-right:40%; color:red;"></i></td>
+            </tr> 
+        </table>
+        </div>
     </div>      
-</ion-content>
+</body>

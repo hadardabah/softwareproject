@@ -3,6 +3,7 @@ import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Window } from 'selenium-webdriver';
 import { defineBase } from '@angular/core/src/render3';
+import {FormControl, Validators, NgForm} from '@angular/forms';
 
 
 @Component({
@@ -13,45 +14,31 @@ import { defineBase } from '@angular/core/src/render3';
 })
 export class BudgetsPage implements OnInit {
   
-  @ViewChild('origain_f') phoneoriginField
-  @ViewChild('name_f') nameField
-  @ViewChild('sum_f') sumField
-  @ViewChild('buget_stat') bugetField
-  @ViewChild('mimosh') mimoshField
-
-
-
-
-  //constructor() { }
-
+  @ViewChild('finance_source') finance_sourceField
+  @ViewChild('budget_name') budget_nameField
+  @ViewChild('amount') amountField
+  @ViewChild('budget_status') budget_statusField
+  @ViewChild('execute_status') execute_statusField
 
   dataFromDatabase = []
-  old_id: any;
   time: any;
   
-
   constructor(private router: Router, private db: AngularFirestore,private ngZone:NgZone ) { }
 
- 
-
-  ngOnInit() {
-    
-        this.db.collection('Budget').get().subscribe(result => {
-      debugger
+  ngOnInit() { 
+      this.db.collection('Budget').get().subscribe(result => {
       const docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = docs
-
-   
   })
   }
  
-    saveData() {
+    saveData(form: NgForm) {
     this.db.collection('Budget').add({
-      origain_f: this. phoneoriginField.nativeElement.value,
-      name_f: this.nameField.nativeElement.value,
-      sum_f: this.sumField.nativeElement.value,
-      buget_stat: this.bugetField.nativeElement.value,
-      mimosh: this.mimoshField.nativeElement.value,
+      finance_source: this. finance_sourceField.nativeElement.value,
+      budget_name: this.budget_nameField.nativeElement.value,
+      amount: this.amountField.nativeElement.value,
+      budget_status: this.budget_statusField.nativeElement.value,
+      execute_status: this.execute_statusField.nativeElement.value,
       time:new Date(),
 
     }).then(()=>{
@@ -62,49 +49,36 @@ export class BudgetsPage implements OnInit {
 
   edit(d) {
  
-    this.phoneoriginField.nativeElement.value = d.origain_f
-    this.nameField.nativeElement.value = d.name_f
-    this.sumField.nativeElement.value = d.sum_f
-    this.bugetField.nativeElement.value = d.budgets
-    this.mimoshField.nativeElement.value = d.mimosh
+    this.finance_sourceField.nativeElement.value = d.finance_source
+    this.budget_nameField.nativeElement.value = d.budget_name
+    this.amountField.nativeElement.value = d.amount
+    this.budget_statusField.nativeElement.value = d.budget_status
+    this.execute_statusField.nativeElement.value = d.execute_status
     this.time = d.time
 }
 
 edit_db() {
-  //if ( this.time== undefined || this.time == '')
-   // return
-   // debugger
-  // window.alert("in edit_db")
-  console.log(this.time)
   this.db.collection('Budget', ref => ref.where('time', '==',this.time)).get().subscribe(result => {
     this.updateData(result.docs[0].id)
   })
-
-
 }
 
-updateData(docid)
-{
+updateData(docid){
 this.db.collection('Budget').doc(docid).update({
-  origain_f: this. phoneoriginField.nativeElement.value,
-  name_f: this.nameField.nativeElement.value,
-  sum_f: this.sumField.nativeElement.value,
-  buget_stat: this.bugetField.nativeElement.value,
-  mimosh: this.mimoshField.nativeElement.value,
-
+  finance_source: this. finance_sourceField.nativeElement.value,
+  budget_name: this.budget_nameField.nativeElement.value,
+  amount: this.amountField.nativeElement.value,
+  budget_status: this.budget_statusField.nativeElement.value,
+  execute_status: this.execute_statusField.nativeElement.value,
   }).then(()=>{
     this.ngOnInit()
     alert('הרשומה התעדכנה')
   });
-
-
 }
 
 delete(docParam) {
-
   if (confirm(" האם להסיר רשומה זאת?")) {
     this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.time !== item.time)
-
     this.db.collection('Budget', ref => ref.where('time', '==', docParam.time)).get().subscribe(result => {
       this.db.collection('Budget').doc(result.docs[0].id).delete()
     })

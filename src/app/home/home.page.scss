@@ -1,23 +1,16 @@
- /*.ios ion-badge {
-    text-transform: uppercase;
-  }*/
-  body{
-    width: 100%;
-    height: 100%;
- }
   .right{
     float: right;
-     width: 18%;
+    width: 18%;
     height: 100%;
-    background-color:#456471; 
   }
   .logo{
     padding-top: 10%;
-    width:145px;
-    height: 156px;
+    width: 200px;
+    height: 200px;
     margin: top;
     margin: auto;
     padding-bottom: 10%;
+    background: #212221;
   }
   .left{
     width: 81.8%;
@@ -25,23 +18,25 @@
     margin-right: 30%;
     position: relative;
   }
+  
   .mod{
     width: 100%;
     height: 100%; 
   }
+  
   ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-
-    background-color: #456471;
+    background-color: #212221;
+    //background-color: #8d8741;
   }
   
   li a {
-    font-size: 24px;
-    text-align: center;
+    font-size: 18px;
+    text-align: right;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: block;
     color: rgb(255, 255, 255);
@@ -49,14 +44,7 @@
     text-decoration: none;
   }
   
-  li a.active {
-    float:right;
-    color: #ffffff;
-  }
-  
   li a:hover:not(.active) {
-    background-color: whitesmoke;
-    color: #000000;
-
+    background-color: #444444; 
+    color: rgb(224, 223, 223);
   }
-  
