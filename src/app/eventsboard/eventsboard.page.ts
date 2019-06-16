@@ -3,6 +3,7 @@ import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Window } from 'selenium-webdriver';
 import { defineBase } from '@angular/core/src/render3';
+import {FormControl, Validators, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-eventsboard',
@@ -41,10 +42,8 @@ export class EventsboardPage implements OnInit {
   @ViewChild('payment_status') payment_statusField
   @ViewChild('upload') uploadField
 
-
-
   dataFromDatabase = []
-
+  
   constructor(private router: Router, private db: AngularFirestore,) { }
 
   ngOnInit() {
@@ -74,7 +73,7 @@ export class EventsboardPage implements OnInit {
     }
 }
 */
-  saveData() {
+  saveData(form: NgForm) {
     this.db.collection('Events').add({
       show: this.showField.nativeElement.value,
       season: this.seasonField.nativeElement.value,
@@ -114,6 +113,7 @@ export class EventsboardPage implements OnInit {
   window.alert("האירוע נוסף בהצלחה")
   }
 
+  
 
   try(d){
     // finding the selected value from the array

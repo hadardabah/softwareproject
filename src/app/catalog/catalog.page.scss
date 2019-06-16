@@ -127,39 +127,6 @@ h1{
   margin-bottom: 0.5%;
   background: whitesmoke;
 }
-/*
-.inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-
-.inputfile + label {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 16px;
-  font-weight: 0px;
-  color: black;
-  background-color: white;
-  display: inline-block;
-  cursor: pointer; 
-  width: 200px;
-  outline: 1px solid #000;
-}
-
-.inputfile:focus + label,
-.inputfile + label:hover {
-  background-color: red;
-  outline: 1px dotted #000;
-	outline: -webkit-focus-ring-color auto 5px;
-}
-
-.inputfile + label * {
-	pointer-events: none;
-}
-*/
 
 [type="file"] {
   border: 0;
