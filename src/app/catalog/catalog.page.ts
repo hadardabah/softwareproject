@@ -52,6 +52,8 @@ export class CatalogPage implements OnInit {
 
 
   dataFromDatabase = []
+  time: any;
+
   constructor(private router: Router,private db: AngularFirestore) { }
  
   ngOnInit() {
@@ -95,6 +97,7 @@ export class CatalogPage implements OnInit {
       bid: this.bid_field.nativeElement.value,
       imgGraphics: this.imgGraphics_field.nativeElement.value,
       commants: this.commants_field.nativeElement.value,
+      time:new Date(),
     })
     window.alert("האירוע נוסף")
 

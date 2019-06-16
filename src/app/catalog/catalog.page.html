@@ -8,8 +8,9 @@
           <h2>פרטי המופע</h2>
           <ion-row>
               <ion-col>
-                <input ngModel name="show" required class=input  #show  placeholder='שם המופע' />
-                <select  multiple class=input [(ngModel)]="audience" name="audience" required> 
+       
+                <input ngModel name="show" required class=input  #show  placeholder='שם המופע' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                <select  multiple class=input [(ngModel)]="audience" name="audience" required  oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"> 
                     <option value="" disabled selected>אוכלוסיית יעד אפשרית</option>
                     <option ion-select-option value="ילדים" > ילדים
                     <option ion-select-option value="ילדות" > ילדות
@@ -28,7 +29,7 @@
                     <option value="הופעה" >הופעה</option>
                     <option value="סדנא">סדנא</option>
                 </select>
-                <input type="tel" class=input placeholder="זמן נדרש להכנות לפני המופע" #timeBefore pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required>
+                <input type="tel" class=input placeholder="זמן נדרש להכנות לפני המופע" #timeBefore pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required oninvalid="this.setCustomValidity('שדה חובה')">
                 <select ngModel name="graphics" required class=input #graphics>
                     <option value="" disabled selected>יש גרפיקה מוכנה של המופע?</option>
                     <option value="כן">כן</option>

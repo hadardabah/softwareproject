@@ -50,6 +50,7 @@ export class CatalogTablePage implements OnInit {
   docs=[]
   doc:any
   dataFromDatabase = []
+  dataFromDatabaseFiltered = []
   newArray =[]
   time: any;
 
@@ -97,6 +98,7 @@ export class CatalogTablePage implements OnInit {
       this.db.collection('Show').get().subscribe(result => {
       this.docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = this.docs
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
       //console.log (this.dataFromDatabase)
       this.newArray = this.dataFromDatabase.slice();
   //  console.log (this.newArray)
@@ -124,27 +126,29 @@ export class CatalogTablePage implements OnInit {
     console.log(param);
     if(param.currentTarget.value== 'כל המופעים')
     {
-      this.dataFromDatabase = this.docs
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
       return
     }
-    this.dataFromDatabase = this.docs.filter(item => param.currentTarget.value == item.show)
+    if(param.currentTarget.value== 'הרשימה המלאה')
+    {
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
+      return
+    }
+    this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.show)
   }
 
   filter_audience(param){
-    console.log("before filter")
-    console.log( this.dataFromDatabase)
     if(param.currentTarget.value== 'כלל האוכלוסיות')
     {
-      this.dataFromDatabase = this.docs
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
       return
     }
+    this.dataFromDatabaseFiltered = []
     for(let i = 0; i<this.dataFromDatabase.length;i++){
       for(let j = 0; j<this.dataFromDatabase[i].audience.length;j++){
         
         if(this.dataFromDatabase[i].audience[j] == param.currentTarget.value){    
-          console.log( this.dataFromDatabase[i].audience )
-          //this.dataFromDatabase[i].audience == item.audience
-          this.dataFromDatabase = this.docs.filter(item =>  this.dataFromDatabase[i].audience == item.audience )
+          this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, this.dataFromDatabase[i]]
         }
       }
     }
@@ -152,6 +156,23 @@ export class CatalogTablePage implements OnInit {
     //this.dataFromDatabase = this.docs.filter(item => param.currentTarget.value == item.audience)
     console.log("after filter")
    console.log( this.dataFromDatabase)
+  }
+
+  applyFilter(filterBy) {
+    if(filterBy === '')
+    {
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
+      return
+    }
+    this.dataFromDatabaseFiltered = []
+    this.dataFromDatabase.forEach(item => {
+      if(item.artist === filterBy) {
+        this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
+      }
+      if(item.Provider === filterBy) {
+        this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
+      }
+    })
   }
 
  

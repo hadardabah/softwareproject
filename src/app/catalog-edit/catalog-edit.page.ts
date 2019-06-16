@@ -63,8 +63,9 @@ export class CatalogEditPage implements OnInit {
 
   ngAfterViewChecked()
   {
-    if(CatalogTablePage.s_show_field!='' && CatalogTablePage.s_show_field!= this.show_field.nativeElement.value )
-    { this.show_field.nativeElement.value =CatalogTablePage.s_show_field
+   if(1==1 )
+    {
+       this.show_field.nativeElement.value =CatalogTablePage.s_show_field
       this.artist_field.nativeElement.value = CatalogTablePage.s_artist_field
       this.whoWatch_field.nativeElement.value = CatalogTablePage.s_whoWatch_field
       this.priceFirstShow_field.nativeElement.value =CatalogTablePage.s_priceFirstShow_field
@@ -93,7 +94,7 @@ export class CatalogEditPage implements OnInit {
       this.imgGraphics_field.nativeElement.value = CatalogTablePage.s_imgGraphics_field
       this.commants_field.nativeElement.value = CatalogTablePage.s_commants_field
       this.time = CatalogTablePage.s_time
-    }
+   }
   }
 
   audience: string="";
@@ -132,7 +133,7 @@ export class CatalogEditPage implements OnInit {
       bid: this.bid_field.nativeElement.value,
       imgGraphics: this.imgGraphics_field.nativeElement.value,
       commants: this.commants_field.nativeElement.value,
-      time:new Date(),
+     
 
     }).then(()=>{
       this.ngOnInit()

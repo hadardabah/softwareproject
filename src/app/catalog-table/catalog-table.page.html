@@ -27,9 +27,22 @@
           <option value="בנות היסודי" > בנות היסודי  </option>
       </select> 
       </ion-col>
+      <ion-col>
+      <input  class=input  #artist  placeholder='שם האומן'  (click)='filter_table($event)' (keyup)='applyFilter($event.target.value)' />
+      </ion-col>
+      <ion-col>
+        <input  class=input  #Provider  placeholder='שם הספק'  (click)='filter_table($event)' (keyup)='applyFilter($event.target.value)' />
+      </ion-col>
+      <ion-col>
+        <select class=input #show (change)='filter_table($event)' >
+          <option value="" disabled selected>אופי המופע</option>
+          <option value="כל המופעים" >הרשימה המלאה</option>
+          <option [value]="doc.show"  *ngFor='let doc of newArray'>{{doc.showCharacter}}</option>    
+        </select>
+    </ion-col>
       </ion-row>
     </ion-grid>
-      <!--<input  class=input  #artist  placeholder='שם האומן'  (click)='filter_table($event)' />-->
+      
       <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
       </div>
 
@@ -49,7 +62,7 @@
           <th>עריכה</th>
         </tr>
        
-        <tr *ngFor='let doc of dataFromDatabase '>
+        <tr *ngFor='let doc of dataFromDatabaseFiltered '>
           <td>{{doc.show}}</td> 
           <td>{{doc.artist}}</td>
           <td>{{doc.showType}}</td> 
