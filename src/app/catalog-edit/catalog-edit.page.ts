@@ -53,6 +53,7 @@ export class CatalogEditPage implements OnInit {
   constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone) { }
   doc: any
   time: any;
+  global: any
 
   ngOnInit() {
     this.db.collection('Show').get().subscribe(result => {
@@ -63,7 +64,7 @@ export class CatalogEditPage implements OnInit {
 
   ngAfterViewChecked()
   {
-   if(CatalogTablePage.s_show_field!='' && CatalogTablePage.s_show_field!= this.show_field.nativeElement.value )
+   if(CatalogTablePage.s_artist_field!='' && CatalogTablePage.s_artist_field!= this.artist_field.nativeElement.value )
     {
        this.show_field.nativeElement.value =CatalogTablePage.s_show_field
       this.artist_field.nativeElement.value = CatalogTablePage.s_artist_field
@@ -142,6 +143,51 @@ export class CatalogEditPage implements OnInit {
 
     
    }
+
+
+
+   edit_db() {
+    this.db.collection('Show', ref => ref.where('artist', '==', CatalogTablePage.s_artist_field)).get().subscribe(result => {
+      this.updateData(result.docs[0].id)
+    })
+  }
+
+updateData(docid){
+  this.db.collection('Show').doc(docid).update({
+    show: this.show_field.nativeElement.value,
+      artist: this.artist_field.nativeElement.value,
+      whoWatch: this.whoWatch_field.nativeElement.value,
+      priceFirstShow: this.priceFirstShow_field.nativeElement.value,
+      priceSecondShow: this.priceSecondShow_field.nativeElement.value,
+      priceDriver: this.priceDriver_field.nativeElement.value,
+      Provider: this.Provider_field.nativeElement.value,
+      phoneProvid: this.phoneProvid_field.nativeElement.value,
+      phone2Provid: this.phone2Provid_field.nativeElement.value,
+      mailProvid: this.mailProvid_field.nativeElement.value,
+      phoneArt: this.phoneArt_field.nativeElement.value,
+      mailArt: this.mailArt_field.nativeElement.value,
+      businessNum: this.businessNum_field.nativeElement.value,
+      businessType: this.businessType_field.nativeElement.value,
+      graphics: this.graphics_field.nativeElement.value,
+      equipment: this.equipment_field.nativeElement.value,
+      timeAfter: this.timeAfter_field.nativeElement.value,
+      timeBefore: this.timeBefore_field.nativeElement.value,
+      timeShow: this.timeShow_field.nativeElement.value,
+      showType: this.showType_field.nativeElement.value,
+      showCharacter: this.showCharacter_field.nativeElement.value,
+      limitParticipants: this.limitParticipants_field.nativeElement.value,
+      nuclearPrice: this.nuclearPrice_field.nativeElement.value,
+      extraParticipants: this.extraParticipants_field.nativeElement.value,
+      extraPrice: this.extraPrice_field.nativeElement.value,
+      bid: this.bid_field.nativeElement.value,
+      imgGraphics: this.imgGraphics_field.nativeElement.value,
+      commants: this.commants_field.nativeElement.value,
+    }).then(()=>{
+      this.ngOnInit()
+      alert('הרשומה התעדכנה')
+    });
+}
+
    
  
    getShowName()
