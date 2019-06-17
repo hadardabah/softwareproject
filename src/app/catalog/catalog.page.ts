@@ -97,7 +97,7 @@ export class CatalogPage implements OnInit {
       bid: this.bid_field.nativeElement.value,
       imgGraphics: this.imgGraphics_field.nativeElement.value,
       commants: this.commants_field.nativeElement.value,
-      time:new Date(),
+      time:new Date().toDateString(),
     })
     window.alert("האירוע נוסף")
 

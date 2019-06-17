@@ -47,12 +47,13 @@ export class CatalogEditPage implements OnInit {
   @ViewChild('bid') bid_field
   @ViewChild('imgGraphics') imgGraphics_field
   @ViewChild('commants') commants_field
+  @ViewChild('time') time_field
 
 
   dataFromDatabase = []
   constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone) { }
   doc: any
-  time: any;
+//  time: any;
   global: any
 
   ngOnInit() {
@@ -64,11 +65,19 @@ export class CatalogEditPage implements OnInit {
 
   ngAfterViewChecked()
   {
-   if(CatalogTablePage.s_artist_field!='' && CatalogTablePage.s_artist_field!= this.artist_field.nativeElement.value )
+      console.log(CatalogTablePage.s_artist_field)
+      console.log(this.artist_field.nativeElement.value)
+   if(CatalogTablePage.s_time!='' && CatalogTablePage.s_time!= this.time_field.nativeElement.value )
     {
+      console.log(CatalogTablePage.s_artist_field)
+      console.log(this.artist_field.nativeElement.value)
+
        this.show_field.nativeElement.value =CatalogTablePage.s_show_field
+       console.log( this.show_field.nativeElement.value)
       this.artist_field.nativeElement.value = CatalogTablePage.s_artist_field
+      console.log( this.artist_field.nativeElement.value)
       this.whoWatch_field.nativeElement.value = CatalogTablePage.s_whoWatch_field
+      console.log(this.whoWatch_field.nativeElement.value)
       this.priceFirstShow_field.nativeElement.value =CatalogTablePage.s_priceFirstShow_field
       this.priceSecondShow_field.nativeElement.value =CatalogTablePage.s_priceSecondShow_field
       this.priceDriver_field.nativeElement.value = CatalogTablePage.s_priceDriver_field
@@ -94,7 +103,9 @@ export class CatalogEditPage implements OnInit {
       this.bid_field.nativeElement.value = CatalogTablePage.s_bid_field
       this.imgGraphics_field.nativeElement.value = CatalogTablePage.s_imgGraphics_field
       this.commants_field.nativeElement.value = CatalogTablePage.s_commants_field
-      this.time = CatalogTablePage.s_time
+      this.time_field.nativeElement.value = CatalogTablePage.s_time
+      console.log(CatalogTablePage.s_time)
+      console.log(this.time_field.nativeElement.value)
    }
   }
 
@@ -146,8 +157,8 @@ export class CatalogEditPage implements OnInit {
 
 
 
-   edit_db() {
-    this.db.collection('Show', ref => ref.where('artist', '==', CatalogTablePage.s_artist_field)).get().subscribe(result => {
+   edit_db(form: NgForm) {
+    this.db.collection('Show', ref => ref.where('time', '==', CatalogTablePage.s_time)).get().subscribe(result => {
       this.updateData(result.docs[0].id)
     })
   }
@@ -182,6 +193,7 @@ updateData(docid){
       bid: this.bid_field.nativeElement.value,
       imgGraphics: this.imgGraphics_field.nativeElement.value,
       commants: this.commants_field.nativeElement.value,
+      time: this.time_field.nativeElement.value,
     }).then(()=>{
       this.ngOnInit()
       alert('הרשומה התעדכנה')

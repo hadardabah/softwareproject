@@ -230,6 +230,7 @@ export class CatalogTablePage implements OnInit {
      CatalogTablePage.s_bid_field = docParam.bid
      CatalogTablePage.s_imgGraphics_field = docParam.imgGraphics
      CatalogTablePage.s_commants_field = docParam.commants
+     CatalogTablePage.s_time = docParam.time
 this.router.navigateByUrl('/home/catalog-edit')
      /*
      @ViewChild('nuclearPrice') nuclearPrice_filed
