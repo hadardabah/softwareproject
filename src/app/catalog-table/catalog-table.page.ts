@@ -107,18 +107,21 @@ export class CatalogTablePage implements OnInit {
     
   }
 
+  
   delete(docParam) {
-    var txt;
-   // this.filter_table('try')
-  if (confirm(" האם להסיר את המופע מהקטלוג?")) {
-    this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.show !== item.show)
-   
-    this.db.collection('Show', ref => ref.where('show', '==', docParam.show)).get().subscribe(result => {
-      this.db.collection('Show').doc(result.docs[0].id).delete()
-    })} 
-  else {
+    //console.log(docParam.show)
+    if (confirm(" האם להסיר רשומה זאת?")) {
+      this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.show !== item.show)
+
+      this.db.collection('Show', ref => ref.where('show', '==', docParam.show)).get().subscribe(result => {
+        this.db.collection('Show').doc(result.docs[0].id).delete()
+      })
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
+    }
+    else {
+    }
   }
-  }
+ 
 
 
 
@@ -169,7 +172,10 @@ export class CatalogTablePage implements OnInit {
       if(item.artist === filterBy) {
         this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
       }
-      if(item.Provider === filterBy) {
+     else if(item.Provider === filterBy) {
+        this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
+      }
+      else if(item.show === filterBy) {
         this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
       }
     })

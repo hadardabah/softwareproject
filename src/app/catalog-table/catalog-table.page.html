@@ -7,11 +7,7 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-        <select class=input #show (change)='filter_table($event)' >
-            <option value="" disabled selected>שם המופע</option>
-            <option value="כל המופעים" >כל המופעים</option>
-            <option [value]="doc.show"  *ngFor='let doc of newArray'>{{doc.show}}</option>    
-        </select>
+          <input  class=input  #show  placeholder='שם המופע'  (click)='filter_table($event)' (keyup)='applyFilter($event.target.value)' />
         </ion-col>
         <ion-col>
         <select class=input #audience  (change)='filter_audience($event)'> 

@@ -63,7 +63,7 @@ export class CatalogEditPage implements OnInit {
 
   ngAfterViewChecked()
   {
-   if(1==1 )
+   if(CatalogTablePage.s_show_field!='' && CatalogTablePage.s_show_field!= this.show_field.nativeElement.value )
     {
        this.show_field.nativeElement.value =CatalogTablePage.s_show_field
       this.artist_field.nativeElement.value = CatalogTablePage.s_artist_field
