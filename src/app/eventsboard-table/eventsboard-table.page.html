@@ -1,0 +1,61 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<body>
+  <div class="rtl">
+    <h1>טבלת אירועים</h1>
+    <div class="border">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          
+        </ion-col>
+        <ion-col>
+        
+      </ion-col>
+      <ion-col>
+      
+      </ion-col>
+      <ion-col>
+        
+      </ion-col>
+      <ion-col>
+        
+    </ion-col>
+      </ion-row>
+    </ion-grid>
+      
+      <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
+      </div>
+
+      <div id="scrolltable">     
+      <table id="catalog_table">
+      <tr>
+          <th>שם המופע</th>
+          <th>תאריך האירוע</th>
+          <th>תאריך עברי</th>
+          <th>שעת פתיחת דלתות</th>
+          <th>שעת התחלת האירוע בפועל</th>
+          <th>שעת סיום האירוע</th>
+          <th>מבנה</th>
+          <th>קהל יעד</th>
+          <th>מחיקה</th>
+          <th>עריכה</th>
+        </tr>
+       
+        <tr *ngFor='let doc of dataFromDatabaseFiltered '>
+          <td>{{doc.show}}</td> 
+          <td>{{doc.date}}</td>
+          <td>{{doc.hebrew_date}}</td> 
+          <td>{{doc.open_doors}}</td>
+          <td>{{doc.Actual_show_time}}</td>
+          <td>{{doc.end_of_show}}</td>
+          <td> {{doc.building}}</td>
+          <td>{{doc.target_audience}}</td>
+          <td><i class="fas fa-trash-alt" (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
+          <td><i class= "fas fa-pen" (click)='edit(doc)'style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
+        </tr>
+    </table>
+    </div>
+    
+    </div>
+  </body>

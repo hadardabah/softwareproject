@@ -23,7 +23,7 @@ export class EventsboardPage implements OnInit {
   @ViewChild('Actual_show_time') Actual_show_timeField
   @ViewChild('quantity') quantityField
   @ViewChild('cost') costField
-  @ViewChild('ushers') ushersField
+  @ViewChild('number_of_ushers') number_of_ushersField
   @ViewChild('before_show') before_showField
   @ViewChild('show_time') show_timeField
   @ViewChild('end_of_show') end_of_showField
@@ -32,7 +32,7 @@ export class EventsboardPage implements OnInit {
   @ViewChild('budgets') budgetsField
   @ViewChild('agent') agentField
   @ViewChild('in_charge_of_show') in_charge_of_showField
-  @ViewChild('usher1') usher1Field
+  @ViewChild('ushers') ushersField
   @ViewChild('equipment') equipmentField
   @ViewChild('event_type') event_typeField
   @ViewChild('repeat_show') repeat_showField
@@ -43,20 +43,32 @@ export class EventsboardPage implements OnInit {
   @ViewChild('upload') uploadField
 
   dataFromDatabase = []
-  
+  buildingsFromDatabase = []
+  budgetsFromDatabase = []
+  humanFromDatabase = []
+  time: any;
+
   constructor(private router: Router, private db: AngularFirestore,) { }
 
   ngOnInit() {
     // this.db.collection('Events').add({...})
 
     this.db.collection('Show').get().subscribe(result => {
-  
-      const docs = result.docs.map(doc => doc.data())
-      this.dataFromDatabase = docs
-
-
+      const Show_docs = result.docs.map(doc => doc.data())
+      this.dataFromDatabase = Show_docs
     })
-   
+    this.db.collection('Data').get().subscribe(result => {
+      const Data_docs = result.docs.map(doc => doc.data())
+      this.buildingsFromDatabase = Data_docs
+    })
+    this.db.collection('Budget').get().subscribe(result => {
+      const Budget_docs = result.docs.map(doc => doc.data())
+      this.budgetsFromDatabase = Budget_docs
+    })
+    this.db.collection('Human').get().subscribe(result => {
+      const Human_docs = result.docs.map(doc => doc.data())
+      this.humanFromDatabase = Human_docs
+    })
   }
   s: string="";
 
@@ -73,7 +85,7 @@ export class EventsboardPage implements OnInit {
     }
 }
 */
-  saveData(form: NgForm) {
+  addEvent(form: NgForm) {
     this.db.collection('Events').add({
       show: this.showField.nativeElement.value,
       season: this.seasonField.nativeElement.value,
@@ -87,7 +99,7 @@ export class EventsboardPage implements OnInit {
       building_status: this.building_statusField.nativeElement.value,
       quantity: this.quantityField.nativeElement.value,
       cost: this.costField.nativeElement.value,
-      ushers: this.ushersField.nativeElement.value,
+      number_of_ushers: this.number_of_ushersField.nativeElement.value,
       before_show: this.before_showField.nativeElement.value,
       show_time: this.show_timeField.nativeElement.value,
       end_of_show: this.end_of_showField.nativeElement.value,
@@ -96,7 +108,7 @@ export class EventsboardPage implements OnInit {
       budgets: this.budgetsField.nativeElement.value,
       agent: this.agentField.nativeElement.value,
       in_charge_of_show: this.in_charge_of_showField.nativeElement.value,
-      usher1: this.usher1Field.nativeElement.value,
+      ushers: this.ushersField.nativeElement.value,
       equipment: this.equipmentField.nativeElement.value,
       event_type: this.event_typeField.nativeElement.value,
       repeat_show: this.repeat_showField.nativeElement.value,
@@ -104,11 +116,8 @@ export class EventsboardPage implements OnInit {
       advertising_status: this.advertising_statusField.nativeElement.value,
       order_status_purchase: this.order_status_purchaseField.nativeElement.value,
       payment_status: this.payment_statusField.nativeElement.value,
-      upload: this.uploadField.nativeElement.value
-     
-     
-     
-     
+      upload: this.uploadField.nativeElement.value,
+      time:new Date().toDateString(),
     })
   window.alert("האירוע נוסף בהצלחה")
   }

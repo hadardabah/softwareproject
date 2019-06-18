@@ -10,7 +10,9 @@ const routes: Routes = [
   { path: 'singin', loadChildren: './singin/singin.module#SinginPageModule', canActivate: [LoginGuardGuard] },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'catalog-table', loadChildren: './catalog-table/catalog-table.module#CatalogTablePageModule' , canActivate: [LoginGuardGuard]},
-  { path: 'catalog-edit', loadChildren: './catalog-edit/catalog-edit.module#CatalogEditPageModule', canActivate: [LoginGuardGuard] },
+  { path: 'catalog-edit', loadChildren: './catalog-edit/catalog-edit.module#CatalogEditPageModule', canActivate: [LoginGuardGuard] },  { path: 'eventsboard-table', loadChildren: './eventsboard-table/eventsboard-table.module#EventsboardTablePageModule' },
+  { path: 'eventsboard-edit', loadChildren: './eventsboard-edit/eventsboard-edit.module#EventsboardEditPageModule' },
+
 
 
    //{ path: 'home', component: HomePage },
