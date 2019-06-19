@@ -20,10 +20,6 @@ export class HumanPage implements OnInit {
   @ViewChild('id') idField
   @ViewChild('email') emailField
   @ViewChild('comma') commaField
-  // @ViewChild('show') nameField
-  //@ViewChild('doc.id') idField
-  //hi i am liel
-  // hi i am chen
 
   dataFromDatabase = []
   old_id: any;
@@ -58,8 +54,43 @@ export class HumanPage implements OnInit {
     }
   */
 
+ LegalTz(id) {
+
+  console.log(id);
+  var tot = 0;
+  var tz = new String(id);
+      
+  var y=id;
+  y = y.toString;
+
+  for (var i=0; i<8; i++)
+  {
+    var x; 
+    x = (((i%2)+1)*(<any>tz.charAt(i)));
+    if (x > 9) 
+    {
+      x = x.toString();
+      x = parseInt(x.charAt(0))+parseInt(x.charAt(1))
+    }
+      tot += x;
+  }
+       
+  if ((tot+parseInt(tz.charAt(8)))%10 == 0) {
+       return true;
+  } 
+  else {
+       return false;
+  }
+}
+
+
 
   saveData(form: NgForm) {
+    if(this.LegalTz(this.idField.nativeElement.value)==false){
+      alert('תעודת זהות לא תקינה, נא הכנס מספר עם 9 ספרות')
+    }
+      else{
+
     this.db.collection('Human').add({
       first_name: this.first_nameField.nativeElement.value,
       last_name: this.last_nameField.nativeElement.value,
@@ -69,12 +100,14 @@ export class HumanPage implements OnInit {
       phone2: this.phone2Field.nativeElement.value,
       comma: this.commaField.nativeElement.value,
       time:new Date(),
+   
       
     }).then(()=>{
       this.ngOnInit()
     });
     window.alert("הדוח נוסף בהצלחה")
   }
+ }
   edit(d) {
     //console.log(d.first_name)
     // window.alert("yasssss")
@@ -114,6 +147,12 @@ export class HumanPage implements OnInit {
 
 updateData(docid)
 {
+  if(this.LegalTz(this.idField.nativeElement.value)==false){
+    alert('תעודת זהות לא תקינה, נא הכנס מספר עם 9 ספרות')
+  }
+    else{
+
+  
   this.db.collection('Human').doc(docid).update({
     first_name: this.first_nameField.nativeElement.value,
     last_name: this.last_nameField.nativeElement.value,
@@ -128,7 +167,7 @@ updateData(docid)
       alert('הרשומה התעדכנה')
     });
 
-
+    }
 }
 
 

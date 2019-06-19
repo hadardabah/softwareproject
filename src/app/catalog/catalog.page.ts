@@ -63,7 +63,6 @@ export class CatalogPage implements OnInit {
     })
   }
   audience: string="";
-
   
   addShow(form: NgForm){
     this.db.collection('Show').add({

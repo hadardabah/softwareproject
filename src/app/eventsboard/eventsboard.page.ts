@@ -46,6 +46,7 @@ export class EventsboardPage implements OnInit {
   buildingsFromDatabase = []
   budgetsFromDatabase = []
   humanFromDatabase = []
+  eventsFromDatabase = []
   time: any;
 
   constructor(private router: Router, private db: AngularFirestore,) { }
@@ -69,23 +70,62 @@ export class EventsboardPage implements OnInit {
       const Human_docs = result.docs.map(doc => doc.data())
       this.humanFromDatabase = Human_docs
     })
+    this.db.collection('Events').get().subscribe(result => {
+      const Events_docs = result.docs.map(doc => doc.data())
+      this.eventsFromDatabase = Events_docs
+    })
   }
   s: string="";
 
-  /*
-  ngOnInit() {}
 
-  onSelect(countryId) { 
-    this.listField = null;
-    for (var i = 0; i < this.countries.length; i++)
-    {
-      if (this.countries[i].id == countryId) {
-        this.selectedCountry = this.countries[i];
+  checkOverlappingEvents(startime, endtime, openDoors, currentDate){
+    for(let i = 0; i<this.eventsFromDatabase.length;i++){
+      //console.log(this.eventsFromDatabase[i].date)
+      //console.log(currentDate) 
+      if(this.eventsFromDatabase[i].date == currentDate){ 
+        console.log('this is same date');
+        var newStartime = startime.substring(0,2);
+        var newOpenDoors = openDoors.substring(0,2);
+        var newStart = newOpenDoors-newStartime
+        var newendtime= endtime.substring(0,2) 
+        
+
+        for(let j = 0; j<this.eventsFromDatabase.length;j++){
+         var tempStart= (this.eventsFromDatabase[j].before_show).substring(0,2);
+         var tempopendor= (this.eventsFromDatabase[j].open_doors).substring(0,2);
+         var tempnewstart=tempopendor-tempStart
+         var tempReleaseBuilding=this.eventsFromDatabase[j].release_building.substring(0,2);
+         console.log(tempnewstart)
+         console.log(newStart)
+         console.log(newendtime)
+         if(tempnewstart<newStart&&newStart< newendtime)
+         alert('יש חפיפה באירועים')
+
+       //  if(tempStart< newReleaseBulding< newReleaseBulding)
+         //alert('יש חפיפה באירועים')
+        }
+        //console.log(newStr);
+        //console.log(newStr-6)
+        //var num = parseInt(newStr);
+        //console.log(num)
+          if(startime>endtime){
+            console.log(endtime-startime)
+          }
+          return true;
+        }
       }
-    }
-}
-*/
+      return false;
+    
+   // if(date ==)
+  //  if(התחלה של כל אירוע<startime>סיום של כל אירוע||)
+  }
+  
+
   addEvent(form: NgForm) {
+    if(this.checkOverlappingEvents(this.before_showField.nativeElement.value,this.release_buildingField.nativeElement.value,this.open_doorsField.nativeElement.value, this.dateField.nativeElement.value)==true){
+      console.log('this is same date2') ;
+    }
+    
     this.db.collection('Events').add({
       show: this.showField.nativeElement.value,
       season: this.seasonField.nativeElement.value,
