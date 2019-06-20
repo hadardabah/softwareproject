@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { GenericButtonComponent } from '../components/generic-button/generic-button.component';
+import { IsAdminGuard } from '../guards/is-admin/is-admin.guard';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { GenericButtonComponent } from '../components/generic-button/generic-but
           { path: 'events', loadChildren: '../eventsboard/eventsboard.module#EventsboardPageModule' },
           { path: 'catalog', loadChildren: '../catalog/catalog.module#CatalogPageModule' },
           { path: 'human', loadChildren: '../human/human.module#HumanPageModule' },
-          { path: 'reports', loadChildren: '../reports/reports.module#ReportsPageModule' },
+          { path: 'reports', loadChildren: '../reports/reports.module#ReportsPageModule', canActivate: [IsAdminGuard] },
           { path: 'budgets', loadChildren: '../budgets/budgets.module#BudgetsPageModule' },
           { path: 'data', loadChildren: '../data/data.module#DataPageModule' },
           { path: 'catalog-table', loadChildren: '../catalog-table/catalog-table.module#CatalogTablePageModule'},

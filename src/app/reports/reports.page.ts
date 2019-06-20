@@ -13,3 +13,14 @@ export class ReportsPage implements OnInit {
   }
 
 }
+
+/*
+    this.userAuth.auth.createUserWithEmailAndPassword('dsg@gmail.com', '12312432')
+    .then(result => {
+      
+    })
+    .catch(error => {
+      
+    })
+
+*/
