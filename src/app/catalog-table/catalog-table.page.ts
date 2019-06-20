@@ -111,9 +111,9 @@ export class CatalogTablePage implements OnInit {
   delete(docParam) {
     //console.log(docParam.show)
     if (confirm(" האם להסיר רשומה זאת?")) {
-      this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.show !== item.show)
+      this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.time !== item.time)
 
-      this.db.collection('Show', ref => ref.where('show', '==', docParam.show)).get().subscribe(result => {
+      this.db.collection('Show', ref => ref.where('time', '==', docParam.time)).get().subscribe(result => {
         this.db.collection('Show').doc(result.docs[0].id).delete()
       })
       this.dataFromDatabaseFiltered = this.dataFromDatabase
