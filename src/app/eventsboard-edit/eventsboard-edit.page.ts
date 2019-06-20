@@ -45,13 +45,33 @@ export class EventsboardEditPage implements OnInit {
   @ViewChild('time') time_field
 
   dataFromDatabase = []
+  buildingsFromDatabase = []
+  budgetsFromDatabase = []
+  humanFromDatabase = []
+  eventsFromDatabase = []
 
   constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone) { }
 
   ngOnInit() {
+    this.db.collection('Show').get().subscribe(result => {
+      const Show_docs = result.docs.map(doc => doc.data())
+      this.dataFromDatabase = Show_docs
+    })
+    this.db.collection('Data').get().subscribe(result => {
+      const Data_docs = result.docs.map(doc => doc.data())
+      this.buildingsFromDatabase = Data_docs
+    })
+    this.db.collection('Budget').get().subscribe(result => {
+      const Budget_docs = result.docs.map(doc => doc.data())
+      this.budgetsFromDatabase = Budget_docs
+    })
+    this.db.collection('Human').get().subscribe(result => {
+      const Human_docs = result.docs.map(doc => doc.data())
+      this.humanFromDatabase = Human_docs
+    })
     this.db.collection('Events').get().subscribe(result => {
-      const docs = result.docs.map(doc => doc.data())
-      this.dataFromDatabase = docs
+      const Events_docs = result.docs.map(doc => doc.data())
+      this.eventsFromDatabase = Events_docs
     })
   }
 

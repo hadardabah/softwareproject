@@ -86,9 +86,14 @@ updateData(docid){
 }
 
 delete(docParam){
-if(confirm("האם להסיר את הרשומה מהטבלה?"))
+if(confirm("האם להסיר את הרשומה מהטבלה?")){
  this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.time !== item.time)
  this.db.collection('Data' , ref => ref.where('time' , '==' , docParam.time)).get().subscribe(result => {
     this.db.collection('Data').doc(result.docs[0].id).delete()
- })}
+ })
+}
+else{
+  
+}
+}
 }
