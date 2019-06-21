@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-reports',
@@ -6,21 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reports.page.scss'],
 })
 export class ReportsPage implements OnInit {
-
-  constructor() { }
+  @ViewChild('email') emailField;
+  @ViewChild('password') passField;
+  constructor( private userAuth: AngularFireAuth,) { 
+   // this.try()
+  }
 
   ngOnInit() {
   }
-
+  try(){
+    const email = this.emailField.value;
+    const password = this.passField.value;
+    
+    this.userAuth.auth.createUserWithEmailAndPassword(email, password)}
 }
 
-/*
-    this.userAuth.auth.createUserWithEmailAndPassword('dsg@gmail.com', '12312432')
-    .then(result => {
-      
-    })
-    .catch(error => {
-      
-    })
 
-*/
+   //
+  
+   // .then(result => {
+      
+    //})
+   // .catch(error => {
+      
+   // })
