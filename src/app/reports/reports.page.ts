@@ -19,7 +19,15 @@ export class ReportsPage implements OnInit {
     const email = this.emailField.value;
     const password = this.passField.value;
     
-    this.userAuth.auth.createUserWithEmailAndPassword(email, password)}
+    this.userAuth.auth.createUserWithEmailAndPassword(email, password).then(result => {
+      window.alert("משתמש חדש נוסף בהצלחה!");   
+      })
+      .catch((error) => {
+        window.alert("שם המשתמש חייב להיות מייל שלא קיים במערכת, וסיסמה עם שישה תווים לפחות");
+      });
+  
+  
+  }
 }
 
 
