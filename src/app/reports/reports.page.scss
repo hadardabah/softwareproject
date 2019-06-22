@@ -1,3 +1,73 @@
 body{
   background-color: whitesmoke;
 }
+
+.rtl{
+  direction: rtl;
+}
+
+h1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: #253f58;
+}
+
+.add{
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 8px 20px;
+  background-color: #aec33a;
+  color: #ffffff;
+  position: absolute;
+  //transform: translateY(-50%);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  width: 20%;
+}
+
+.border{
+  border-radius: 5px;
+  border-color: #363636;
+  border: 1px solid;
+  width: 95%;
+  height: 170px;
+  margin: auto;
+  margin-bottom: 2%;
+}
+
+ion-label{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding-top: 3%;
+}
+
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  margin: auto;
+  width: 100%;
+  margin-bottom: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.icon {
+  padding: 10px;
+  background: #e5ba22;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.input-field:focus {
+  border: 2px solid #e5ba22;
+}

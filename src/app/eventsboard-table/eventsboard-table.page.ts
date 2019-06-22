@@ -153,4 +153,13 @@ export class EventsboardTablePage implements OnInit {
   this.router.navigateByUrl('/home/eventsboard-edit')
   })
   }
+
+  filter_table(param){
+    if(param.currentTarget.value== 'הרשימה המלאה')
+    {
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
+      return
+    }
+    this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.hebrew_year)
+  }
 }

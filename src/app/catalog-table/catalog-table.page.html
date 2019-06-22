@@ -4,14 +4,15 @@
   <div class="rtl">
     <h1>טבלת מופעים</h1>
     <div class="border">
+      <h2>חיפוש בטבלה</h2>
     <ion-grid>
       <ion-row>
         <ion-col>
-          <input  class=input  #show  placeholder='שם המופע'  (click)='filter_table($event)' (keyup)='applyFilter($event.target.value)' />
+          <input  class=input  #show  placeholder='שם המופע' (keyup)='applyFilter($event.target.value)' />
         </ion-col>
         <ion-col>
         <select class=input #audience  (change)='filter_audience($event)'> 
-          <option value="" disabled selected>קהל יעד</option>
+          <option value="" disabled selected>אוכלוסיית יעד אפשרית</option>
           <option value="כלל האוכלוסיות" > כלל האוכלוסיות</option>
           <option value="ילדים" > ילדים</option>
           <option value="ילדות" > ילדות</option>
@@ -24,16 +25,26 @@
       </select> 
       </ion-col>
       <ion-col>
-      <input  class=input  #artist  placeholder='שם האומן'  (click)='filter_table($event)' (keyup)='applyFilter($event.target.value)' />
+      <input  class=input  #artist  placeholder='שם האומן' (keyup)='applyFilter($event.target.value)' />
       </ion-col>
       <ion-col>
-        <input  class=input  #Provider  placeholder='שם הספק'  (click)='filter_table($event)' (keyup)='applyFilter($event.target.value)' />
+        <input  class=input  #Provider  placeholder='שם הספק' (keyup)='applyFilter($event.target.value)' />
       </ion-col>
       <ion-col>
-        <select class=input #show (change)='filter_table($event)' >
+
+        <select class=input #showCharacter (change)='filter_table($event)'>
           <option value="" disabled selected>אופי המופע</option>
-          <option value="כל המופעים" >הרשימה המלאה</option>
-          <option [value]="doc.show"  *ngFor='let doc of newArray'>{{doc.showCharacter}}</option>    
+          <option value="הרשימה המלאה" >הרשימה המלאה</option>
+          <option value="הצגה חיה" >הצגה חיה</option>
+          <option value="הקרנה">הקרנה</option>
+          <option value="תיאטרון בובות" >תיאטרון בובות</option>
+          <option value="הופעה בשילוב הקרנה">הופעה בשילוב הקרנה</option>
+          <option value="מופע מוסיקלי" >מופע מוסיקלי</option>
+          <option value="סיפור אישי">סיפור אישי</option>
+          <option value="הפעלה" >הפעלה</option>
+          <option value="סדנת אומנות">סדנת אומנות</option>
+          <option value="סדנת יצירה אישית" >סדנת יצירה אישית</option>
+          <option value="הרצאה">הרצאה</option>
         </select>
     </ion-col>
       </ion-row>
@@ -54,8 +65,8 @@
           <th>שם ספק</th>
           <th>מי צפה במופע לדוגמא</th>
           <th>הערות נוספות</th>
-          <th>מחיקה</th>
           <th>עריכה</th>
+          <th>מחיקה</th>
         </tr>
        
         <tr *ngFor='let doc of dataFromDatabaseFiltered '>
@@ -68,8 +79,8 @@
           <td> {{doc.Provider}}</td>
           <td>{{doc.whoWatch}}</td>
           <td>{{doc.commants}}</td>
-          <td><i class="fas fa-trash-alt" (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
           <td><i class= "fas fa-pen" (click)='edit(doc)'style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
+          <td><i class="fas fa-trash-alt" (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
         </tr>
     </table>
     </div>

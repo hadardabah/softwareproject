@@ -21,6 +21,7 @@ export class BudgetsPage implements OnInit {
   @ViewChild('execute_status') execute_statusField
 
   dataFromDatabase = []
+  dataFromDatabaseFiltered = []
   time: any;
   
   constructor(private router: Router, private db: AngularFirestore,private ngZone:NgZone ) { }
@@ -29,6 +30,7 @@ export class BudgetsPage implements OnInit {
       this.db.collection('Budget').get().subscribe(result => {
       const docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = docs
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
   })
   }
  
@@ -74,6 +76,29 @@ this.db.collection('Budget').doc(docid).update({
     this.ngOnInit()
     alert('הרשומה התעדכנה')
   });
+}
+
+filter_table(param){
+  if(param.currentTarget.value== 'כל הסטטוסים')
+  {
+    this.dataFromDatabaseFiltered = this.dataFromDatabase
+    return
+  }
+  this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.budget_status)
+}
+
+applyFilter(filterBy) {
+  if(filterBy === '')
+  {
+    this.dataFromDatabaseFiltered = this.dataFromDatabase
+    return
+  }
+  this.dataFromDatabaseFiltered = []
+  this.dataFromDatabase.forEach(item => {
+    if(item.finance_source === filterBy) {
+      this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
+    }
+  })
 }
 
 delete(docParam) {

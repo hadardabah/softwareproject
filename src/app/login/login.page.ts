@@ -23,9 +23,10 @@ export class LoginPage {
   ) { }
 
   login(){
+    console.log("before")
     const email = this.emailField.value;
     const password = this.passField.value;
-
+    console.log("after")
       // ! check if email and password aren't 'undefined'
       this.userAuth.auth.signInWithEmailAndPassword(email, password)
       .then(result => {
@@ -42,7 +43,7 @@ export class LoginPage {
       message: 'הזן דוא"ל לקבלת הודעה על שינוי סיסמה',
       inputs: [{
         name: 'email',
-        placeholder: 'email'
+        placeholder: 'Email'
       }],
       buttons: [{
         text: 'שלח',
@@ -53,7 +54,8 @@ export class LoginPage {
             console.log(error);
           });
         }
-      }]
+      }],
+      cssClass: 'my-alert'
     });
 
     await alert.present();

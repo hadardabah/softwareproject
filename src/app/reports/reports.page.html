@@ -1,8 +1,25 @@
 <body>
-    <h1>REPORTS</h1>
-    <ion-label>:שם משתמש</ion-label>
-    <ion-input  #email></ion-input>
-    <ion-label>:סיסמא</ion-label>
-    <ion-input type='password' #password></ion-input>
-    <button ion-button id=button (click)="try()">כניסה</button>  
+<div class="rtl">
+    <h1>הוספת משתמשים</h1>
+    <div class="border">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+            <div class="input-container">
+                <i class="fa fa-envelope icon"></i>
+                <ion-input class="input-field" type="email" placeholder="Email" name="email" #email></ion-input>
+            </div>
+            
+            <div class="input-container">
+                <i class="fa fa-key icon"></i>
+                <ion-input class="input-field" type="password" placeholder="Password" name="psw" #password></ion-input>
+            </div>
+
+            <button ion-button class="add" (click)="try()">הוספת משתמש</button>  
+            </ion-col>
+        </ion-row>
+        
+    </ion-grid>
+    </div>
+</div>
 </body>

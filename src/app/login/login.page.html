@@ -1,91 +1,4 @@
-<!--<ion-header class="masters">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-<body>
-  <ion-grid>
-    <ion-row>
-      
-      <app-generic-button (click)='goToSignInPage()'>Something</app-generic-button>
-      <app-generic-button>gett</app-generic-button>
-      <app-generic-button></app-generic-button>
-  
-  </ion-row>
-    <ion-row>
-        
-      <app-generic-button></app-generic-button>
-      <app-generic-button></app-generic-button>
-      <app-generic-button></app-generic-button>
-
-    </ion-row>
-  </ion-grid>
-  </body>
- 
-  
-</ion-content>
-
-<div class="liel">
-    <div class="mir">
-<ion-header class="masters">
-    <ion-toolbar>
-    </ion-toolbar>
-    <ion-content>
-        <ion-list>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item button>
-              <ion-icon slot="start" name='home'></ion-icon>
-              <ion-label>
-                Home
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>  
-
-      <ion-content>
-          <ion-list>
-            <ion-menu-toggle auto-hide="false">
-              <ion-item button>
-                <ion-icon slot="start" name='home'></ion-icon>
-                <ion-label>
-                  Login
-                </ion-label>
-              </ion-item>
-            </ion-menu-toggle>
-          </ion-list>
-        </ion-content>  
-     
-  </ion-header>
-</div>
-
-  <ion-content>
-  <body>
-    <ion-grid>
-      <ion-row>
-        
-        <app-generic-button (click)='goToSignInPage()'>Something</app-generic-button>
-        <app-generic-button>gett</app-generic-button>
-        <app-generic-button></app-generic-button>
-    
-    </ion-row>
-      <ion-row>
-          
-        <app-generic-button></app-generic-button>
-        <app-generic-button></app-generic-button>
-        <app-generic-button></app-generic-button>
-  
-      </ion-row>
-    </ion-grid>
-    </body>
-   
-  </ion-content>
-</div>
-    -->
+ <!--      
     <div>
       <div class="right">
         <div class ="logo">
@@ -106,8 +19,34 @@
       <div class="left"> 
           <img class="mod" src="http://www.up2me.co.il/images/63432205.jpg">
       </div> 
-            <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+    
+
 </div>
-     
+   -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<ion-content>
+  <div class="box">
+      <i class="fa fa-user-circle-o" style="margin-left: 38%; margin-top: 2%; font-size: 80px"></i>
+      <h1>כניסת משתמש רשום</h1>
+      <!--<h2>ניהול אירועים</h2>-->
+      <div class="input-container">
+        <i class="fa fa-envelope icon"></i>
+        <ion-input class="input-field" type="email" placeholder="Email" name="email" #email></ion-input>
+      </div>
+      
+      <div class="input-container">
+        <i class="fa fa-key icon"></i>
+        <ion-input class="input-field" type="password" placeholder="Password" name="psw" #password></ion-input>
+      </div>
+    
+      <ion-row>
+        <button ion-button (click)="login()" class="login_btn">כניסה</button>
+        <button ion-button (click)="forgotPassword()" class="reset_btn">איפוס סיסמא</button>
+      </ion-row>
+      <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+  </div>
+</ion-content>
+
 

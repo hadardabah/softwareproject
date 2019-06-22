@@ -15,13 +15,13 @@ export class HumanPage implements OnInit {
 
   @ViewChild('phone') phoneField
   @ViewChild('phone2') phone2Field
-  @ViewChild('first_name') first_nameField
-  @ViewChild('last_name') last_nameField
+  @ViewChild('name') nameField
   @ViewChild('id') idField
   @ViewChild('email') emailField
   @ViewChild('comma') commaField
 
   dataFromDatabase = []
+  dataFromDatabaseFiltered = []
   old_id: any;
   time: any;
   
@@ -33,26 +33,10 @@ export class HumanPage implements OnInit {
     this.db.collection('Human').get().subscribe(result => {
       const docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = docs
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
     })
 
   }
-
-
-  /*
-  ngAfterViewChecked()
-    {
-      console.log("in")
-      if(this.idField!='' && this.idField != this.idField.nativeElement.value )
-      { this.first_nameField.nativeElement.value = this.first_nameField
-        this.last_nameField.nativeElement.value = this.last_nameField
-        this.emailField.nativeElement.value = this.emailField
-        this.idField.nativeElement.value = this.idField
-        this.phoneField.nativeElement.value = this.phoneField
-        this.phone2Field.nativeElement.value =  this.phone2Field
-        this.commaField.nativeElement.value = this.commaField
-      }
-    }
-  */
 
  LegalTz(id) {
 
@@ -92,8 +76,7 @@ export class HumanPage implements OnInit {
       else{
 
     this.db.collection('Human').add({
-      first_name: this.first_nameField.nativeElement.value,
-      last_name: this.last_nameField.nativeElement.value,
+      name: this.nameField.nativeElement.value,
       email: this.emailField.nativeElement.value,
       id: this.idField.nativeElement.value,
       phone: this.phoneField.nativeElement.value,
@@ -108,11 +91,9 @@ export class HumanPage implements OnInit {
     window.alert("הדוח נוסף בהצלחה")
   }
  }
+
   edit(d) {
-    //console.log(d.first_name)
-    // window.alert("yasssss")
-    this.first_nameField.nativeElement.value = d.first_name
-    this.last_nameField.nativeElement.value = d.last_name
+    this.nameField.nativeElement.value = d.name
     this.emailField.nativeElement.value = d.email
     this.idField.nativeElement.value = d.id
     this.phoneField.nativeElement.value = d.phone
@@ -120,29 +101,13 @@ export class HumanPage implements OnInit {
     this.commaField.nativeElement.value = d.comma
     this.old_id=d.id
     this.time = d.time
-
-    //console.log(d)
-    // if(d == MouseEvent){
-    // this.db.collection('Human', ref => ref.where('id', '==', d.id)).get().subscribe(result => {
-    //   this.db.collection('Human').doc(result.docs[0].id).update({
-    //     first_name: 'Helen' ,
-    //   }); })
-    // }
-
-    // this.artist_filed.nativeElement.value =d.data().artist
-    // this.whoWatch_filed.nativeElement.value ='chen'
   }
+
   edit_db() {
-    //if ( this.time== undefined || this.time == '')
-     // return
-     // debugger
-    // window.alert("in edit_db")
     console.log(this.time)
     this.db.collection('Human', ref => ref.where('time', '==',this.time)).get().subscribe(result => {
       this.updateData(result.docs[0].id)
     })
-  
-  
   }
 
 updateData(docid)
@@ -154,8 +119,7 @@ updateData(docid)
 
   
   this.db.collection('Human').doc(docid).update({
-    first_name: this.first_nameField.nativeElement.value,
-    last_name: this.last_nameField.nativeElement.value,
+    name: this.nameField.nativeElement.value,
     email: this.emailField.nativeElement.value,
     id: this.idField.nativeElement.value,
     phone: this.phoneField.nativeElement.value,
@@ -168,6 +132,24 @@ updateData(docid)
     });
 
     }
+}
+
+
+applyFilter(filterBy) {
+  if(filterBy === '')
+  {
+    this.dataFromDatabaseFiltered = this.dataFromDatabase
+    return
+  }
+  this.dataFromDatabaseFiltered = []
+  this.dataFromDatabase.forEach(item => {
+    if(item.name === filterBy) {
+      this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
+    }
+   else if(item.id === filterBy) {
+      this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
+    }
+  })
 }
 
 

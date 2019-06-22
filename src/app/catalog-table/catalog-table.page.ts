@@ -126,18 +126,12 @@ export class CatalogTablePage implements OnInit {
 
 
   filter_table(param){
-    console.log(param);
-    if(param.currentTarget.value== 'כל המופעים')
-    {
-      this.dataFromDatabaseFiltered = this.dataFromDatabase
-      return
-    }
     if(param.currentTarget.value== 'הרשימה המלאה')
     {
       this.dataFromDatabaseFiltered = this.dataFromDatabase
       return
     }
-    this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.show)
+    this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.showCharacter)
   }
 
   filter_audience(param){

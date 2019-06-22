@@ -9,8 +9,8 @@
           <ion-row>
               <ion-col>
        
-                <input ngModel name="show" required class=input  #show  placeholder='שם המופע' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
-                <select  multiple class=input [(ngModel)]="audience" name="audience" required  oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"> 
+                <input ngModel name="show" required class=input  #show placeholder='שם המופע' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                <select  multiple class=input [(ngModel)]="audience" name="audience" required  oninvalid="this.setCustomValidity('יש לבחור לפחות פריט אחד מהרשימה')" oninput="setCustomValidity('')"> 
                     <option value="" disabled selected>אוכלוסיית יעד אפשרית</option>
                     <option ion-select-option value="ילדים" > ילדים
                     <option ion-select-option value="ילדות" > ילדות
@@ -29,16 +29,16 @@
                     <option value="הופעה" >הופעה</option>
                     <option value="סדנא">סדנא</option>
                 </select>
-                <input type="tel" class=input placeholder="זמן נדרש להכנות לפני המופע" #timeBefore pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required oninvalid="this.setCustomValidity('שדה חובה')">
-                <select ngModel name="graphics" required class=input #graphics>
+                <input required type="tel" class=input placeholder="זמן נדרש להכנות לפני המופע" #timeBefore pattern="[0-9]{2}:[0-5]{1}[0-9]{1}"  />
+                <select ngModel name="graphics" required class=input #graphics oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                     <option value="" disabled selected>יש גרפיקה מוכנה של המופע?</option>
                     <option value="כן">כן</option>
                     <option value="לא">לא</option>
                   </select>
               </ion-col>
               <ion-col>
-                <input ngModel name="priceShow" required class=input #priceFirstShow placeholder='עלות מופע ראשון'/>
-                <select class=input #showCharacter>
+                <input ngModel name="priceShow" required class=input #priceFirstShow placeholder='עלות מופע ראשון' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                <select ngModel name="showCharacter" required class=input #showCharacter oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                     <option value="" disabled selected>אופי המופע</option>
                     <option value="הצגה חיה" >הצגה חיה</option>
                     <option value="הקרנה">הקרנה</option>
@@ -51,11 +51,11 @@
                     <option value="סדנת יצירה אישית" >סדנת יצירה אישית</option>
                     <option value="הרצאה">הרצאה</option>
                 </select>
-                <input type="tel" class=input placeholder="זמן נדרש לארגון לאחר המופע" #timeAfter pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required>
-                <input ngModel name="priceDriver" required class=input #priceDriver placeholder='עלות נסיעות' />
+                <input type="tel" class=input placeholder="זמן נדרש לארגון לאחר המופע" #timeAfter pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                <input name="priceDriver" class=input #priceDriver placeholder='עלות נסיעות' />
               </ion-col>
               <ion-col>
-                <input ngModel name="priceShow" required class=input #priceSecondShow placeholder='עלות מופע חוזר'/>
+                <input name="priceShow" class=input #priceSecondShow placeholder='עלות מופע חוזר'/>
                 <select ngModel name="equipment" required class=input #equipment>
                     <option value="" disabled selected hidden>ציוד נדרש</option>
                     <option value="אין צורך בציוד כלל">אין צורך בציוד כלל</option>
@@ -80,7 +80,7 @@
                     <option value="שולחן לסדרן בכניסה לאולם">שולחן לסדרן בכניסה לאולם</option>
                     <option value="מחשב">מחשב</option>
                 </select>
-                <input type="tel" class=input placeholder="משך זמן המופע" #timeShow pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required>  
+                <input required type="tel" class=input placeholder="משך זמן המופע" #timeShow pattern="[0-9]{2}:[0-5]{1}[0-9]{1}"/>  
               </ion-col>
             </ion-row>
           </div>
@@ -89,11 +89,11 @@
               <h2>פרטי התקשרות</h2>
             <ion-row>
               <ion-col>
-                <input ngModel name="Provider" required class=input #Provider placeholder='שם ספק'/>
-                <input ngModel name="artist" required class=input #artist placeholder='שם האומן'/>
+                <input ngModel name="Provider" required class=input #Provider placeholder='שם ספק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                <input ngModel name="artist" required class=input #artist placeholder='שם האומן' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
               </ion-col>
               <ion-col>
-                <input ngModel name="phoneProvid" required class=input type = "tel" #phoneProvid placeholder='טלפון ספק' />
+                <input ngModel name="phoneProvid" required class=input type = "tel" #phoneProvid placeholder='טלפון ספק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
                 <input class=input type = "tel"  #phoneArt placeholder='טלפון ישיר לאומן' />
               </ion-col>
               <ion-col>
@@ -101,7 +101,7 @@
                   <input class=input type = "email" #mailArt placeholder='דוא"ל ישיר לאומן' />
               </ion-col>
               <ion-col>
-                <input class=input type = "email"  #mailProvid placeholder='דוא"ל ספק' />
+                <input ngModel name="mailProvid" required class=input type="email" #mailProvid placeholder='דוא"ל ספק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
               </ion-col>
             </ion-row>
             </div>
@@ -110,12 +110,12 @@
             <h2>כללי</h2>
             <ion-row>
                 <ion-col>
-                    <select ngModel name="limitParticipants" required class=input #limitParticipants>
+                    <select ngModel name="limitParticipants" required class=input #limitParticipants oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>הגבלת משתתפים לתמחור?</option>
                         <option value="כן">כן</option>
                         <option value="לא">לא</option>
                     </select>
-                    <select ngModel name="businessType" required class=input #businessType>
+                    <select ngModel name="businessType" required class=input #businessType oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected hidden>סוג עוסק</option>
                         <option value="שכיר">שכיר</option>
                         <option value="עמותה">עמותה</option>
@@ -123,28 +123,28 @@
                         <option value="עוסק פטור">עוסק פטור</option>
                         <option value="עוסק מורשה">עוסק מורשה</option>
                     </select>
-                    <input type="file" name="file" id="file" #bid class="inputfile"/>
+                    <input type="file" name="file" #bid class="inputfile"/>
                     <label for="file"><strong>העלאת הצע"מ</strong></label>
                 </ion-col>
                 <ion-col>
-                    <input type="number" name="nuclearPrice" required class=input #nuclearPrice placeholder='מספר משתתפים למחיר גרעיני' />
-                    <input ngModel name="businessNum" required class=input #businessNum placeholder='מספר עוסק' />
-                    <input type="file" name="file" id="file" #imgGraphics class="inputfile"/>
+                    <input type="number" name="nuclearPrice" class=input #nuclearPrice placeholder='מספר משתתפים למחיר גרעיני' />
+                    <input ngModel name="businessNum" required class=input #businessNum placeholder='מספר עוסק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <input type="file" name="file" #imgGraphics class="inputfile"/>
                     <label for="file"><strong>העלאת גרפיקה</strong></label>
                 </ion-col>
                 <ion-col>
-                    <input type="number" ngModel name="extraParticipants" required class=input #extraParticipants placeholder='מספר משתתפים לתוספת' />
+                    <input type="number" name="extraParticipants" class=input #extraParticipants placeholder='מספר משתתפים לתוספת' />
                     <input class=input name ="commants" type="text" #commants placeholder='הערות נוספות' />
                 </ion-col>
                 <ion-col>
-                    <input type="number" ngModel name="extraPrice" required class=input #extraPrice placeholder='מחיר לתוספת משתתפים' />
+                    <input type="number" name="extraPrice" class=input #extraPrice placeholder='מחיר לתוספת משתתפים' />
                 </ion-col>
               </ion-row>
           </div>
       </ion-grid>
       
-    <button ion-button class="table_button" id=button routerLink="/home/catalog-table">מעבר לטבלת מופעים</button>
-    <button ion-button class="add_button" id=button  type="submit">יצירת מופע</button>
+    <button ion-button class="table_button" routerLink="/home/catalog-table">מעבר לטבלת מופעים</button>
+    <button ion-button class="add_button"  type="submit">יצירת מופע</button>
   </form>
   </div>
 </body>

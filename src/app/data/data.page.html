@@ -2,16 +2,16 @@
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 <body>
     <div class = "rtl">
-        <h1>נתוני תשתית</h1>
+        <h1>מבנים</h1>
         <div class="border">
         <form  #testForm="ngForm"  (ngSubmit)="saveData(testForm)"  ngNativeValidate>
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <input ngModel name="Building_name" required class=input #Building_name placeholder='שם המבנה' />
+                        <input ngModel name="Building_name" required class=input #Building_name placeholder='שם המבנה' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
                     </ion-col>
                     <ion-col>
-                        <select ngModel name="type_building" required class=input #type_building>
+                        <select ngModel name="type_building" required class=input #type_building oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                             <option value="" disabled selected>אופי המבנה</option>
                             <option value="אולם מדורג" >אולם מדורג </option>
                             <option value="אולם שטוח">אולם שטוח</option>
@@ -20,28 +20,28 @@
                         </select> 
                     </ion-col>
                     <ion-col>
-                            <input ngModel name="Building_address" required class=input #Building_address placeholder='כתובת המבנה' />
+                            <input ngModel name="Building_address" required class=input #Building_address placeholder='כתובת המבנה' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
                     </ion-col>
                     <ion-col>
-                        <input ngModel name="capacity" required class=input type="number" #capacity placeholder='קיבולת '  />
+                        <input ngModel name="capacity" required class=input type="number" #capacity placeholder='קיבולת ' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <input ngModel name="contact_name" required class=input #contact_name placeholder='שם איש קשר לשריון ' />
+                        <input ngModel name="contact_name" required class=input #contact_name placeholder='שם איש קשר לשריון' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
                     </ion-col>
                     <ion-col>
-                        <input ngModel name="contact_phone" required class=input #contact_phone placeholder='טלפון איש קשר לשריון' /> 
+                        <input ngModel name="contact_phone" required class=input #contact_phone placeholder='טלפון איש קשר לשריון' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/> 
                     </ion-col>
                     <ion-col>
-                        <input ngModel name="mailcontact" required class=input #mailcontact placeholder='דוא"ל איש קשר לשריון ' />
+                        <input type="email" ngModel name="mailcontact" required class=input #mailcontact placeholder='דוא"ל איש קשר לשריון ' oninvalid="this.setCustomValidity('')" oninput="setCustomValidity('')"/>
                     </ion-col>
                     <ion-col>
-                        <input class=input #comma placeholder='הערות נוספות'  />
+                        <input class=input #comma placeholder='הערות נוספות' />
                     </ion-col>
                 </ion-row>
             </ion-grid> 
-            <button ion-button id=button class="add_button" type="submit">יצירת טופס</button> 
+            <button ion-button class="add_button" type="submit">יצירת טופס</button> 
             </form>
         </div>
             <button class="edit_button" (click)='edit_db()'>עדכון</button> 
@@ -56,8 +56,8 @@
                 <th>טלפון איש קשר לשריון</th>
                 <th>דוא"ל איש קשר לשריון</th>
                 <th>הערות נוספות</th>
-                <th>מחיקה</th>
                 <th>עריכה</th>
+                <th>מחיקה</th>
              </tr>
                  
               <tr *ngFor='let doc of dataFromDatabase'> 
@@ -69,8 +69,8 @@
                 <td>{{doc.contact_phone}}</td>
                 <td>{{doc.mailcontact}}</td>
                 <td>{{doc.comma}}</td>
-                <td><i class="fas fa-trash-alt" (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
                 <td><i class= "fas fa-pen" (click)='edit(doc)' style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
+                <td><i class="fas fa-trash-alt" (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
             </tr>      
         </table>
         </div>
