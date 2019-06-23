@@ -8,7 +8,7 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-            <select class=input #hebrew_year (change)='filter_table($event)'>
+            <select class=input #hebrew_year (change)='filter_table_hebrew_year($event)'>
               <option value="" disabled selected>שנה עברית</option>     
               <option value="הרשימה המלאה" >הרשימה המלאה</option>                           
               <option value="תשעט">תשע"ט</option>
@@ -29,14 +29,14 @@
             </select>
         </ion-col>
         <ion-col>
-            <select class=input #building (change)='filter_table($event)'>
+            <select class=input #building (change)='filter_table_building($event)'>
                 <option value="" disabled selected>מבנה</option>
                 <option value="הרשימה המלאה" >הרשימה המלאה</option>   
                 <option [value]="doc.Building_name"  *ngFor='let doc of buildingsFromDatabase'>{{doc.Building_name}}</option>
             </select>
       </ion-col>
       <ion-col>
-          <select class=input #event_type (change)='filter_table($event)'>
+          <select class=input #event_type (change)='filter_table_event_type($event)'>
               <option value="" disabled selected>סוג אירוע</option>
               <option value="הרשימה המלאה" >הרשימה המלאה</option> 
               <option value="מופע" >מופע</option>  
@@ -45,7 +45,7 @@
           </select> 
       </ion-col>
       <ion-col>
-          <select class=input #audience  (change)='filter_audience($event)'> 
+          <select class=input #audience  (change)='filter_table_audience($event)'> 
               <option value="" disabled selected>קהל יעד</option>
               <option value="כלל הקהלים" > כלל הקהלים</option>
               <option value="ילדים" > ילדים</option>
@@ -59,7 +59,7 @@
           </select> 
       </ion-col>
       <ion-col>
-          <select name="ushers" class=input #ushers (change)='filter_table($event)'>
+          <select name="ushers" class=input #ushers (change)='filter_table_ushers($event)'>
               <option value="" disabled selected>סדרנים</option>
               <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
           </select>
@@ -81,6 +81,7 @@
           <th>שעת סיום האירוע</th>
           <th>מבנה</th>
           <th>קהל יעד</th>
+          <th>שנה עברית</th>
           <th>עריכה</th>
           <th>מחיקה</th>
         </tr>
@@ -92,8 +93,11 @@
           <td>{{doc.open_doors}}</td>
           <td>{{doc.Actual_show_time}}</td>
           <td>{{doc.end_of_show}}</td>
-          <td> {{doc.building}}</td>
+          <td>{{doc.building}}</td>
           <td>{{doc.target_audience}}</td>
+          <td>{{doc.hebrew_year}}</td>
+
+
           <td><i class= "fas fa-pen" (click)='edit(doc)'style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
           <td><i class="fas fa-trash-alt" (click)='delete(doc)' style="font-size:15px;margin-right: 23%;color:red;cursor: pointer;"></i></td>
         </tr>

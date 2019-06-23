@@ -46,6 +46,7 @@ export class EventsboardTablePage implements OnInit {
   dataFromDatabaseFiltered = []
   newArray =[]
   time: any;
+  buildingsFromDatabase = []
 
   static s_showField:any
   static s_seasonField:any
@@ -88,6 +89,7 @@ export class EventsboardTablePage implements OnInit {
     private loadingController: LoadingController,) { }
 
   ngOnInit() {
+  
     this.db.collection('Events').get().subscribe(result => {
       this.docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = this.docs
@@ -96,14 +98,19 @@ export class EventsboardTablePage implements OnInit {
       this.newArray = this.dataFromDatabase.slice();
   //  console.log (this.newArray)
     })
+
+    this.db.collection('Data').get().subscribe(result => {
+      const Data_docs = result.docs.map(doc => doc.data())
+      this.buildingsFromDatabase = Data_docs
+    })
   }
 
   delete(docParam) {
     //console.log(docParam.show)
     if (confirm(" האם להסיר רשומה זאת?")) {
-      this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.show !== item.show)
+      this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.time !== item.time)
 
-      this.db.collection('Events', ref => ref.where('show', '==', docParam.show)).get().subscribe(result => {
+      this.db.collection('Events', ref => ref.where('time', '==', docParam.time)).get().subscribe(result => {
         this.db.collection('Events').doc(result.docs[0].id).delete()
       })
       this.dataFromDatabaseFiltered = this.dataFromDatabase
@@ -154,7 +161,7 @@ export class EventsboardTablePage implements OnInit {
   })
   }
 
-  filter_table(param){
+  filter_table_hebrew_year(param){
     if(param.currentTarget.value== 'הרשימה המלאה')
     {
       this.dataFromDatabaseFiltered = this.dataFromDatabase
@@ -162,4 +169,47 @@ export class EventsboardTablePage implements OnInit {
     }
     this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.hebrew_year)
   }
+
+  filter_table_building(param){
+    if(param.currentTarget.value== 'הרשימה המלאה')
+    {
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
+      return
+    }
+    this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.building)
+  }
+  filter_table_event_type(param){
+    if(param.currentTarget.value== 'הרשימה המלאה')
+    {
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
+      return
+    }
+    this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.event_type)
+  }
+//to do
+  filter_table_audience(param){
+    if(param.currentTarget.value== 'כלל הקהלים')
+    {
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
+      return
+    }
+    this.dataFromDatabaseFiltered = []
+    for(let i = 0; i<this.dataFromDatabase.length;i++){
+      for(let j = 0; j<this.dataFromDatabase[i].target_audience.length;j++){
+        
+        if(this.dataFromDatabase[i].target_audience[j] == param.currentTarget.value){    
+          this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, this.dataFromDatabase[i]]
+        }
+      }
+    }
+}
+
+filter_table_ushers(param){
+  if(param.currentTarget.value== 'הרשימה המלאה')
+  {
+    this.dataFromDatabaseFiltered = this.dataFromDatabase
+    return
+  }
+  this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.ushers)
+}
 }

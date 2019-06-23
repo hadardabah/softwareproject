@@ -12,7 +12,7 @@
                         <option [value]="doc.show"  *ngFor='let doc of dataFromDatabase'>{{doc.show}}</option>
                     </select>
     
-                    <input ngModel name="target_audience" class=input #target_audience placeholder='קהל יעד' />
+                    <input  name="target_audience" class=input #target_audience placeholder='קהל יעד'  oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
     
                     <select name="budgets" class=input #budgets>
                         <option value="" disabled selected>סעיף תקציבי</option>
@@ -20,19 +20,19 @@
                     </select>
                 </ion-col>
                 <ion-col>
-                    <select ngModel name="event_type" required class=input #event_type oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                    <select  name="event_type" required class=input #event_type oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>סוג אירוע</option>
                         <option value="מופע" >מופע</option>
                         <option value="סדנא חד פעמית">סדנא חד פעמית</option>
                         <option value="סדנא מרובת מפגשים" >סדנא מרובת מפגשים</option>
                     </select> 
     
-                    <input ngModel class=input #equipment placeholder='ציוד נדרש' />
+                    <input  class=input #equipment placeholder='ציוד נדרש' />
     
-                    <input ngModel placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost>
+                    <input  placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost>
                 </ion-col>
                 <ion-col>
-                    <select ngModel name="repeat_show" required class=input #repeat_show oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                    <select  name="repeat_show" required class=input #repeat_show oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>מופע חוזר?</option>
                         <option value="כן">כן</option>
                         <option value="לא">לא</option>
@@ -43,12 +43,12 @@
                         <option [value]="doc.Building_name"  *ngFor='let doc of buildingsFromDatabase'>{{doc.Building_name}}</option>
                     </select>
 
-                    <input ngModel  type="text" class=input #time>  
+                    <input  type="text" class=input #time>  
                 </ion-col>
                 <ion-col>
-                    <input ngModel name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    <input  name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
 
-                    <select ngModel name="building_status" required class=input #building_status oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                    <select  name="building_status" required class=input #building_status oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>סטטוס שריון מבנה</option>
                         <option value="חסר שיבוץ" >חסר שיבוץ</option>
                         <option value="משוריין">משוריין</option>
@@ -63,7 +63,7 @@
         <h2>זמני האירוע</h2>
             <ion-row>
                 <ion-col>
-                    <select ngModel name="season" required class=input #season oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                    <select  name="season" required class=input #season oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>עונת אירועים</option>
                         <option value="סוכות">סוכות</option>
                         <option value="חנוכה">חנוכה</option>
@@ -72,7 +72,7 @@
                         <option value="פעילות שנתית שוטפת">פעילות שנתית שוטפת</option>
                     </select>
             
-                    <select ngModel name="day_of_week" required class=input #day_of_week oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                    <select  name="day_of_week" required class=input #day_of_week oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>יום בשבוע</option>
                         <option value="ראשון" >ראשון</option>
                         <option value="שני">שני</option>
@@ -83,15 +83,15 @@
                         <option value="מוצאי שבת">מוצ"ש</option>
                     </select>
                                 
-                    <input ngModel class=input  #show_time placeholder='משך זמן האירוע' />
+                    <input  class=input  #show_time placeholder='משך זמן האירוע' />
                 </ion-col>
                 <ion-col>
-                    <input ngModel name="hebrew_date" required class=input #hebrew_date placeholder='תאריך עברי' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/> 
+                    <input  name="hebrew_date" required class=input #hebrew_date placeholder='תאריך עברי' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/> 
                     <input class=input  #before_show placeholder='משך זמן ניקיון/הכנות לפני אירוע' /> 
                     <input placeholder="שעת סיום האירוע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #end_of_show oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">   
                 </ion-col>
                 <ion-col>
-                    <select ngModel name="hebrew_year" required class=input #hebrew_year oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                    <select  name="hebrew_year" required class=input #hebrew_year oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>שנה עברית</option>                                
                         <option value="תשעט">תשע"ט</option>
                         <option value="תשף">תש"ף</option>
@@ -110,13 +110,13 @@
                         <option value="תשצג">תשצ"ג</option>
                     </select>
                              
-                    <input ngModel placeholder="שעת פתיחת דלתות" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #open_doors>  
-                    <input ngModel class=input #after_show placeholder='זמן פירוק/ניקיון לאחר האירוע' /> 
+                    <input  placeholder="שעת פתיחת דלתות" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #open_doors>  
+                    <input  class=input #after_show placeholder='זמן פירוק/ניקיון לאחר האירוע' /> 
                 </ion-col>
                 <ion-col>
-                    <input ngModel name="date" required placeholder="תאריך לועזי" class=input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" #date oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
-                    <input ngModel placeholder="שעת התחלת אירוע בפועל" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #Actual_show_time>
-                    <input ngModel placeholder="שעת שחרור המבנה לאחר האירוע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #release_building oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    <input  name="date" required placeholder="תאריך לועזי" class=input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" #date oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    <input  placeholder="שעת התחלת אירוע בפועל" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #Actual_show_time>
+                    <input  placeholder="שעת שחרור המבנה לאחר האירוע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #release_building oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
                 </ion-col>
             </ion-row>
         </div> 
@@ -128,19 +128,19 @@
                     <input name="number_of_ushers" required placeholder="מספר סדרנים נדרש" class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #number_of_ushers oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
                 </ion-col>
                 <ion-col>
-                    <select ngModel name="agent" class=input #agent>
+                    <select  name="agent" class=input #agent>
                         <option value="" disabled selected>מפעיל/ה</option>
                         <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>
                 </ion-col>
                 <ion-col>
-                    <select ngModel name="in_charge_of_show" class=input #in_charge_of_show>
+                    <select  name="in_charge_of_show" class=input #in_charge_of_show>
                         <option value="" disabled selected>אחראי/ת לאירוע</option>
                         <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>
                 </ion-col>
                 <ion-col>
-                    <select ngModel name="ushers" class=input #ushers>
+                    <select  name="ushers" class=input #ushers>
                         <option value="" disabled selected>סדרנים</option>
                         <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>
@@ -152,7 +152,7 @@
         <h2>כללי</h2>
             <ion-row>
                 <ion-col>
-                    <select ngModel name="advertising_status" class=input #advertising_status>
+                    <select  name="advertising_status" class=input #advertising_status>
                         <option value="" disabled selected>מצב פרסום</option>
                         <option value="טרם טופל">טרם טופל</option>
                         <option value="ממתין לגרפיקה מהאומן/ית">ממתין לגרפיקה מהאומן/ית</option>
@@ -163,7 +163,7 @@
                     </select>    
                 </ion-col>
                 <ion-col>
-                    <select ngModel name="order_status_purchase" class=input #order_status_purchase>
+                    <select  name="order_status_purchase" class=input #order_status_purchase>
                         <option value="" disabled selected>סטטוס הזמנה לרכש</option>
                         <option value="טרם טופל">טרם טופל</option>
                         <option value="נמצא בריכוז להכנת הזמנה">נמצא בריכוז להכנת הזמנה</option>
@@ -174,7 +174,7 @@
                     </select> 
                 </ion-col>
                 <ion-col>
-                    <select ngModel name="ayment_status" class=input #payment_status>
+                    <select  name="ayment_status" class=input #payment_status>
                         <option value="" disabled selected>סטטוס תשלום</option>
                         <option value="טרם הגיעה חשבונית / דרישה לתשלום">טרם הגיעה חשבונית / דרישה לתשלום</option>
                         <option value="הגיעה חשבונית / דרישה, טרם טופל">הגיעה חשבונית / דרישה, טרם טופל</option>                            

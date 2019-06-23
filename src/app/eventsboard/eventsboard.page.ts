@@ -157,7 +157,7 @@ export class EventsboardPage implements OnInit {
       order_status_purchase: this.order_status_purchaseField.nativeElement.value,
       payment_status: this.payment_statusField.nativeElement.value,
       upload: this.uploadField.nativeElement.value,
-      time:new Date().toDateString(),
+      time:new Date(),
     })
   window.alert("האירוע נוסף בהצלחה")
   }
