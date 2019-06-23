@@ -162,6 +162,7 @@ applyFilter(filterBy) {
       this.db.collection('Human', ref => ref.where('id', '==', docParam.id)).get().subscribe(result => {
         this.db.collection('Human').doc(result.docs[0].id).delete()
       })
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
     }
     else {
     }

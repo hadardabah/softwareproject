@@ -101,14 +101,17 @@ applyFilter(filterBy) {
   })
 }
 
-delete(docParam) {
-  if (confirm(" האם להסיר רשומה זאת?")) {
-    this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.time !== item.time)
-    this.db.collection('Budget', ref => ref.where('time', '==', docParam.time)).get().subscribe(result => {
+
+delete(docParam){
+  if(confirm("האם להסיר את הרשומה מהטבלה?")){
+   this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.time !== item.time)
+   this.db.collection('Budget' , ref => ref.where('time' , '==' , docParam.time)).get().subscribe(result => {
       this.db.collection('Budget').doc(result.docs[0].id).delete()
-    })
+   })
+   this.dataFromDatabaseFiltered = this.dataFromDatabase
   }
-  else {
+  else{
+    
   }
-}
+  }
 }
