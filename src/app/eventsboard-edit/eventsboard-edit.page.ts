@@ -53,6 +53,7 @@ export class EventsboardEditPage implements OnInit {
   constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone) { }
 
   ngOnInit() {
+
     this.db.collection('Show').get().subscribe(result => {
       const Show_docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = Show_docs
@@ -69,13 +70,17 @@ export class EventsboardEditPage implements OnInit {
       const Human_docs = result.docs.map(doc => doc.data())
       this.humanFromDatabase = Human_docs
     })
+          this.ushersField.nativeElement.value = EventsboardTablePage.s_ushersField
+
     this.db.collection('Events').get().subscribe(result => {
       const Events_docs = result.docs.map(doc => doc.data())
       this.eventsFromDatabase = Events_docs
     })
+
+   
   }
 
-  ngAfterViewChecked()
+   ngAfterViewChecked()
   {
    if(EventsboardTablePage.s_time!='' && EventsboardTablePage.s_time!= this.time_field.nativeElement.value )
     {

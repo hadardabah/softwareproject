@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Window } from 'selenium-webdriver';
 import { defineBase } from '@angular/core/src/render3';
 import {FormControl, Validators, NgForm} from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-eventsboard',
@@ -107,7 +108,7 @@ export class EventsboardPage implements OnInit {
         //console.log(newStr);
         //console.log(newStr-6)
         //var num = parseInt(newStr);
-        //console.log(num)
+        //console.log(num)n
           if(startime>endtime){
             console.log(endtime-startime)
           }
@@ -122,10 +123,10 @@ export class EventsboardPage implements OnInit {
   
 
   addEvent(form: NgForm) {
-    if(this.checkOverlappingEvents(this.before_showField.nativeElement.value,this.release_buildingField.nativeElement.value,this.open_doorsField.nativeElement.value, this.dateField.nativeElement.value)==true){
-      console.log('this is same date2') ;
-    }
-    
+  //  if(this.checkOverlappingEvents(this.before_showField.nativeElement.value,this.release_buildingField.nativeElement.value,this.open_doorsField.nativeElement.value, this.dateField.nativeElement.value)==true){
+    //  console.log('this is same date2') ;
+   // }
+   if(this.try_stopet() == false){return}
     this.db.collection('Events').add({
       show: this.showField.nativeElement.value,
       season: this.seasonField.nativeElement.value,
@@ -175,7 +176,43 @@ export class EventsboardPage implements OnInit {
     this.show_timeField.nativeElement.value = selectedObj.timeShow
     this.after_showField.nativeElement.value = selectedObj.timeAfter
 
- 
+
+ }
+ try_stopet() :boolean{
+  window.alert("in func try_stopet")
+
+  for(let i = 0; i<this.eventsFromDatabase.length;i++){
+    
+
+      if(this.eventsFromDatabase[i].building ==   this.buildingField.nativeElement.value){   
+        window.alert("this building is already Exists ")
+        
+        if(this.eventsFromDatabase[i].date == this.dateField.nativeElement.value ) {
+          window.alert("same date ")
+          window.alert(this.open_doorsField.nativeElement.value)
+          window.alert(this.eventsFromDatabase[i].open_doors)
+          window.alert(this.eventsFromDatabase[i].release_building)
+          const startimeMoment = moment(this.eventsFromDatabase[i].open_doors,'ms')
+          const endtimeMoment = moment(this.eventsFromDatabase[i].release_building, 'ms')
+          const curentStart = moment(this.open_doorsField.nativeElement.value, 'ms')
+          const curentEnd = moment(this.release_buildingField.nativeElement.value, 'ms')
+
+          if(curentStart.isBetween(startimeMoment,endtimeMoment)== true || curentEnd.isBetween(startimeMoment,endtimeMoment)== true
+          ){
+          if (confirm("מבנה זה כבר משוריין לתאריך זה כדי שתבדוק אם הוא פנוי בשעות אלה")) {
+            
+            return true;
+          }
+          else {
+            return false;
+        
+           }
+          }
+        }
+      }
+  }
+  return true;    
+
  }
 
 
