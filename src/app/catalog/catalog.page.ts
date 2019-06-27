@@ -1,15 +1,9 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {FormControl, Validators, NgForm} from '@angular/forms';
 import { database } from 'firebase'; 
 import * as firebase from 'firebase';
-//import { fill_fields } from './catalog.module';
-
-/*import { database } from 'firebase';
-import { Time } from '@angular/common';*/
-
 
 @Component({
   selector: 'app-catalog',
@@ -47,10 +41,6 @@ export class CatalogPage implements OnInit {
   @ViewChild('imgGraphics') imgGraphics_field
   @ViewChild('commants') commants_field
   
-  
- // @ViewChild('audience') audience_field
-
-
   dataFromDatabase = []
   time: any;
 
@@ -67,7 +57,6 @@ export class CatalogPage implements OnInit {
   addShow(form: NgForm){
     this.db.collection('Show').add({
       audience: this.audience,
-      //audience: this.audience_field.nativeElement.value,
       show: this.show_field.nativeElement.value,
       artist: this.artist_field.nativeElement.value,
       whoWatch: this.whoWatch_field.nativeElement.value,
@@ -99,8 +88,5 @@ export class CatalogPage implements OnInit {
       time:new Date(),
     })
     window.alert("האירוע נוסף")
-
-    
    }
-
 }

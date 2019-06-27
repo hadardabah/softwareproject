@@ -16,7 +16,7 @@
     
                     <select name="budgets" class=input #budgets>
                         <option value="" disabled selected>סעיף תקציבי</option>
-                        <option [value]="doc.budget_name"  *ngFor='let doc of budgetsFromDatabase'>{{doc.budget_name}}</option>
+                        <option [selected]='isSelectedBudgets(doc.budget_name)' [value]="doc.budget_name"  *ngFor='let doc of budgetsFromDatabase'>{{doc.budget_name}}</option>
                     </select>
                 </ion-col>
                 <ion-col>
@@ -40,7 +40,7 @@
     
                     <select name="building" required class=input #building oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>מבנה</option>
-                        <option [value]="doc.Building_name"  *ngFor='let doc of buildingsFromDatabase'>{{doc.Building_name}}</option>
+                        <option [selected]='isSelectedBuilding(doc.Building_name)' [value]="doc.Building_name"  *ngFor='let doc of buildingsFromDatabase'>{{doc.Building_name}}</option>
                     </select>
 
                     <input  type="text" class=input #time>  
@@ -130,13 +130,13 @@
                 <ion-col>
                     <select  name="agent" class=input #agent>
                         <option value="" disabled selected>מפעיל/ה</option>
-                        <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
+                        <option [selected]='isSelectedAgent(doc.name)' [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>
                 </ion-col>
                 <ion-col>
                     <select  name="in_charge_of_show" class=input #in_charge_of_show>
                         <option value="" disabled selected>אחראי/ת לאירוע</option>
-                        <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
+                        <option [selected]='isSelectedInCharge(doc.name)' [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>
                 </ion-col>
                 <ion-col>

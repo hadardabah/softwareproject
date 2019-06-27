@@ -9,16 +9,15 @@
             <ion-row>
                 <ion-col>
                   <input  name="show" required class=input  #show  placeholder='שם המופע' />
-                  <select  multiple class=input [(ngModel)]="audience" name="audience" required> 
-                      <option value="" disabled selected>אוכלוסיית יעד אפשרית</option>
-                      <option ion-select-option value="ילדים" > ילדים
-                      <option ion-select-option value="ילדות" > ילדות
-                      <option ion-select-option value="נערות" > נערות
-                      <option ion-select-option value="בנים" > בנים
-                      <option ion-select-option value="נשים" > נשים
-                      <option ion-select-option value="אבות ובנים" > אבות ובנים
-                      <option ion-select-option value="גיל הזהב - נשים" > גיל הזהב - נשים
-                      <option ion-select-option value="בנות היסודי" > בנות היסודי  
+                  <select (change)='onChange($event)' multiple class=input name="audience" required> 
+                      <option [selected]='categories.boys_children' ion-select-option value="ילדים" > ילדים
+                      <option [selected]='categories.girls_children' ion-select-option value="ילדות" > ילדות
+                      <option [selected]='categories.youth' ion-select-option value="נערות" > נערות
+                      <option [selected]='categories.boys' ion-select-option value="בנים" > בנים
+                      <option [selected]='categories.women' ion-select-option value="נשים" > נשים
+                      <option [selected]='categories.fathers_and_sons' ion-select-option value="אבות ובנים" > אבות ובנים
+                      <option [selected]='categories.golden_age' ion-select-option value="גיל הזהב - נשים" > גיל הזהב - נשים
+                      <option [selected]='categories.elementary_girls' ion-select-option value="בנות היסודי" > בנות היסודי  
                   </select> 
                 </ion-col>
                 <ion-col>

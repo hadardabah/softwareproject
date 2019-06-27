@@ -11,6 +11,7 @@ import { EventsboardTablePage } from '../eventsboard-table/eventsboard-table.pag
   templateUrl: './eventsboard-edit.page.html',
   styleUrls: ['./eventsboard-edit.page.scss'],
 })
+
 export class EventsboardEditPage implements OnInit {
   @ViewChild('show') showField
   @ViewChild('season') seasonField
@@ -70,14 +71,12 @@ export class EventsboardEditPage implements OnInit {
       const Human_docs = result.docs.map(doc => doc.data())
       this.humanFromDatabase = Human_docs
     })
-          this.ushersField.nativeElement.value = EventsboardTablePage.s_ushersField
+          //this.ushersField.nativeElement.value = EventsboardTablePage.s_ushersField
 
     this.db.collection('Events').get().subscribe(result => {
       const Events_docs = result.docs.map(doc => doc.data())
       this.eventsFromDatabase = Events_docs
     })
-
-   
   }
 
    ngAfterViewChecked()
@@ -118,12 +117,27 @@ export class EventsboardEditPage implements OnInit {
    }
   }
 
+isSelectedBuilding(building) {
+  return EventsboardTablePage.s_buildingField === building
+}
 
-  edit_db(form: NgForm) {
-    this.db.collection('Events', ref => ref.where('time', '==', EventsboardTablePage.s_time)).get().subscribe(result => {
-      this.updateData(result.docs[0].id)
-    })
-  }
+isSelectedBudgets(budgets) {
+  return EventsboardTablePage.s_budgetsField === budgets
+}
+
+isSelectedAgent(agent) {
+  return EventsboardTablePage.s_agentField === agent
+}
+
+isSelectedInCharge(in_charge_of_show) {
+  return EventsboardTablePage.s_in_charge_of_showField === in_charge_of_show
+}
+
+edit_db(form: NgForm) {
+  this.db.collection('Events', ref => ref.where('time', '==', EventsboardTablePage.s_time)).get().subscribe(result => {
+    this.updateData(result.docs[0].id)
+  })
+}
 
 updateData(docid){
   this.db.collection('Events').doc(docid).update({

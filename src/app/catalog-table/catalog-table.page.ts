@@ -5,7 +5,6 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { database } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { CatalogPageModule } from '../catalog/catalog.module';
-//import { fill_fields } from '../catalog/catalog.module';
 import { CatalogPage } from '../catalog/catalog.page';
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
 import {CatalogEditPage} from '../catalog-edit/catalog-edit.page'
@@ -16,6 +15,7 @@ import { isNgTemplate } from '@angular/compiler';
   templateUrl: './catalog-table.page.html',
   styleUrls: ['./catalog-table.page.scss'],
 })
+
 export class CatalogTablePage implements OnInit {
   @ViewChild('show') show_field
   @ViewChild('artist') artist_field
@@ -83,37 +83,28 @@ export class CatalogTablePage implements OnInit {
   static s_imgGraphics_field:any
   static s_commants_field:any
   static s_time: any;
+  static s_audience: any;
 
   constructor(
     private router: Router,
     private db: AngularFirestore, 
     private alertController: AlertController,
     private ngZone:NgZone,
-   // private edit:CatalogEditPage,
     private loadingController: LoadingController,) { }
 
   ngOnInit() {
-    // this.db.collection('Events').add({...})
-
-      this.db.collection('Show').get().subscribe(result => {
-      this.docs = result.docs.map(doc => doc.data())
-      this.dataFromDatabase = this.docs
-      this.dataFromDatabaseFiltered = this.dataFromDatabase
-      //console.log (this.dataFromDatabase)
-      this.newArray = this.dataFromDatabase.slice();
-  //  console.log (this.newArray)
+    this.db.collection('Show').get().subscribe(result => {
+    this.docs = result.docs.map(doc => doc.data())
+    this.dataFromDatabase = this.docs
+    this.dataFromDatabaseFiltered = this.dataFromDatabase
+    this.newArray = this.dataFromDatabase.slice();
     })
-    
-    
   }
 
   
   delete(docParam) {
-    //console.log(docParam.show)
     if (confirm(" האם להסיר רשומה זאת?")) {
       this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.time !== item.time)
-       console.log(docParam.time)
-
       this.db.collection('Show', ref => ref.where('time', '==', docParam.time)).get().subscribe(result => {
         this.db.collection('Show').doc(result.docs[0].id).delete()
       })
@@ -123,9 +114,6 @@ export class CatalogTablePage implements OnInit {
     }
   }
  
-
-
-
   filter_table(param){
     if(param.currentTarget.value== 'הרשימה המלאה')
     {
@@ -150,10 +138,6 @@ export class CatalogTablePage implements OnInit {
         }
       }
     }
-  
-    //this.dataFromDatabase = this.docs.filter(item => param.currentTarget.value == item.audience)
-    console.log("after filter")
-   console.log( this.dataFromDatabase)
   }
 
   applyFilter(filterBy) {
@@ -178,22 +162,15 @@ export class CatalogTablePage implements OnInit {
 
  
   filter_artist(param){
-    console.log("before filter")
-    console.log( this.dataFromDatabase)
-  console.log(  param.currentTarget.value)
     if(param.currentTarget.value== 'כל המופעים')
     {
       this.dataFromDatabase = this.docs
       return
     }
     this.dataFromDatabase = this.docs.filter(item => param.currentTarget.value == item.artist)
-    console.log("after filter")
-   console.log( this.dataFromDatabase)
   }
 
   async edit(docParam){
-    console.log(docParam);
-    //this.dataFromDatabase = this.dataFromDatabase.filter(item => docParam.show !== item.show)
     this.db.collection('Show', ref => ref.where('show', '==', docParam.show))
     .get().subscribe(snapshot => {
      var x = snapshot.docs
@@ -226,64 +203,10 @@ export class CatalogTablePage implements OnInit {
      CatalogTablePage.s_imgGraphics_field = docParam.imgGraphics
      CatalogTablePage.s_commants_field = docParam.commants
      CatalogTablePage.s_time = docParam.time
-    
-this.router.navigateByUrl('/home/catalog-edit')
-     /*
-     @ViewChild('nuclearPrice') nuclearPrice_filed
-  @ViewChild('extraParticipants') extraParticipants_filed
-  @ViewChild('extraPrice') extraPrice_filed
-  @ViewChild('bid') bid_filed
-  @ViewChild('imgGraphics') imgGraphics_filed
-  @ViewChild('commants') commants_filed
-     
-     */
-    // snapshot.forEach(async doc => {
-//       //this.doc = doc
-//       // this.edit.doc =doc
-// CatalogTablePage.s_artist_filed='fff'
-// CatalogTablePage.s_show_field ='fff'
-// CatalogTablePage.s_whoWatch_filed ='fff'
-//       const alert = await this.alertController.create({
-//         header: 'פרטי המופע:',
-//        message:"שם המופע: " + doc.data().show + '<br>'+ 
-//         "שם האמן: " + doc.data().artist +'<br>'+ 
-//         "מי צפה במופע לדוגמא: " + doc.data().whoWatch + '<br>'+ 
-//         "עלות המופע: " + doc.data().priceShow + '<br>'+ 
-//         "עלות נסיעות: " + doc.data().priceDriver + '<br>'+ 
-//         "שם ספק: " + doc.data().Provider + '<br>'+ 
-//         "טלפון ספק: " + doc.data().phoneProvid + '<br>'+ 
-//         "טלפון נוסף של ספק: " + doc.data().phone2Provid +'<br>'+ 
-//         "דואל ספק: " + doc.data().mailProvid + '<br>'+ 
-//         "טלפון ישיר לאומן: " + doc.data().phoneArt + '<br>'+ 
-//         "דואל ישיר לאומן: " + doc.data().mailArt + '<br>'+ 
-//         "מספר עוסק: " + doc.data().businessNum + '<br>'+ 
-//         "סוג עוסק: " + doc.data().businessType + '<br>'+ 
-//         "יש גרפיקה למופע?: " + doc.data().graphics + '<br>'+ 
-//         "ציוד נדרש: " + doc.data().equipment + '<br>'+ 
-//         "זמן לפני המופע: " + doc.data().timeBefore + '<br>'+ 
-//         "זמן אחרי המופע: " + doc.data().timeAfter + '<br>'+ 
-//         "משך זמן המופע: " + doc.data().timeShow,
-        
-//         buttons: [
-//           {
-//            text: 'חזרה לעריכה',
-//           handler:  () => {
-//             this.router.navigateByUrl('/home/catalog-edit')
-          
-//             //var func = new CatalogPage(this.router, this.db);
-//             //func.fill_fields(doc);
-//           }   
-//         },
-//         {
-//           text: 'חזרה לטבלה',
-//           }
-//       ],
-//         cssClass: 'my-alert'
-//       });
-//       await alert.present();
-//     });
+     CatalogTablePage.s_audience = docParam.audience.join('|')
+  this.router.navigateByUrl('/home/catalog-edit')
   })
-  }
+}
   
 }
 

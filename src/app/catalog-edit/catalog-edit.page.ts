@@ -1,24 +1,19 @@
 
 import { Component, OnInit, ViewChild, Input, NgZone } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {FormControl, Validators, NgForm} from '@angular/forms';
 import { database } from 'firebase'; 
 import * as firebase from 'firebase';
 import { CatalogTablePage } from '../catalog-table/catalog-table.page';
-//import { fill_fields } from './catalog.module';
-
-/*import { database } from 'firebase';
-import { Time } from '@angular/common';*/
-
 
 @Component({
   selector: 'app-catalog-edit',
   templateUrl: './catalog-edit.page.html',
   styleUrls: ['./catalog-edit.page.scss'],
 })
-export class CatalogEditPage implements OnInit {
+
+export class CatalogEditPage {
   @ViewChild('show') show_field
   @ViewChild('artist') artist_field
   @ViewChild('whoWatch') whoWatch_field
@@ -49,25 +44,43 @@ export class CatalogEditPage implements OnInit {
   @ViewChild('commants') commants_field
   @ViewChild('time') time_field
 
+  categories = {
+    boys_children: false,
+    girls_children: false,
+    youth: false,
+    boys: false,
+    women: false,
+    fathers_and_sons: false,
+    golden_age: false,
+    elementary_girls: false
+  }
 
   dataFromDatabase = []
   constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone) { }
-  doc: any
 
-
-  ngOnInit() {
+  ionViewDidEnter() {
     this.db.collection('Show').get().subscribe(result => {
       const docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = docs
     })
+  }
+  
+  onChange(data) {
+    const selectedOptions = Array.from(data.target.selectedOptions).map(i => i['value'])
+    if(selectedOptions.includes('ילדים')) this.categories.boys_children = true
+    if(selectedOptions.includes('ילדות')) this.categories.girls_children = true
+    if(selectedOptions.includes('נערות')) this.categories.youth = true
+    if(selectedOptions.includes('בנים')) this.categories.boys = true
+    if(selectedOptions.includes('נשים')) this.categories.women = true
+    if(selectedOptions.includes('אבות ובנים')) this.categories.fathers_and_sons = true
+    if(selectedOptions.includes('גיל הזהב - נשים')) this.categories.golden_age = true
+    if(selectedOptions.includes('בנות היסודי')) this.categories.elementary_girls = true
   }
 
   ngAfterViewChecked()
   {
    if(CatalogTablePage.s_time!='' && CatalogTablePage.s_time!= this.time_field.nativeElement.value )
     {
-
-
       this.show_field.nativeElement.value =CatalogTablePage.s_show_field
       this.artist_field.nativeElement.value = CatalogTablePage.s_artist_field
       this.whoWatch_field.nativeElement.value = CatalogTablePage.s_whoWatch_field
@@ -97,19 +110,27 @@ export class CatalogEditPage implements OnInit {
       this.imgGraphics_field.nativeElement.value = CatalogTablePage.s_imgGraphics_field
       this.commants_field.nativeElement.value = CatalogTablePage.s_commants_field
       this.time_field.nativeElement.value = CatalogTablePage.s_time
-      console.log(CatalogTablePage.s_time)
-      console.log(this.time_field.nativeElement.value)
+      CatalogTablePage.s_audience.split('|').forEach(item => {
+        if(item === 'ילדים') this.categories.boys_children = true
+        if(item === 'ילדות') this.categories.girls_children = true
+        if(item === 'נערות') this.categories.youth = true
+        if(item === 'בנים') this.categories.boys = true
+        if(item === 'נשים') this.categories.women = true
+        if(item === 'אבות ובנים') this.categories.fathers_and_sons = true
+        if(item === 'גיל הזהב - נשים') this.categories.golden_age = true
+        if(item === 'בנות היסודי') this.categories.elementary_girls = true
+      })
    }
   }
 
-  audience: string="";
+edit_db(form: NgForm) {
+  this.db.collection('Show', ref => ref.where('time', '==', CatalogTablePage.s_time)).get().subscribe(result => {
+    this.updateData(result.docs[0].id)
+  })
+}
 
- 
-  addShow(form: NgForm){
-
-    this.db.collection('Show').add({
-      audience: this.audience,
-      //audience: this.audience_filed.nativeElement.value,
+updateData(docid){
+  this.db.collection('Show').doc(docid).update({
       show: this.show_field.nativeElement.value,
       artist: this.artist_field.nativeElement.value,
       whoWatch: this.whoWatch_field.nativeElement.value,
@@ -138,96 +159,25 @@ export class CatalogEditPage implements OnInit {
       bid: this.bid_field.nativeElement.value,
       imgGraphics: this.imgGraphics_field.nativeElement.value,
       commants: this.commants_field.nativeElement.value,
-     
-
-    }).then(()=>{
-      this.ngOnInit()
-    });
-    window.alert("פרטי המופע עודכנו")
-
-    
-   }
-
-
-
-   edit_db(form: NgForm) {
-    this.db.collection('Show', ref => ref.where('time', '==', CatalogTablePage.s_time)).get().subscribe(result => {
-      this.updateData(result.docs[0].id)
-    })
-  }
-
-updateData(docid){
-  this.db.collection('Show').doc(docid).update({
-    show: this.show_field.nativeElement.value,
-      artist: this.artist_field.nativeElement.value,
-      whoWatch: this.whoWatch_field.nativeElement.value,
-      priceFirstShow: this.priceFirstShow_field.nativeElement.value,
-      priceSecondShow: this.priceSecondShow_field.nativeElement.value,
-      priceDriver: this.priceDriver_field.nativeElement.value,
-      Provider: this.Provider_field.nativeElement.value,
-      phoneProvid: this.phoneProvid_field.nativeElement.value,
-      phone2Provid: this.phone2Provid_field.nativeElement.value,
-      mailProvid: this.mailProvid_field.nativeElement.value,
-      phoneArt: this.phoneArt_field.nativeElement.value,
-      mailArt: this.mailArt_field.nativeElement.value,
-      businessNum: this.businessNum_field.nativeElement.value,
-      businessType: this.businessType_field.nativeElement.value,
-      graphics: this.graphics_field.nativeElement.value,
-      equipment: this.equipment_field.nativeElement.value,
-      timeAfter: this.timeAfter_field.nativeElement.value,
-      timeBefore: this.timeBefore_field.nativeElement.value,
-      timeShow: this.timeShow_field.nativeElement.value,
-      showType: this.showType_field.nativeElement.value,
-      showCharacter: this.showCharacter_field.nativeElement.value,
-      limitParticipants: this.limitParticipants_field.nativeElement.value,
-      nuclearPrice: this.nuclearPrice_field.nativeElement.value,
-      extraParticipants: this.extraParticipants_field.nativeElement.value,
-      extraPrice: this.extraPrice_field.nativeElement.value,
-      bid: this.bid_field.nativeElement.value,
-      imgGraphics: this.imgGraphics_field.nativeElement.value,
-      commants: this.commants_field.nativeElement.value,
       time: this.time_field.nativeElement.value,
+      categories: this.getCategoriesAsString()
     }).then(()=>{
-      this.ngOnInit()
+      this.ionViewDidEnter()
       alert('הרשומה התעדכנה')
     });
 }
 
+getCategoriesAsString() {
+  let options = []
+    if(this.categories.boys_children) options.push('ילדים')
+    if(this.categories.girls_children) options.push('ילדות')
+    if(this.categories.youth) options.push('נערות')
+    if(this.categories.boys) options.push('בנים')
+    if(this.categories.women) options.push('נשים')
+    if(this.categories.fathers_and_sons) options.push('אבות ובנים')
+    if(this.categories.golden_age) options.push('גיל הזהב - נשים')
+    if(this.categories.elementary_girls) options.push('בנות היסודי')
+  return options
+}
    
- 
-   getShowName()
-   {
-     return this.show_field
-   }
-
-    fill_fields(d){
-      //var element = document.getElementById('id');
-  //window.alert("yesss")
-//  let updateNested = this.db.collection('Show').doc(d.id).update({
-//     show:"test" ,
-//     //'favorites.color': 'Red'
-//   });
-this.ngZone.run(()=>{
-  this.show_field.nativeElement.value = d.data().show
-  this.artist_field.nativeElement.value =d.data().artist
-  this.whoWatch_field.nativeElement.value ='chen'
-
-})
-   /* this.priceShow_filed.nativeElement.value = d.data().priceShow
-    this.priceDriver_filed.nativeElement.value = d.data().priceDriver
-    this.Provider_filed.nativeElement.value = d.data().Provider
-    this.phoneProvid_filed.nativeElement.value = d.data().phoneProvid
-    this.phone2Provid_filed.nativeElement.value = d.data().phone2Provid
-    this.mailProvid_filed.nativeElement.value = d.data().mailProvid
-    this.phoneArt_filed.nativeElement.value = d.data().phoneArt
-    this.mailArt_filed.nativeElement.value = d.data().mailArt
-    this.businessNum_filed.nativeElement.value = d.data().businessNum
-    this.businessType_filed.nativeElement.value = d.data().businessType
-    this.graphics_filed.nativeElement.value = d.data().graphics
-    this.equipment_filed.nativeElement.value = d.data().equipment
-    this.timeBefore_filed.nativeElement.value = d.data().timeBefore
-    this.timeAfter_filed.nativeElement.value = d.data().timeAfter
-    this.timeShow_filed.nativeElement.value = d.data().timeShow*/
-  }
-
 }
