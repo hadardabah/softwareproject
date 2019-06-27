@@ -53,8 +53,7 @@ export class CatalogEditPage implements OnInit {
   dataFromDatabase = []
   constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone) { }
   doc: any
-//  time: any;
-  global: any
+
 
   ngOnInit() {
     this.db.collection('Show').get().subscribe(result => {
@@ -65,19 +64,13 @@ export class CatalogEditPage implements OnInit {
 
   ngAfterViewChecked()
   {
-      console.log(CatalogTablePage.s_artist_field)
-      console.log(this.artist_field.nativeElement.value)
    if(CatalogTablePage.s_time!='' && CatalogTablePage.s_time!= this.time_field.nativeElement.value )
     {
-      console.log(CatalogTablePage.s_artist_field)
-      console.log(this.artist_field.nativeElement.value)
 
-       this.show_field.nativeElement.value =CatalogTablePage.s_show_field
-       console.log( this.show_field.nativeElement.value)
+
+      this.show_field.nativeElement.value =CatalogTablePage.s_show_field
       this.artist_field.nativeElement.value = CatalogTablePage.s_artist_field
-      console.log( this.artist_field.nativeElement.value)
       this.whoWatch_field.nativeElement.value = CatalogTablePage.s_whoWatch_field
-      console.log(this.whoWatch_field.nativeElement.value)
       this.priceFirstShow_field.nativeElement.value =CatalogTablePage.s_priceFirstShow_field
       this.priceSecondShow_field.nativeElement.value =CatalogTablePage.s_priceSecondShow_field
       this.priceDriver_field.nativeElement.value = CatalogTablePage.s_priceDriver_field

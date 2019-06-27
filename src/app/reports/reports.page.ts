@@ -15,27 +15,24 @@ export class ReportsPage implements OnInit {
 
   ngOnInit() {
   }
-  try(){
+
+  addUser(){
     const email = this.emailField.value;
     const password = this.passField.value;
     
     this.userAuth.auth.createUserWithEmailAndPassword(email, password).then(result => {
-      window.alert("משתמש חדש נוסף בהצלחה!");   
+      window.alert("משתמש חדש נוסף בהצלחה");   
       })
       .catch((error) => {
-        window.alert("שם המשתמש חייב להיות מייל שלא קיים במערכת, וסיסמה עם שישה תווים לפחות");
+        window.alert("יש להכניס אימייל שלא קיים במערכת וסיסמה עם שישה תווים לפחות");
       });
-  
-  
+  }
+
+  deleteUser(){
+    const email = this.emailField.value;
+    console.log(email)
+
+    var user = this.userAuth.auth.currentUser.uid;
+    console.log(user)
   }
 }
-
-
-   //
-  
-   // .then(result => {
-      
-    //})
-   // .catch(error => {
-      
-   // })

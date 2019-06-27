@@ -113,7 +113,7 @@
                     <input class=input #after_show placeholder='זמן פירוק/ניקיון לאחר האירוע' /> 
                 </ion-col>
                 <ion-col>
-                    <input ngModel name="date" required placeholder="תאריך לועזי" class=input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" #date oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    <input ngModel name="date" required placeholder="תאריך לועזי" class=input type="text" onfocus="(this.type='date')" data-date-format="DD MMMM YYYY" #date oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
                     <input placeholder="שעת התחלת אירוע בפועל" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #Actual_show_time>
                     <input placeholder="שעת שחרור המבנה לאחר האירוע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #release_building oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
                 </ion-col>
