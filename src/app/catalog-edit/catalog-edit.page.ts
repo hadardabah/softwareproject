@@ -1,4 +1,4 @@
-
+import { ChangeDetectorRef } from '@angular/core';
 import { Component, OnInit, ViewChild, Input, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -56,7 +56,7 @@ export class CatalogEditPage {
   }
 
   dataFromDatabase = []
-  constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone) { }
+  constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone, private cdRef:ChangeDetectorRef) { }
 
   ionViewDidEnter() {
     this.db.collection('Show').get().subscribe(result => {
@@ -68,13 +68,32 @@ export class CatalogEditPage {
   onChange(data) {
     const selectedOptions = Array.from(data.target.selectedOptions).map(i => i['value'])
     if(selectedOptions.includes('ילדים')) this.categories.boys_children = true
+    else this.categories.boys_children = false
+
     if(selectedOptions.includes('ילדות')) this.categories.girls_children = true
+    else this.categories.girls_children = false
+
     if(selectedOptions.includes('נערות')) this.categories.youth = true
+    else this.categories.youth = false
+
     if(selectedOptions.includes('בנים')) this.categories.boys = true
+    else this.categories.boys = false
+
     if(selectedOptions.includes('נשים')) this.categories.women = true
+    else this.categories.women = false
+
     if(selectedOptions.includes('אבות ובנים')) this.categories.fathers_and_sons = true
+    else this.categories.fathers_and_sons = false
+
     if(selectedOptions.includes('גיל הזהב - נשים')) this.categories.golden_age = true
+    else this.categories.golden_age = false
+
     if(selectedOptions.includes('בנות היסודי')) this.categories.elementary_girls = true
+    else this.categories.elementary_girls = false
+  
+    console.log(selectedOptions)
+    console.log(this.categories)
+
   }
 
   ngAfterViewChecked()
@@ -121,6 +140,7 @@ export class CatalogEditPage {
         if(item === 'בנות היסודי') this.categories.elementary_girls = true
       })
    }
+   this.cdRef.detectChanges();
   }
 
 edit_db(form: NgForm) {
@@ -130,6 +150,7 @@ edit_db(form: NgForm) {
 }
 
 updateData(docid){
+  console.log(this.categories)
   this.db.collection('Show').doc(docid).update({
       show: this.show_field.nativeElement.value,
       artist: this.artist_field.nativeElement.value,
@@ -160,7 +181,7 @@ updateData(docid){
       imgGraphics: this.imgGraphics_field.nativeElement.value,
       commants: this.commants_field.nativeElement.value,
       time: this.time_field.nativeElement.value,
-      categories: this.getCategoriesAsString()
+      audience: this.getCategoriesAsString()
     }).then(()=>{
       this.ionViewDidEnter()
       alert('הרשומה התעדכנה')
