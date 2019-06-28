@@ -126,7 +126,7 @@ export class EventsboardPage implements OnInit {
   //  if(this.checkOverlappingEvents(this.before_showField.nativeElement.value,this.release_buildingField.nativeElement.value,this.open_doorsField.nativeElement.value, this.dateField.nativeElement.value)==true){
     //  console.log('this is same date2') ;
    // }
-   if(this.try_stopet() == false){return}
+   if(this.Collision_structure() == false){return}
     this.db.collection('Events').add({
       show: this.showField.nativeElement.value,
       season: this.seasonField.nativeElement.value,
@@ -178,7 +178,8 @@ export class EventsboardPage implements OnInit {
 
 
  }
- try_stopet() :boolean{
+ //Check that the structure was not already secured on that date
+ Collision_structure() :boolean{
   window.alert("in func try_stopet")
 
   for(let i = 0; i<this.eventsFromDatabase.length;i++){
@@ -186,18 +187,21 @@ export class EventsboardPage implements OnInit {
 
       if(this.eventsFromDatabase[i].building ==   this.buildingField.nativeElement.value){   
         window.alert("this building is already Exists ")
-        
+        window.alert(this.eventsFromDatabase[i].date)
+        window.alert( this.dateField.nativeElement.value )
+
         if(this.eventsFromDatabase[i].date == this.dateField.nativeElement.value ) {
           window.alert("same date ")
           window.alert(this.open_doorsField.nativeElement.value)
           window.alert(this.eventsFromDatabase[i].open_doors)
           window.alert(this.eventsFromDatabase[i].release_building)
-          const startimeMoment = moment(this.eventsFromDatabase[i].open_doors,'ms')
+          const startimeMoment = moment(this.eventsFromDatabase[i].open_doors ,'ms') 
+          console.log(startimeMoment)
           const endtimeMoment = moment(this.eventsFromDatabase[i].release_building, 'ms')
           const curentStart = moment(this.open_doorsField.nativeElement.value, 'ms')
           const curentEnd = moment(this.release_buildingField.nativeElement.value, 'ms')
 
-          if(curentStart.isBetween(startimeMoment,endtimeMoment)== true || curentEnd.isBetween(startimeMoment,endtimeMoment)== true
+          if( curentEnd.isSame(endtimeMoment)|| curentStart.isSame(startimeMoment)||curentStart.isBetween(startimeMoment,endtimeMoment)== true || curentEnd.isBetween(startimeMoment,endtimeMoment)== true
           ){
           if (confirm("מבנה זה כבר משוריין לתאריך זה כדי שתבדוק אם הוא פנוי בשעות אלה")) {
             
@@ -214,6 +218,7 @@ export class EventsboardPage implements OnInit {
   return true;    
 
  }
+
 
 
 }

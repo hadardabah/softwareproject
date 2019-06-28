@@ -55,6 +55,12 @@ export class CatalogPage implements OnInit {
   audience: string="";
   
   addShow(form: NgForm){
+    for(let i = 0; i < this.dataFromDatabase.length; i++){
+      if(this.dataFromDatabase[i].show == this.show_field.nativeElement.value){
+        window.alert("כבר קיים מופע בשם זה")
+        return;
+      }
+    }
     this.db.collection('Show').add({
       audience: this.audience,
       show: this.show_field.nativeElement.value,
