@@ -139,7 +139,7 @@
                     </select>
                 </ion-col>
                 <ion-col>
-                    <select name="ushers" class=input #ushers>
+                    <select multiple name="ushers" [(ngModel)]="ushers" class=input>
                         <option value="" disabled selected>סדרנים</option>
                         <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>

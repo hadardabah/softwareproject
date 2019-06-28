@@ -7,11 +7,8 @@
         <h2>פרטי האירוע</h2>
             <ion-row>
                 <ion-col>
-                    <select name="show" class=input #show (change)='try($event)'>
-                        <option value="" disabled selected>שם המופע</option>
-                        <option [value]="doc.show"  *ngFor='let doc of dataFromDatabase'>{{doc.show}}</option>
-                    </select>
-    
+                  
+                    <input  name="show" class=input #show placeholder='מופע' readonly/>
                     <input  name="target_audience" class=input #target_audience placeholder='קהל יעד'  oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
     
                     <select name="budgets" class=input #budgets>
@@ -140,10 +137,15 @@
                     </select>
                 </ion-col>
                 <ion-col>
-                    <select  name="ushers" class=input #ushers>
+                        <input  name="target_ushers" class=input #target_ushers placeholder='סדרנים'  oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+
+                    <select multiple name="ushers" [(ngModel)]="ushers" class=input  (change)='try1($event)'>
                         <option value="" disabled selected>סדרנים</option>
                         <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>
+
+
+
                 </ion-col>
             </ion-row>
         </div> 

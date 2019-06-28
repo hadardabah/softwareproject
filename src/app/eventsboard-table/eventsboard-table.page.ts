@@ -78,8 +78,8 @@ export class EventsboardTablePage implements OnInit {
   static s_order_status_purchaseField:any
   static s_payment_statusField:any
   static s_uploadField:any
-  static s_time: any;
-
+  static s_time: any
+  static s_target_ushers :any;
   constructor(
     private router: Router,
     private db: AngularFirestore, 
@@ -147,7 +147,7 @@ export class EventsboardTablePage implements OnInit {
      EventsboardTablePage.s_budgetsField = docParam.budgets
      EventsboardTablePage.s_agentField = docParam.agent
      EventsboardTablePage.s_in_charge_of_showField = docParam.in_charge_of_show
-     EventsboardTablePage.s_ushersField = docParam.ushers
+    // EventsboardTablePage.s_ushersField = docParam.ushers
      EventsboardTablePage.s_equipmentField = docParam.equipment
      EventsboardTablePage.s_event_typeField = docParam.event_type
      EventsboardTablePage.s_repeat_showField = docParam.repeat_show
@@ -157,6 +157,7 @@ export class EventsboardTablePage implements OnInit {
      EventsboardTablePage.s_payment_statusField = docParam.payment_status
      EventsboardTablePage.s_uploadField = docParam.upload
      EventsboardTablePage.s_time = docParam.time
+     EventsboardTablePage.s_target_ushers = docParam.ushers
   this.router.navigateByUrl('/home/eventsboard-edit')
   })
   }

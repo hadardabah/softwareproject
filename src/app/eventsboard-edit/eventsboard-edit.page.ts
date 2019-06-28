@@ -5,6 +5,7 @@ import {FormControl, Validators, NgForm} from '@angular/forms';
 import { database } from 'firebase'; 
 import * as firebase from 'firebase';
 import { EventsboardTablePage } from '../eventsboard-table/eventsboard-table.page';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-eventsboard-edit',
@@ -34,7 +35,7 @@ export class EventsboardEditPage implements OnInit {
   @ViewChild('budgets') budgetsField
   @ViewChild('agent') agentField
   @ViewChild('in_charge_of_show') in_charge_of_showField
-  @ViewChild('ushers') ushersField
+  //@ViewChild('ushers') ushersField
   @ViewChild('equipment') equipmentField
   @ViewChild('event_type') event_typeField
   @ViewChild('repeat_show') repeat_showField
@@ -44,14 +45,14 @@ export class EventsboardEditPage implements OnInit {
   @ViewChild('payment_status') payment_statusField
   @ViewChild('upload') uploadField
   @ViewChild('time') time_field
-
+  @ViewChild('target_ushers') target_ushers_field
   dataFromDatabase = []
   buildingsFromDatabase = []
   budgetsFromDatabase = []
   humanFromDatabase = []
   eventsFromDatabase = []
 
-  constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone) { }
+  constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone, private cdRef:ChangeDetectorRef) { }
 
   ngOnInit() {
 
@@ -78,6 +79,7 @@ export class EventsboardEditPage implements OnInit {
       this.eventsFromDatabase = Events_docs
     })
   }
+ ushers : string="";
 
    ngAfterViewChecked()
   {
@@ -104,18 +106,23 @@ export class EventsboardEditPage implements OnInit {
       this.budgetsField.nativeElement.value = EventsboardTablePage.s_budgetsField
       this.agentField.nativeElement.value = EventsboardTablePage.s_agentField
       this.in_charge_of_showField.nativeElement.value = EventsboardTablePage.s_in_charge_of_showField
-      this.ushersField.nativeElement.value = EventsboardTablePage.s_ushersField
       this.equipmentField.nativeElement.value = EventsboardTablePage.s_equipmentField
       this.event_typeField.nativeElement.value = EventsboardTablePage.s_event_typeField
       this.repeat_showField.nativeElement.value = EventsboardTablePage.s_repeat_showField
       this.target_audienceField.nativeElement.value = EventsboardTablePage.s_target_audienceField
       this.advertising_statusField.nativeElement.value = EventsboardTablePage.s_advertising_statusField
       this.order_status_purchaseField.nativeElement.value = EventsboardTablePage.s_order_status_purchaseField
-      this.advertising_statusField.nativeElement.value = EventsboardTablePage.s_advertising_statusField
+      this.payment_statusField.nativeElement.value = EventsboardTablePage.s_payment_statusField
       this.uploadField.nativeElement.value = EventsboardTablePage.s_uploadField
       this.time_field.nativeElement.value = EventsboardTablePage.s_time
+      this.target_ushers_field.nativeElement.value = EventsboardTablePage.s_target_ushers
    }
+   this.cdRef.detectChanges();
   }
+
+isSelectedShow(show) {
+  return EventsboardTablePage.s_showField === show
+}
 
 isSelectedBuilding(building) {
   return EventsboardTablePage.s_buildingField === building
@@ -162,7 +169,7 @@ updateData(docid){
       budgets: this.budgetsField.nativeElement.value,
       agent: this.agentField.nativeElement.value,
       in_charge_of_show: this.in_charge_of_showField.nativeElement.value,
-      ushers: this.ushersField.nativeElement.value,
+      ushers: this.target_ushers_field.nativeElement.value,
       equipment: this.equipmentField.nativeElement.value,
       event_type: this.event_typeField.nativeElement.value,
       repeat_show: this.repeat_showField.nativeElement.value,
@@ -172,10 +179,19 @@ updateData(docid){
       payment_status: this.payment_statusField.nativeElement.value,
       upload: this.uploadField.nativeElement.value,
       time: this.time_field.nativeElement.value,
+
     }).then(()=>{
       this.ngOnInit()
       alert('הרשומה התעדכנה')
     });
+}
+try1(d){
+  // finding the selected value from the array
+  //const selectedObj = this.humanFromDatabase.find(i => i.name === d.currentTarget.value)
+    
+  // setting the appropriate value to each field(s)
+  this.target_ushers_field.nativeElement.value =this.ushers
+
 }
 
 }

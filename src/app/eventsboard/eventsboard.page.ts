@@ -33,7 +33,6 @@ export class EventsboardPage implements OnInit {
   @ViewChild('budgets') budgetsField
   @ViewChild('agent') agentField
   @ViewChild('in_charge_of_show') in_charge_of_showField
-  @ViewChild('ushers') ushersField
   @ViewChild('equipment') equipmentField
   @ViewChild('event_type') event_typeField
   @ViewChild('repeat_show') repeat_showField
@@ -42,6 +41,7 @@ export class EventsboardPage implements OnInit {
   @ViewChild('order_status_purchase') order_status_purchaseField
   @ViewChild('payment_status') payment_statusField
   @ViewChild('upload') uploadField
+
 
   dataFromDatabase = []
   buildingsFromDatabase = []
@@ -76,8 +76,8 @@ export class EventsboardPage implements OnInit {
       this.eventsFromDatabase = Events_docs
     })
   }
-  s: string="";
 
+  ushers: string="";
 
   checkOverlappingEvents(startime, endtime, openDoors, currentDate){
     for(let i = 0; i<this.eventsFromDatabase.length;i++){
@@ -149,7 +149,7 @@ export class EventsboardPage implements OnInit {
       budgets: this.budgetsField.nativeElement.value,
       agent: this.agentField.nativeElement.value,
       in_charge_of_show: this.in_charge_of_showField.nativeElement.value,
-      ushers: this.ushersField.nativeElement.value,
+      ushers: this.ushers,
       equipment: this.equipmentField.nativeElement.value,
       event_type: this.event_typeField.nativeElement.value,
       repeat_show: this.repeat_showField.nativeElement.value,
@@ -180,37 +180,25 @@ export class EventsboardPage implements OnInit {
  }
  //Check that the structure was not already secured on that date
  Collision_structure() :boolean{
-  window.alert("in func try_stopet")
 
   for(let i = 0; i<this.eventsFromDatabase.length;i++){
     
 
       if(this.eventsFromDatabase[i].building ==   this.buildingField.nativeElement.value){   
-        window.alert("this building is already Exists ")
-        window.alert(this.eventsFromDatabase[i].date)
-        window.alert( this.dateField.nativeElement.value )
+       
 
         if(this.eventsFromDatabase[i].date == this.dateField.nativeElement.value ) {
-          window.alert("same date ")
-          window.alert(this.open_doorsField.nativeElement.value)
-          window.alert(this.eventsFromDatabase[i].open_doors)
-          window.alert(this.eventsFromDatabase[i].release_building)
+          
           const startimeMoment = moment(this.eventsFromDatabase[i].open_doors ,'ms') 
-          console.log(startimeMoment)
           const endtimeMoment = moment(this.eventsFromDatabase[i].release_building, 'ms')
           const curentStart = moment(this.open_doorsField.nativeElement.value, 'ms')
           const curentEnd = moment(this.release_buildingField.nativeElement.value, 'ms')
 
           if( curentEnd.isSame(endtimeMoment)|| curentStart.isSame(startimeMoment)||curentStart.isBetween(startimeMoment,endtimeMoment)== true || curentEnd.isBetween(startimeMoment,endtimeMoment)== true
           ){
-          if (confirm("מבנה זה כבר משוריין לתאריך זה כדי שתבדוק אם הוא פנוי בשעות אלה")) {
-            
-            return true;
-          }
-          else {
-            return false;
-        
-           }
+          
+           window.alert("מבנה זה כבר משוריין לתאריך זה")
+           return false
           }
         }
       }
