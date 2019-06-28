@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { LoadingController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +16,11 @@ export class HomePage {
 
   dataFromDatabase = []
 
-  constructor(private router: Router, private db: AngularFirestore,) { }
+  constructor(
+    private router: Router, 
+    private db: AngularFirestore,
+    private userAuth: AngularFireAuth,
+    private alertController: AlertController,) { }
 
   ngOnInit() {
     // this.db.collection('Events').add({...})
@@ -33,23 +39,26 @@ export class HomePage {
     })
 
   }
-
-
+  
   goToOtherPage() {
     this.router.navigateByUrl('/singin')
   }
 
-
+  async logout() {
+    const alert = await this.alertController.create({
+      header: 'התנתק',
+      message: 'אתה עומד להתנתק עכשיו',
+      buttons: [{
+        text: 'המשך',
+        handler: () => {
+          this.userAuth.auth.signOut().then(() => {
+            this.router.navigateByUrl('/login');
+          }).catch((error) => console.log(error));
+        }
+      }, {
+        text: 'עדיין לא'
+      }]
+    });
+    alert.present();
+  }
 }
-
-var clickListener = function () {
-
-  alert("Enter your age");
-
-
-};
-var loadPage = function () {
-  document.getElementById("logo").addEventListener("click", clickListener, false);
-
-
-};
