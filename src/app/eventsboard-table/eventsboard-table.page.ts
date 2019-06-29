@@ -80,6 +80,7 @@ export class EventsboardTablePage implements OnInit {
   static s_uploadField:any
   static s_time: any
   static s_target_ushers :any;
+  
   constructor(
     private router: Router,
     private db: AngularFirestore, 

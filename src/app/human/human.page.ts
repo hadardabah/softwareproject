@@ -70,6 +70,17 @@ export class HumanPage implements OnInit {
 
 
   saveData(form: NgForm) {
+    for(let i = 0; i < this.dataFromDatabase.length; i++){
+      if(this.dataFromDatabase[i].name == this.nameField.nativeElement.value){
+        window.alert("קיים אדם בשם זה במאגר")
+        return;
+      }
+      if(this.dataFromDatabase[i].id == this.idField.nativeElement.value){
+        window.alert("תעודת זהות קיימת במאגר")
+        return;
+      }
+    }
+
     if(this.LegalTz(this.idField.nativeElement.value)==false){
       alert('תעודת זהות לא תקינה, נא הכנס מספר עם 9 ספרות')
     }

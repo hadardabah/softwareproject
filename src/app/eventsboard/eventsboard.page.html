@@ -7,17 +7,14 @@
             <h2>פרטי האירוע</h2>
             <ion-row>
                 <ion-col>
-                    <select ngModel name="show" required class=input #show (change)='try($event)' oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                    <select ngModel name="show" required class=input #show (change)='autoFill($event)' oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>שם המופע</option>
                         <option [value]="doc.show"  *ngFor='let doc of dataFromDatabase'>{{doc.show}}</option>
                     </select>
 
                     <input name="target_audience" class=input #target_audience placeholder='קהל יעד' />
 
-                    <select name="budgets" class=input #budgets>
-                        <option value="" disabled selected>סעיף תקציבי</option>
-                        <option [value]="doc.budget_name"  *ngFor='let doc of budgetsFromDatabase'>{{doc.budget_name}}</option>
-                    </select>
+                    <input placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost>
                 </ion-col>
                 <ion-col>
                     <select ngModel name="event_type" required class=input #event_type oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
@@ -28,15 +25,15 @@
                     </select> 
 
                     <input class=input #equipment placeholder='ציוד נדרש' />
-
-                    <input placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost>
                 </ion-col>
                 <ion-col>
-                    <select ngModel name="repeat_show" required class=input #repeat_show oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                    <!--<select ngModel name="repeat_show" required class=input #repeat_show oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>מופע חוזר?</option>
                         <option value="כן">כן</option>
                         <option value="לא">לא</option>
-                    </select> 
+                    </select> -->
+
+                    <input ngModel name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
 
                     <select ngModel name="building" required class=input #building oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>מבנה</option>
@@ -45,7 +42,11 @@
 
                 </ion-col>
                 <ion-col>
-                    <input ngModel name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    
+                    <select name="budgets" class=input #budgets>
+                        <option value="" disabled selected>סעיף תקציבי</option>
+                        <option [value]="doc.budget_name"  *ngFor='let doc of budgetsFromDatabase'>{{doc.budget_name}}</option>
+                    </select>
 
                     <select ngModel name="building_status" required class=input #building_status oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>סטטוס שריון מבנה</option>
@@ -123,8 +124,14 @@
         <div class="border_human">
             <h2>כוח אדם</h2>
             <ion-row>
-                <ion-col>
+                <!--<ion-col>
                     <input ngModel name="number_of_ushers" required placeholder="מספר סדרנים נדרש" class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #number_of_ushers oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                </ion-col>-->
+                <ion-col>
+                    <select multiple name="ushers" [(ngModel)]="ushers" class=input>
+                        <option value="" disabled selected>סדרנים</option>
+                        <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
+                    </select>
                 </ion-col>
                 <ion-col>
                     <select name="agent" class=input #agent>
@@ -135,12 +142,6 @@
                 <ion-col>
                     <select name="in_charge_of_show" class=input #in_charge_of_show>
                         <option value="" disabled selected>אחראי/ת לאירוע</option>
-                        <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
-                    </select>
-                </ion-col>
-                <ion-col>
-                    <select multiple name="ushers" [(ngModel)]="ushers" class=input>
-                        <option value="" disabled selected>סדרנים</option>
                         <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>
                 </ion-col>

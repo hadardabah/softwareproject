@@ -7,44 +7,65 @@
         <h2>פרטי האירוע</h2>
             <ion-row>
                 <ion-col>
-                  
-                    <input  name="show" class=input #show placeholder='מופע' readonly/>
+                    <div class="tooltip">
+                    <input  name="show" class=input #show placeholder='שם המופע' readonly/>
+                    <span class="tooltiptext">שם המופע</span>
+                    </div>
+                    <div class="tooltip">
                     <input  name="target_audience" class=input #target_audience placeholder='קהל יעד'  oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
-    
-                    <select name="budgets" class=input #budgets>
-                        <option value="" disabled selected>סעיף תקציבי</option>
-                        <option [selected]='isSelectedBudgets(doc.budget_name)' [value]="doc.budget_name"  *ngFor='let doc of budgetsFromDatabase'>{{doc.budget_name}}</option>
-                    </select>
+                    <span class="tooltiptext">קהל יעד</span>
+                    </div>
+                    <div class="tooltip">
+                    <input  placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost>
+                    <span class="tooltiptext">עלות כניסה לתושב</span>
+                    </div>
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
                     <select  name="event_type" required class=input #event_type oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>סוג אירוע</option>
                         <option value="מופע" >מופע</option>
                         <option value="סדנא חד פעמית">סדנא חד פעמית</option>
                         <option value="סדנא מרובת מפגשים" >סדנא מרובת מפגשים</option>
                     </select> 
-    
+                    <span class="tooltiptext">סוג אירוע</span>
+                    </div>
+                    <div class="tooltip">
                     <input  class=input #equipment placeholder='ציוד נדרש' />
-    
-                    <input  placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost>
+                    <span class="tooltiptext">ציוד נדרש</span>
+                    </div>
+                    <input  type="text" class=input #time>  
                 </ion-col>
                 <ion-col>
+                    <!--<div class="tooltip">
                     <select  name="repeat_show" required class=input #repeat_show oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>מופע חוזר?</option>
                         <option value="כן">כן</option>
                         <option value="לא">לא</option>
                     </select> 
-    
+                    <span class="tooltiptext">מופע חוזר?</span>
+                    </div>-->
+                    <div class="tooltip">
+                    <input  name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    <span class="tooltiptext">מספר מופעים חוזרים</span>
+                    </div>
+                    <div class="tooltip">
                     <select name="building" required class=input #building oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>מבנה</option>
                         <option [selected]='isSelectedBuilding(doc.Building_name)' [value]="doc.Building_name"  *ngFor='let doc of buildingsFromDatabase'>{{doc.Building_name}}</option>
                     </select>
-
-                    <input  type="text" class=input #time>  
+                    <span class="tooltiptext">מבנה</span>
+                    </div>
                 </ion-col>
                 <ion-col>
-                    <input  name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
-
+                    <div class="tooltip">
+                    <select name="budgets" class=input #budgets>
+                        <option value="" disabled selected>סעיף תקציבי</option>
+                        <option [selected]='isSelectedBudgets(doc.budget_name)' [value]="doc.budget_name"  *ngFor='let doc of budgetsFromDatabase'>{{doc.budget_name}}</option>
+                    </select>
+                    <span class="tooltiptext">סעיף תקציבי</span>
+                    </div>
+                    <div class="tooltip">
                     <select  name="building_status" required class=input #building_status oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>סטטוס שריון מבנה</option>
                         <option value="חסר שיבוץ" >חסר שיבוץ</option>
@@ -52,6 +73,8 @@
                         <option value="ממתין לתשובת שריון">ממתין לתשובת שריון</option>
                         <option value="סגור">סגור</option>
                     </select> 
+                    <span class="tooltiptext">סטטוס שריון מבנה</span>
+                    </div>
                 </ion-col>
             </ion-row>
         </div>
@@ -60,6 +83,7 @@
         <h2>זמני האירוע</h2>
             <ion-row>
                 <ion-col>
+                    <div class="tooltip">
                     <select  name="season" required class=input #season oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>עונת אירועים</option>
                         <option value="סוכות">סוכות</option>
@@ -68,7 +92,9 @@
                         <option value="בין הזמנים סביב השעון">בין הזמנים סביב השעון</option>
                         <option value="פעילות שנתית שוטפת">פעילות שנתית שוטפת</option>
                     </select>
-            
+                    <span class="tooltiptext">עונת אירועים</span>
+                    </div>
+                    <div class="tooltip">
                     <select  name="day_of_week" required class=input #day_of_week oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>יום בשבוע</option>
                         <option value="ראשון" >ראשון</option>
@@ -79,15 +105,29 @@
                         <option value="שישי">שישי</option>
                         <option value="מוצאי שבת">מוצ"ש</option>
                     </select>
-                                
+                    <span class="tooltiptext">יום בשבוע</span>
+                    </div>
+                    <div class="tooltip">
                     <input  class=input  #show_time placeholder='משך זמן האירוע' />
+                    <span class="tooltiptext">משך זמן האירוע</span>
+                    </div>
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
                     <input  name="hebrew_date" required class=input #hebrew_date placeholder='תאריך עברי' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/> 
+                    <span class="tooltiptext">תאריך עברי</span>
+                    </div>
+                    <div class="tooltip">
                     <input class=input  #before_show placeholder='משך זמן ניקיון/הכנות לפני אירוע' /> 
-                    <input placeholder="שעת סיום האירוע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #end_of_show oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">   
+                    <span class="tooltiptext">משך זמן ניקיון/הכנות לפני אירוע</span>
+                    </div>
+                    <div class="tooltip">
+                    <input placeholder="שעת סיום האירוע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #end_of_show oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"> 
+                    <span class="tooltiptext">שעת סיום האירוע</span>
+                    </div>
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
                     <select  name="hebrew_year" required class=input #hebrew_year oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>שנה עברית</option>                                
                         <option value="תשעט">תשע"ט</option>
@@ -106,14 +146,30 @@
                         <option value="תשצב">תשצ"ב</option>
                         <option value="תשצג">תשצ"ג</option>
                     </select>
-                             
+                    <span class="tooltiptext">שנה עברית</span>
+                    </div>         
+                    <div class="tooltip">
                     <input  placeholder="שעת פתיחת דלתות" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #open_doors>  
+                    <span class="tooltiptext">שעת פתיחת דלתות</span>
+                    </div>
+                    <div class="tooltip">
                     <input  class=input #after_show placeholder='זמן פירוק/ניקיון לאחר האירוע' /> 
+                    <span class="tooltiptext">זמן פירוק/ניקיון לאחר האירוע</span>
+                    </div>
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
                     <input  name="date" required placeholder="תאריך לועזי" class=input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" #date oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    <span class="tooltiptext">תאריך לועזי</span>
+                    </div>
+                    <div class="tooltip">
                     <input  placeholder="שעת התחלת אירוע בפועל" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #Actual_show_time>
+                    <span class="tooltiptext">שעת התחלת אירוע בפועל</span>
+                    </div>
+                    <div class="tooltip">
                     <input  placeholder="שעת שחרור המבנה לאחר האירוע" class=input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" #release_building oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    <span class="tooltiptext">שעת שחרור המבנה לאחר האירוע</span>
+                    </div>
                 </ion-col>
             </ion-row>
         </div> 
@@ -122,30 +178,43 @@
         <h2>כוח אדם</h2>
             <ion-row>
                 <ion-col>
+                    <div class="tooltip">
+                    <select multiple name="ushers" [(ngModel)]="ushers" class=input  (change)='fill_ushers($event)'>
+                        <option value="" disabled selected>סדרנים</option>
+                        <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
+                    </select>
+                    <span class="tooltiptext">סדרנים</span>
+                    </div>
+                    <!--
+                    <div class="tooltip">
                     <input name="number_of_ushers" required placeholder="מספר סדרנים נדרש" class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #number_of_ushers oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    <span class="tooltiptext">מספר סדרנים נדרש</span>
+                    </div>
+                    -->
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
+                    <input  name="target_ushers" class=input #target_ushers placeholder='עריכת סדרנים'  oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <span class="tooltiptext">עריכת סדרנים</span>
+                    </div>
+                </ion-col>
+                <ion-col>
+                    <div class="tooltip">
                     <select  name="agent" class=input #agent>
                         <option value="" disabled selected>מפעיל/ה</option>
                         <option [selected]='isSelectedAgent(doc.name)' [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>
+                    <span class="tooltiptext">מפעיל/ה</span>
+                    </div>
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
                     <select  name="in_charge_of_show" class=input #in_charge_of_show>
                         <option value="" disabled selected>אחראי/ת לאירוע</option>
                         <option [selected]='isSelectedInCharge(doc.name)' [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
                     </select>
-                </ion-col>
-                <ion-col>
-                        <input  name="target_ushers" class=input #target_ushers placeholder='סדרנים'  oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
-
-                    <select multiple name="ushers" [(ngModel)]="ushers" class=input  (change)='try1($event)'>
-                        <option value="" disabled selected>סדרנים</option>
-                        <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
-                    </select>
-
-
-
+                    <span class="tooltiptext">אחראי/ת לאירוע</span>
+                    </div>
                 </ion-col>
             </ion-row>
         </div> 
@@ -154,6 +223,7 @@
         <h2>כללי</h2>
             <ion-row>
                 <ion-col>
+                    <div class="tooltip">
                     <select  name="advertising_status" class=input #advertising_status>
                         <option value="" disabled selected>מצב פרסום</option>
                         <option value="טרם טופל">טרם טופל</option>
@@ -162,9 +232,12 @@
                         <option value="חזר מגרפיקה עירונית, ממתין להגהה">חזר מגרפיקה עירונית, ממתין להגהה</option>
                         <option value="ממתין לתיקוני גרפיקה עירונית">ממתין לתיקוני גרפיקה עירונית</option>
                         <option value="מאושר">מאושר</option>
-                    </select>    
+                    </select>
+                    <span class="tooltiptext">מצב פרסום</span>
+                    </div>    
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
                     <select  name="order_status_purchase" class=input #order_status_purchase>
                         <option value="" disabled selected>סטטוס הזמנה לרכש</option>
                         <option value="טרם טופל">טרם טופל</option>
@@ -174,8 +247,11 @@
                         <option value="נשלח בקשה לרכש">נשלח בקשה לרכש</option>                            
                         <option value="חזר מהרכש - לטיפול">חזר מהרכש - לטיפול</option>
                     </select> 
+                    <span class="tooltiptext">סטטוס הזמנה לרכש</span>
+                    </div>
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
                     <select  name="ayment_status" class=input #payment_status>
                         <option value="" disabled selected>סטטוס תשלום</option>
                         <option value="טרם הגיעה חשבונית / דרישה לתשלום">טרם הגיעה חשבונית / דרישה לתשלום</option>
@@ -183,6 +259,8 @@
                         <option value="הועברה חשבונית לתשלום">הועברה חשבונית לתשלום</option>
                         <option value="שולם">שולם</option>
                     </select>
+                    <span class="tooltiptext">סטטוס תשלום</span>
+                    </div>
                 </ion-col>
                 <ion-col>
                     <input type="file" name="file" id="file" #upload class="inputfile"/>

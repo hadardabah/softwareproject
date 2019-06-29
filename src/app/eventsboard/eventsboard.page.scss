@@ -27,11 +27,20 @@ ion-grid{
   background-color: #aec33a;
   color: #ffffff;
   position: absolute;
-  top: 90%;
+  top: 92%;
   left: 18%;
   transform: translateY(-50%);
   border-radius: 5px;
+  outline: none;
 }
+
+.add_button:hover{
+  background-color: #acca00;
+  outline: none;
+  opacity: 1;
+  transition: background-color 0.2s;
+}
+
 
 .table_button{
   font-size: 16px;
@@ -41,10 +50,18 @@ ion-grid{
   background-color: #d92139;
   color: #ffffff;
   position: absolute;
-  top: 90%;
+  top: 92%;
   left: 4%;
   transform: translateY(-50%);
   border-radius: 5px;
+  outline: none;
+}
+
+.table_button:hover{
+  background-color: #da001d;
+  outline: none;
+  opacity: 1;
+  transition: background-color 0.2s;
 }
 
 ::placeholder {
@@ -113,7 +130,7 @@ h1{
   border-color: #363636;
   border: 1px solid;
   width: 95%;
-  height: 70px;
+  height: 95px;
   margin: auto;
   margin-bottom: 2%;
 }
@@ -188,4 +205,8 @@ h1{
 
 [type="file"] + label * {
   pointer-events: none;
+}
+
+select[multiple]{
+  height: 52px;
 }

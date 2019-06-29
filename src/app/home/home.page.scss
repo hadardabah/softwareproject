@@ -67,7 +67,7 @@
     width: 100%;
     height: 100%;
     background-color: #212221;
-    //background-color: #8d8741;
+    //margin-top: 8%;
   }
   
   li a {
@@ -83,4 +83,36 @@
   li a:hover:not(.active) {
     background-color: #444444; 
     color: rgb(224, 223, 223);
+  }
+
+  .home_btn {
+    background-color: #212221;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    margin-bottom: 10%;
+    outline: none;
+  }
+
+  .logout_btn {
+    background-color: #212221;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 91%;
+    left: 65%;
+    margin-bottom: 2%;
+    outline: none;
   }

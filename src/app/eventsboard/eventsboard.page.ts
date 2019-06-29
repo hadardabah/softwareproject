@@ -11,6 +11,7 @@ import * as moment from 'moment';
   templateUrl: './eventsboard.page.html',
   styleUrls: ['./eventsboard.page.scss'],
 })
+
 export class EventsboardPage implements OnInit {
   @ViewChild('show') showField
   @ViewChild('season') seasonField
@@ -24,7 +25,7 @@ export class EventsboardPage implements OnInit {
   @ViewChild('Actual_show_time') Actual_show_timeField
   @ViewChild('quantity') quantityField
   @ViewChild('cost') costField
-  @ViewChild('number_of_ushers') number_of_ushersField
+  //@ViewChild('number_of_ushers') number_of_ushersField
   @ViewChild('before_show') before_showField
   @ViewChild('show_time') show_timeField
   @ViewChild('end_of_show') end_of_showField
@@ -35,13 +36,12 @@ export class EventsboardPage implements OnInit {
   @ViewChild('in_charge_of_show') in_charge_of_showField
   @ViewChild('equipment') equipmentField
   @ViewChild('event_type') event_typeField
-  @ViewChild('repeat_show') repeat_showField
+  //@ViewChild('repeat_show') repeat_showField
   @ViewChild('target_audience') target_audienceField
   @ViewChild('advertising_status') advertising_statusField
   @ViewChild('order_status_purchase') order_status_purchaseField
   @ViewChild('payment_status') payment_statusField
   @ViewChild('upload') uploadField
-
 
   dataFromDatabase = []
   buildingsFromDatabase = []
@@ -53,8 +53,6 @@ export class EventsboardPage implements OnInit {
   constructor(private router: Router, private db: AngularFirestore,) { }
 
   ngOnInit() {
-    // this.db.collection('Events').add({...})
-
     this.db.collection('Show').get().subscribe(result => {
       const Show_docs = result.docs.map(doc => doc.data())
       this.dataFromDatabase = Show_docs
@@ -79,53 +77,7 @@ export class EventsboardPage implements OnInit {
 
   ushers: string="";
 
-  checkOverlappingEvents(startime, endtime, openDoors, currentDate){
-    for(let i = 0; i<this.eventsFromDatabase.length;i++){
-      //console.log(this.eventsFromDatabase[i].date)
-      //console.log(currentDate) 
-      if(this.eventsFromDatabase[i].date == currentDate){ 
-        console.log('this is same date');
-        var newStartime = startime.substring(0,2);
-        var newOpenDoors = openDoors.substring(0,2);
-        var newStart = newOpenDoors-newStartime
-        var newendtime= endtime.substring(0,2) 
-        
-
-        for(let j = 0; j<this.eventsFromDatabase.length;j++){
-         var tempStart= (this.eventsFromDatabase[j].before_show).substring(0,2);
-         var tempopendor= (this.eventsFromDatabase[j].open_doors).substring(0,2);
-         var tempnewstart=tempopendor-tempStart
-         var tempReleaseBuilding=this.eventsFromDatabase[j].release_building.substring(0,2);
-         console.log(tempnewstart)
-         console.log(newStart)
-         console.log(newendtime)
-         if(tempnewstart<newStart&&newStart< newendtime)
-         alert('יש חפיפה באירועים')
-
-       //  if(tempStart< newReleaseBulding< newReleaseBulding)
-         //alert('יש חפיפה באירועים')
-        }
-        //console.log(newStr);
-        //console.log(newStr-6)
-        //var num = parseInt(newStr);
-        //console.log(num)n
-          if(startime>endtime){
-            console.log(endtime-startime)
-          }
-          return true;
-        }
-      }
-      return false;
-    
-   // if(date ==)
-  //  if(התחלה של כל אירוע<startime>סיום של כל אירוע||)
-  }
-  
-
   addEvent(form: NgForm) {
-  //  if(this.checkOverlappingEvents(this.before_showField.nativeElement.value,this.release_buildingField.nativeElement.value,this.open_doorsField.nativeElement.value, this.dateField.nativeElement.value)==true){
-    //  console.log('this is same date2') ;
-   // }
    if(this.Collision_structure() == false){return}
     this.db.collection('Events').add({
       show: this.showField.nativeElement.value,
@@ -140,7 +92,7 @@ export class EventsboardPage implements OnInit {
       building_status: this.building_statusField.nativeElement.value,
       quantity: this.quantityField.nativeElement.value,
       cost: this.costField.nativeElement.value,
-      number_of_ushers: this.number_of_ushersField.nativeElement.value,
+      //number_of_ushers: this.number_of_ushersField.nativeElement.value,
       before_show: this.before_showField.nativeElement.value,
       show_time: this.show_timeField.nativeElement.value,
       end_of_show: this.end_of_showField.nativeElement.value,
@@ -152,7 +104,7 @@ export class EventsboardPage implements OnInit {
       ushers: this.ushers,
       equipment: this.equipmentField.nativeElement.value,
       event_type: this.event_typeField.nativeElement.value,
-      repeat_show: this.repeat_showField.nativeElement.value,
+      //repeat_show: this.repeat_showField.nativeElement.value,
       target_audience: this.target_audienceField.nativeElement.value,
       advertising_status: this.advertising_statusField.nativeElement.value,
       order_status_purchase: this.order_status_purchaseField.nativeElement.value,
@@ -163,40 +115,29 @@ export class EventsboardPage implements OnInit {
   window.alert("האירוע נוסף בהצלחה")
   }
 
-  
-
-  try(d){
-    // finding the selected value from the array
-    const selectedObj = this.dataFromDatabase.find(i => i.show === d.currentTarget.value)
+  autoFill(d){
+  // finding the selected value from the array
+  const selectedObj = this.dataFromDatabase.find(i => i.show === d.currentTarget.value)
       
-    // setting the appropriate value to each field(s)
-    this.target_audienceField.nativeElement.value = selectedObj.audience.join(', ')
-    this.equipmentField.nativeElement.value = selectedObj.equipment
-    this.before_showField.nativeElement.value = selectedObj.timeBefore
-    this.show_timeField.nativeElement.value = selectedObj.timeShow
-    this.after_showField.nativeElement.value = selectedObj.timeAfter
-
-
+  // setting the appropriate value to each field(s)
+  this.target_audienceField.nativeElement.value = selectedObj.audience.join(', ')
+  this.equipmentField.nativeElement.value = selectedObj.equipment
+  this.before_showField.nativeElement.value = selectedObj.timeBefore
+  this.show_timeField.nativeElement.value = selectedObj.timeShow
+  this.after_showField.nativeElement.value = selectedObj.timeAfter
  }
+
  //Check that the structure was not already secured on that date
  Collision_structure() :boolean{
-
   for(let i = 0; i<this.eventsFromDatabase.length;i++){
-    
-
       if(this.eventsFromDatabase[i].building ==   this.buildingField.nativeElement.value){   
-       
-
         if(this.eventsFromDatabase[i].date == this.dateField.nativeElement.value ) {
-          
           const startimeMoment = moment(this.eventsFromDatabase[i].open_doors ,'ms') 
           const endtimeMoment = moment(this.eventsFromDatabase[i].release_building, 'ms')
           const curentStart = moment(this.open_doorsField.nativeElement.value, 'ms')
           const curentEnd = moment(this.release_buildingField.nativeElement.value, 'ms')
-
           if( curentEnd.isSame(endtimeMoment)|| curentStart.isSame(startimeMoment)||curentStart.isBetween(startimeMoment,endtimeMoment)== true || curentEnd.isBetween(startimeMoment,endtimeMoment)== true
           ){
-          
            window.alert("מבנה זה כבר משוריין לתאריך זה")
            return false
           }
@@ -204,9 +145,6 @@ export class EventsboardPage implements OnInit {
       }
   }
   return true;    
-
  }
-
-
 
 }

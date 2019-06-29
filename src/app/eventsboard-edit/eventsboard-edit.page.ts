@@ -26,7 +26,7 @@ export class EventsboardEditPage implements OnInit {
   @ViewChild('Actual_show_time') Actual_show_timeField
   @ViewChild('quantity') quantityField
   @ViewChild('cost') costField
-  @ViewChild('number_of_ushers') number_of_ushersField
+  //@ViewChild('number_of_ushers') number_of_ushersField
   @ViewChild('before_show') before_showField
   @ViewChild('show_time') show_timeField
   @ViewChild('end_of_show') end_of_showField
@@ -38,7 +38,7 @@ export class EventsboardEditPage implements OnInit {
   //@ViewChild('ushers') ushersField
   @ViewChild('equipment') equipmentField
   @ViewChild('event_type') event_typeField
-  @ViewChild('repeat_show') repeat_showField
+  //@ViewChild('repeat_show') repeat_showField
   @ViewChild('target_audience') target_audienceField
   @ViewChild('advertising_status') advertising_statusField
   @ViewChild('order_status_purchase') order_status_purchaseField
@@ -72,7 +72,6 @@ export class EventsboardEditPage implements OnInit {
       const Human_docs = result.docs.map(doc => doc.data())
       this.humanFromDatabase = Human_docs
     })
-          //this.ushersField.nativeElement.value = EventsboardTablePage.s_ushersField
 
     this.db.collection('Events').get().subscribe(result => {
       const Events_docs = result.docs.map(doc => doc.data())
@@ -97,7 +96,7 @@ export class EventsboardEditPage implements OnInit {
       this.Actual_show_timeField.nativeElement.value = EventsboardTablePage.s_Actual_show_timeField
       this.quantityField.nativeElement.value = EventsboardTablePage.s_quantityField
       this.costField.nativeElement.value = EventsboardTablePage.s_costField
-      this.number_of_ushersField.nativeElement.value = EventsboardTablePage.s_number_of_ushersField
+      //this.number_of_ushersField.nativeElement.value = EventsboardTablePage.s_number_of_ushersField
       this.before_showField.nativeElement.value = EventsboardTablePage.s_before_showField
       this.show_timeField.nativeElement.value = EventsboardTablePage.s_show_timeField
       this.end_of_showField.nativeElement.value = EventsboardTablePage.s_end_of_showField
@@ -108,7 +107,7 @@ export class EventsboardEditPage implements OnInit {
       this.in_charge_of_showField.nativeElement.value = EventsboardTablePage.s_in_charge_of_showField
       this.equipmentField.nativeElement.value = EventsboardTablePage.s_equipmentField
       this.event_typeField.nativeElement.value = EventsboardTablePage.s_event_typeField
-      this.repeat_showField.nativeElement.value = EventsboardTablePage.s_repeat_showField
+      //this.repeat_showField.nativeElement.value = EventsboardTablePage.s_repeat_showField
       this.target_audienceField.nativeElement.value = EventsboardTablePage.s_target_audienceField
       this.advertising_statusField.nativeElement.value = EventsboardTablePage.s_advertising_statusField
       this.order_status_purchaseField.nativeElement.value = EventsboardTablePage.s_order_status_purchaseField
@@ -160,7 +159,7 @@ updateData(docid){
       building_status: this.building_statusField.nativeElement.value,
       quantity: this.quantityField.nativeElement.value,
       cost: this.costField.nativeElement.value,
-      number_of_ushers: this.number_of_ushersField.nativeElement.value,
+      //number_of_ushers: this.number_of_ushersField.nativeElement.value,
       before_show: this.before_showField.nativeElement.value,
       show_time: this.show_timeField.nativeElement.value,
       end_of_show: this.end_of_showField.nativeElement.value,
@@ -172,7 +171,7 @@ updateData(docid){
       ushers: this.target_ushers_field.nativeElement.value,
       equipment: this.equipmentField.nativeElement.value,
       event_type: this.event_typeField.nativeElement.value,
-      repeat_show: this.repeat_showField.nativeElement.value,
+      //repeat_show: this.repeat_showField.nativeElement.value,
       target_audience: this.target_audienceField.nativeElement.value,
       advertising_status: this.advertising_statusField.nativeElement.value,
       order_status_purchase: this.order_status_purchaseField.nativeElement.value,
@@ -185,7 +184,7 @@ updateData(docid){
       alert('הרשומה התעדכנה')
     });
 }
-try1(d){
+fill_ushers(d){
   // finding the selected value from the array
   //const selectedObj = this.humanFromDatabase.find(i => i.name === d.currentTarget.value)
     

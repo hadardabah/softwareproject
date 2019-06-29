@@ -31,6 +31,14 @@ ion-grid{
   left: 19%;
   transform: translateY(-50%);
   border-radius: 5px;
+  outline: none;
+}
+
+.ok_button:hover{
+  background-color: #acca00;
+  outline: none;
+  opacity: 1;
+  transition: background-color 0.2s;
 }
 
 .cancel_button{
@@ -45,6 +53,14 @@ ion-grid{
   left: 5%;
   transform: translateY(-50%);
   border-radius: 5px;
+  outline: none;
+}
+
+.cancel_button:hover{
+  background-color: #da001d;
+  outline: none;
+  opacity: 1;
+  transition: background-color 0.2s;
 }
 
 ::placeholder {
@@ -73,7 +89,7 @@ h1{
   border-color: #363636;
   border: 1px solid;
   width: 95%;
-  height: 200px;
+  height: 180px;
   margin: auto;
   margin-bottom: 2%;
 }
@@ -113,7 +129,7 @@ h1{
   border-color: #363636;
   border: 1px solid;
   width: 95%;
-  height: 152px;
+  height: 155px;
   margin: auto;
   margin-bottom: 2%;
 }
@@ -127,39 +143,6 @@ h1{
   margin-bottom: 0.5%;
   background: whitesmoke;
 }
-/*
-.inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-
-.inputfile + label {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 16px;
-  font-weight: 0px;
-  color: black;
-  background-color: white;
-  display: inline-block;
-  cursor: pointer; 
-  width: 200px;
-  outline: 1px solid #000;
-}
-
-.inputfile:focus + label,
-.inputfile + label:hover {
-  background-color: red;
-  outline: 1px dotted #000;
-	outline: -webkit-focus-ring-color auto 5px;
-}
-
-.inputfile + label * {
-	pointer-events: none;
-}
-*/
 
 [type="file"] {
   border: 0;
@@ -201,4 +184,46 @@ h1{
 
 [type="file"] + label * {
   pointer-events: none;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 70%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0.9;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+select[multiple]{
+  height: 52px;
 }

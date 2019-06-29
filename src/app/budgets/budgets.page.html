@@ -8,30 +8,38 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
+                    <div class="tooltip">
                     <input ngModel name="finance_source" required class=input #finance_source placeholder='מקור מימון' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <span class="tooltiptext">מקור מימון</span>
+                    </div>
+                    <div class="tooltip">
                     <select ngModel name="budget_status" required class=input #budget_status oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                             <option value="" disabled selected>סטטוס תקצוב</option>
                             <option value="הוגש">הוגש</option>
                             <option value="בבדיקה">בבדיקה</option>
                             <option value="אושר">אושר</option>
                         </select> 
+                        <span class="tooltiptext">סטטוס תקצוב</span>
+                    </div>
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
                     <input ngModel name="budget_name" required class=input #budget_name placeholder='שם סעיף תקציבי' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <span class="tooltiptext">שם סעיף תקציבי</span>
+                    </div>
+                    <div class="tooltip">
                     <input ngModel name="execute_status" required class=input #execute_status placeholder='סטטוס מימוש'  />
+                    <span class="tooltiptext">סטטוס מימוש</span>
+                    </div>
                 </ion-col>
                 <ion-col>
+                    <div class="tooltip">
                     <input ngModel name="amount" required class=input #amount placeholder='סכום' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <span class="tooltiptext">סכום</span>
+                    </div>
                 </ion-col>
             </ion-row>
-        </ion-grid> 
-                    <!--<ng-container *ngFor='let field of fields'>
-                        <input *ngIf='field.type !== "select"' [type]='field.type' [placeholder]='field.placeholder' />
-                        <select *ngIf='field.type === "select"'>
-                            <option *ngFor='let option of field.options' [value]='option.value'>{{option.label}}</option>
-                        </select>
-                    </ng-container>-->
-    
+        </ion-grid>     
             <button  ion-button class="add_button" type="submit" >יצירת טופס</button> 
         </form>
             <button  class="edit_button" (click)='edit_db()'>עדכון</button>

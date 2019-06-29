@@ -32,7 +32,6 @@ export class CatalogTablePage implements OnInit {
   @ViewChild('businessNum') businessNum_field
   @ViewChild('businessType') businessType_field
   @ViewChild('graphics') graphics_field
-  @ViewChild('equipment') equipment_field
   @ViewChild('timeAfter') timeAfter_field
   @ViewChild('timeBefore') timeBefore_field
   @ViewChild('timeShow') timeShow_field
@@ -47,6 +46,7 @@ export class CatalogTablePage implements OnInit {
   @ViewChild('commants') commants_field
 
   audience: string="";
+  equipment: string="";
   docs=[]
   doc:any
   dataFromDatabase = []
@@ -69,7 +69,6 @@ export class CatalogTablePage implements OnInit {
   static s_businessNum_field:any
   static s_businessType_field:any
   static s_graphics_field:any
-  static s_equipment_field:any
   static s_timeBefore_field:any
   static s_timeAfter_field:any
   static s_timeShow_field:any
@@ -84,6 +83,7 @@ export class CatalogTablePage implements OnInit {
   static s_commants_field:any
   static s_time: any;
   static s_audience: any;
+  static s_equipment: any
 
   constructor(
     private router: Router,
@@ -189,7 +189,6 @@ export class CatalogTablePage implements OnInit {
      CatalogTablePage.s_businessNum_field = docParam.businessNum
      CatalogTablePage.s_businessType_field = docParam.businessType
      CatalogTablePage.s_graphics_field = docParam.graphics
-     CatalogTablePage.s_equipment_field = docParam.equipment
      CatalogTablePage.s_timeAfter_field = docParam.timeAfter
      CatalogTablePage.s_timeBefore_field = docParam.timeBefore
      CatalogTablePage.s_timeShow_field = docParam.timeShow
@@ -204,6 +203,7 @@ export class CatalogTablePage implements OnInit {
      CatalogTablePage.s_commants_field = docParam.commants
      CatalogTablePage.s_time = docParam.time
      CatalogTablePage.s_audience = docParam.audience.join('|')
+     CatalogTablePage.s_equipment = docParam.equipment.join('|')
   this.router.navigateByUrl('/home/catalog-edit')
   })
 }

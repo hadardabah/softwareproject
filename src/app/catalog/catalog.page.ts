@@ -27,7 +27,6 @@ export class CatalogPage implements OnInit {
   @ViewChild('businessNum') businessNum_field
   @ViewChild('businessType') businessType_field
   @ViewChild('graphics') graphics_field
-  @ViewChild('equipment') equipment_field
   @ViewChild('timeAfter') timeAfter_field
   @ViewChild('timeBefore') timeBefore_field
   @ViewChild('timeShow') timeShow_field
@@ -53,11 +52,12 @@ export class CatalogPage implements OnInit {
     })
   }
   audience: string="";
+  equipment: string="";
   
   addShow(form: NgForm){
     for(let i = 0; i < this.dataFromDatabase.length; i++){
       if(this.dataFromDatabase[i].show == this.show_field.nativeElement.value){
-        window.alert("כבר קיים מופע בשם זה")
+        window.alert("קיים מופע בשם זה במאגר")
         return;
       }
     }
@@ -78,7 +78,7 @@ export class CatalogPage implements OnInit {
       businessNum: this.businessNum_field.nativeElement.value,
       businessType: this.businessType_field.nativeElement.value,
       graphics: this.graphics_field.nativeElement.value,
-      equipment: this.equipment_field.nativeElement.value,
+      equipment: this.equipment,
       timeAfter: this.timeAfter_field.nativeElement.value,
       timeBefore: this.timeBefore_field.nativeElement.value,
       timeShow: this.timeShow_field.nativeElement.value,

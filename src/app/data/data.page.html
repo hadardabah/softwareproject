@@ -8,36 +8,50 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <input ngModel name="Building_name" required class=input #Building_name placeholder='שם המבנה' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                        <div class="tooltip">
+                            <input ngModel name="Building_name" required class=input #Building_name placeholder='שם המבנה' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                            <span class="tooltiptext">שם המבנה</span>
+                        </div>
+                        <div class="tooltip">
+                            <input ngModel name="contact_name" required class=input #contact_name placeholder='שם איש קשר לשריון' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                            <span class="tooltiptext">שם איש קשר לשריון</span>
+                        </div>
                     </ion-col>
                     <ion-col>
-                        <select ngModel name="type_building" required class=input #type_building oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
-                            <option value="" disabled selected>אופי המבנה</option>
-                            <option value="אולם מדורג" >אולם מדורג </option>
-                            <option value="אולם שטוח">אולם שטוח</option>
-                            <option value="חדר סדנא עם מקרן" >חדר סדנא עם מקרן</option>
-                            <option value="חדר סדנא בלי מקרן">חדר סדנא בלי מקרן</option>
-                        </select> 
+                        <div class="tooltip">
+                            <select ngModel name="type_building" required class=input #type_building oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                                <option value="" disabled selected>אופי המבנה</option>
+                                <option value="אולם מדורג" >אולם מדורג </option>
+                                <option value="אולם שטוח">אולם שטוח</option>
+                                <option value="חדר סדנא עם מקרן" >חדר סדנא עם מקרן</option>
+                                <option value="חדר סדנא בלי מקרן">חדר סדנא בלי מקרן</option>
+                            </select> 
+                            <span class="tooltiptext">אופי המבנה</span>
+                        </div>
+                        <div class="tooltip">
+                            <input ngModel type="tel" pattern="[0]{1}[0-9]{2}-[0-9]{7}" name="contact_phone" required class=input #contact_phone placeholder='טלפון איש קשר לשריון' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/> 
+                            <span class="tooltiptext">טלפון איש קשר לשריון</span>
+                        </div>
                     </ion-col>
                     <ion-col>
+                        <div class="tooltip">
                             <input ngModel name="Building_address" required class=input #Building_address placeholder='כתובת המבנה' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                            <span class="tooltiptext">כתובת המבנה</span>
+                        </div>
+                        <div class="tooltip">
+                            <input type="email" ngModel name="mailcontact" required class=input #mailcontact placeholder='דוא"ל איש קשר לשריון ' oninvalid="this.setCustomValidity('')" oninput="setCustomValidity('')"/>
+                            <span class="tooltiptext">דוא"ל איש קשר לשריון</span>
+                        </div>
                     </ion-col>
                     <ion-col>
-                        <input ngModel name="capacity" required class=input type="number" #capacity placeholder='קיבולת ' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <input ngModel name="contact_name" required class=input #contact_name placeholder='שם איש קשר לשריון' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
-                    </ion-col>
-                    <ion-col>
-                        <input ngModel name="contact_phone" required class=input #contact_phone placeholder='טלפון איש קשר לשריון' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/> 
-                    </ion-col>
-                    <ion-col>
-                        <input type="email" ngModel name="mailcontact" required class=input #mailcontact placeholder='דוא"ל איש קשר לשריון ' oninvalid="this.setCustomValidity('')" oninput="setCustomValidity('')"/>
-                    </ion-col>
-                    <ion-col>
-                        <input class=input #comma placeholder='הערות נוספות' />
+                        <div class="tooltip">
+                            <input ngModel name="capacity" required class=input type="number" #capacity placeholder='קיבולת ' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                            <span class="tooltiptext">קיבולת</span>
+                        </div>
+                        <div class="tooltip">
+                            <input class=input #comma placeholder='הערות נוספות' />
+                            <span class="tooltiptext">הערות נוספות</span>
+                        </div>
                     </ion-col>
                 </ion-row>
             </ion-grid> 

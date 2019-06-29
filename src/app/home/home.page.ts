@@ -47,18 +47,25 @@ export class HomePage {
   async logout() {
     const alert = await this.alertController.create({
       header: 'התנתק',
-      message: 'אתה עומד להתנתק עכשיו',
+      message: 'האם אתה בטוח שברצונך להתנתק?',
       buttons: [{
-        text: 'המשך',
+        text: 'אישור',
         handler: () => {
           this.userAuth.auth.signOut().then(() => {
             this.router.navigateByUrl('/login');
           }).catch((error) => console.log(error));
         }
       }, {
-        text: 'עדיין לא'
-      }]
+        text: 'ביטול'
+      }],
+      cssClass: 'my-alert'
     });
     alert.present();
+  }
+
+  home(){
+    location.reload();
+    this.router.navigateByUrl('/home')
+    
   }
 }

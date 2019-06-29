@@ -7,7 +7,7 @@ body{
   float: right;
   text-align: right;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin-bottom: 1%;
+  margin-bottom: 7%;
 }
 
 .rtl{
@@ -31,6 +31,14 @@ ion-grid{
   left: 10%;
   transform: translateY(-50%);
   border-radius: 5px;
+  outline: none;
+}
+
+.add_button:hover{
+  background-color: #acca00;
+  outline: none;
+  opacity: 1;
+  transition: background-color 0.2s;
 }
 
 .edit_button{
@@ -45,6 +53,14 @@ ion-grid{
   left: 4%;
   transform: translateY(-50%);
   border-radius: 5px;
+  outline: none;
+}
+
+.edit_button:hover{
+  background-color: #da001d;
+  outline: none;
+  opacity: 1;
+  transition: background-color 0.2s;
 }
 
 ::placeholder {
@@ -109,4 +125,42 @@ h1{
   height: 140px;
   margin: auto;
   margin-bottom: 1%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 70%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0.9;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

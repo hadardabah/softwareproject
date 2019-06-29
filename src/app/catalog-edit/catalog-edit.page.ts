@@ -29,7 +29,6 @@ export class CatalogEditPage {
   @ViewChild('businessNum') businessNum_field
   @ViewChild('businessType') businessType_field
   @ViewChild('graphics') graphics_field
-  @ViewChild('equipment') equipment_field
   @ViewChild('timeAfter') timeAfter_field
   @ViewChild('timeBefore') timeBefore_field
   @ViewChild('timeShow') timeShow_field
@@ -55,6 +54,30 @@ export class CatalogEditPage {
     elementary_girls: false
   }
 
+  e_categories = {
+    no_need: false,
+    artist: false,
+    mike1: false,
+    mike2: false,
+    mike3: false,
+    mike4: false,
+    mike5: false,
+    wireless_mike1: false,
+    wireless_mike2: false,
+    wireless_mike3: false,
+    wireless_mike4: false,
+    wireless_mike5: false,
+    madonna1: false,
+    madonna2: false,
+    projector: false,
+    screen: false,
+    stage_lighting: false,
+    chairs: false,
+    stage_table: false,
+    table_for_usher: false,
+    computer: false,
+  }
+
   dataFromDatabase = []
   constructor(private router: Router,private db: AngularFirestore, private ngZone:NgZone, private cdRef:ChangeDetectorRef) { }
 
@@ -65,7 +88,8 @@ export class CatalogEditPage {
     })
   }
   
-  onChange(data) {
+  onAudienceChange(data) {
+    console.log(data)
     const selectedOptions = Array.from(data.target.selectedOptions).map(i => i['value'])
     if(selectedOptions.includes('ילדים')) this.categories.boys_children = true
     else this.categories.boys_children = false
@@ -96,6 +120,77 @@ export class CatalogEditPage {
 
   }
 
+  onEquipmentChange(d){
+    console.log(this.e_categories)
+    console.log(d)
+    const selectedOptions = Array.from(d.target.selectedOptions).map(i => i['value'])
+    if(selectedOptions.includes('אין צורך בציוד כלל')) this.e_categories.no_need = true
+    else this.e_categories.no_need = false
+
+    if(selectedOptions.includes('האומן מביא איתו את כל הציוד')) this.e_categories.artist = true
+    else this.e_categories.artist = false
+
+    if(selectedOptions.includes('מיקרופון חוטי 1')) this.e_categories.mike1 = true
+    else this.e_categories.mike1 = false
+
+    if(selectedOptions.includes('מיקרופון חוטי 2')) this.e_categories.mike2 = true
+    else this.e_categories.mike2 = false
+
+    if(selectedOptions.includes('מיקרופון חוטי 3')) this.e_categories.mike3 = true
+    else this.e_categories.mike3 = false
+
+    if(selectedOptions.includes('מיקרופון חוטי 4')) this.e_categories.mike4 = true
+    else this.e_categories.mike4 = false
+
+    if(selectedOptions.includes('מיקרופון חוטי 5')) this.e_categories.mike5 = true
+    else this.e_categories.mike5 = false
+
+    if(selectedOptions.includes('מקרופון אל-חוטי 1')) this.e_categories.wireless_mike1 = true
+    else this.e_categories.wireless_mike1 = false
+
+    if(selectedOptions.includes('מיקרופון אל-חוטי 2')) this.e_categories.wireless_mike2 = true
+    else this.e_categories.wireless_mike2 = false
+
+    if(selectedOptions.includes('מיקרופון אל-חוטי 3')) this.e_categories.wireless_mike3 = true
+    else this.e_categories.wireless_mike3 = false
+
+    if(selectedOptions.includes('מיקרופון אל-חוטי 4')) this.e_categories.wireless_mike4 = true
+    else this.e_categories.wireless_mike4 = false
+
+    if(selectedOptions.includes('מיקרופון אל-חוטי 5')) this.e_categories.wireless_mike5 = true
+    else this.e_categories.wireless_mike5 = false
+
+    if(selectedOptions.includes('מדונה 1')) this.e_categories.madonna1 = true
+    else this.e_categories.madonna1 = false
+
+    if(selectedOptions.includes('מדונה 2')) this.e_categories.madonna2 = true
+    else this.e_categories.madonna2 = false
+
+    if(selectedOptions.includes('מקרן')) this.e_categories.projector = true
+    else this.e_categories.projector = false
+
+    if(selectedOptions.includes('מסך')) this.e_categories.screen = true
+    else this.e_categories.screen = false
+
+    if(selectedOptions.includes('תאורת במה')) this.e_categories.stage_lighting = true
+    else this.e_categories.stage_lighting = false
+
+    if(selectedOptions.includes('כסאות כתר')) this.e_categories.chairs = true
+    else this.e_categories.chairs = false
+
+    if(selectedOptions.includes('שולחן על הבמה')) this.e_categories.stage_table = true
+    else this.e_categories.stage_table = false
+    
+    if(selectedOptions.includes('שולחן לסדרן בכניסה לאולם')) this.e_categories.table_for_usher = true
+    else this.e_categories.table_for_usher = false
+
+    if(selectedOptions.includes('מחשב')) this.e_categories.computer = true
+    else this.e_categories.computer = false
+
+    console.log(selectedOptions)
+    console.log(this.e_categories)
+  }
+
   ngAfterViewChecked()
   {
    if(CatalogTablePage.s_time!='' && CatalogTablePage.s_time!= this.time_field.nativeElement.value )
@@ -115,7 +210,6 @@ export class CatalogEditPage {
       this.businessNum_field.nativeElement.value = CatalogTablePage.s_businessNum_field
       this.businessType_field.nativeElement.value = CatalogTablePage.s_businessType_field
       this.graphics_field.nativeElement.value = CatalogTablePage.s_graphics_field
-      this.equipment_field.nativeElement.value = CatalogTablePage.s_equipment_field
       this.timeBefore_field.nativeElement.value = CatalogTablePage.s_timeBefore_field
       this.timeAfter_field.nativeElement.value = CatalogTablePage.s_timeAfter_field
       this.timeShow_field.nativeElement.value = CatalogTablePage.s_timeShow_field
@@ -139,6 +233,30 @@ export class CatalogEditPage {
         if(item === 'גיל הזהב - נשים') this.categories.golden_age = true
         if(item === 'בנות היסודי') this.categories.elementary_girls = true
       })
+
+      CatalogTablePage.s_equipment.split('|').forEach(item => {
+        if(item === 'אין צורך בציוד כלל') this.e_categories.no_need = true
+        if(item === 'האומן מביא איתו את כל הציוד') this.e_categories.artist = true
+        if(item === 'מיקרופון חוטי 1') this.e_categories.mike1 = true
+        if(item === 'מיקרופון חוטי 2') this.e_categories.mike2 = true
+        if(item === 'מיקרופון חוטי 3') this.e_categories.mike3 = true
+        if(item === 'מיקרופון חוטי 4') this.e_categories.mike4 = true
+        if(item === 'מיקרופון חוטי 5') this.e_categories.mike5 = true
+        if(item === 'מקרופון אל-חוטי 1') this.e_categories.wireless_mike1 = true
+        if(item === 'מקרופון אל-חוטי 2') this.e_categories.wireless_mike2 = true
+        if(item === 'מקרופון אל-חוטי 3') this.e_categories.wireless_mike3 = true
+        if(item === 'מקרופון אל-חוטי 4') this.e_categories.wireless_mike4 = true
+        if(item === 'מקרופון אל-חוטי 5') this.e_categories.wireless_mike5 = true
+        if(item === 'מדונה 1') this.e_categories.madonna1 = true
+        if(item === 'מדונה 2') this.e_categories.madonna2 = true
+        if(item === 'מקרן') this.e_categories.projector = true
+        if(item === 'מסך') this.e_categories.screen = true
+        if(item === 'תאורת במה') this.e_categories.stage_lighting = true
+        if(item === 'כסאות כתר') this.e_categories.chairs = true
+        if(item === 'שולחן על הבמה') this.e_categories.stage_table = true
+        if(item === 'שולחן לסדרן בכניסה לאולם') this.e_categories.table_for_usher = true
+        if(item === 'מחשב') this.e_categories.computer = true
+      })
    }
    this.cdRef.detectChanges();
   }
@@ -151,6 +269,7 @@ edit_db(form: NgForm) {
 
 updateData(docid){
   console.log(this.categories)
+  console.log(this.e_categories)
   this.db.collection('Show').doc(docid).update({
       show: this.show_field.nativeElement.value,
       artist: this.artist_field.nativeElement.value,
@@ -167,7 +286,6 @@ updateData(docid){
       businessNum: this.businessNum_field.nativeElement.value,
       businessType: this.businessType_field.nativeElement.value,
       graphics: this.graphics_field.nativeElement.value,
-      equipment: this.equipment_field.nativeElement.value,
       timeAfter: this.timeAfter_field.nativeElement.value,
       timeBefore: this.timeBefore_field.nativeElement.value,
       timeShow: this.timeShow_field.nativeElement.value,
@@ -181,7 +299,8 @@ updateData(docid){
       imgGraphics: this.imgGraphics_field.nativeElement.value,
       commants: this.commants_field.nativeElement.value,
       time: this.time_field.nativeElement.value,
-      audience: this.getCategoriesAsString()
+      audience: this.getCategoriesAsString(),
+      equipment: this.getECategoriesAsString()
     }).then(()=>{
       this.ionViewDidEnter()
       alert('הרשומה התעדכנה')
@@ -199,6 +318,32 @@ getCategoriesAsString() {
     if(this.categories.golden_age) options.push('גיל הזהב - נשים')
     if(this.categories.elementary_girls) options.push('בנות היסודי')
   return options
+}
+
+getECategoriesAsString(){
+  let e_options = []
+    if(this.e_categories.no_need) e_options.push('אין צורך בציוד כלל')
+    if(this.e_categories.artist) e_options.push('האומן מביא איתו את כל הציוד')
+    if(this.e_categories.mike1) e_options.push('מיקרופון חוטי 1')
+    if(this.e_categories.mike2) e_options.push('מיקרופון חוטי 2')
+    if(this.e_categories.mike3) e_options.push('מיקרופון חוטי 3')
+    if(this.e_categories.mike4) e_options.push('מיקרופון חוטי 4')
+    if(this.e_categories.mike5) e_options.push('מיקרופון חוטי 5')
+    if(this.e_categories.wireless_mike1) e_options.push('מקרופון אל-חוטי 1')
+    if(this.e_categories.wireless_mike2) e_options.push('מיקרופון אל-חוטי 2')
+    if(this.e_categories.wireless_mike3) e_options.push('מיקרופון אל-חוטי 3')
+    if(this.e_categories.wireless_mike4) e_options.push('מיקרופון אל-חוטי 4')
+    if(this.e_categories.wireless_mike5) e_options.push('מיקרופון אל-חוטי 5')
+    if(this.e_categories.madonna1) e_options.push('מדונה 1')
+    if(this.e_categories.madonna2) e_options.push('מדונה 2')
+    if(this.e_categories.projector) e_options.push('מקרן')
+    if(this.e_categories.screen) e_options.push('מסך')
+    if(this.e_categories.stage_lighting) e_options.push('תאורת במה')
+    if(this.e_categories.chairs) e_options.push('כסאות כתר')
+    if(this.e_categories.stage_table) e_options.push('שולחן על הבמה')
+    if(this.e_categories.table_for_usher) e_options.push('שולחן לסדרן בכניסה לאולם')
+    if(this.e_categories.computer) e_options.push('מחשב')
+  return e_options
 }
    
 }

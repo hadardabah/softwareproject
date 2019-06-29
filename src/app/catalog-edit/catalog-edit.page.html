@@ -8,8 +8,18 @@
             <h2>פרטי המופע</h2>
             <ion-row>
                 <ion-col>
-                  <input  name="show" required class=input  #show  placeholder='שם המופע' />
-                  <select (change)='onChange($event)' multiple class=input name="audience" required> 
+                  <div class="tooltip">
+                  <input  name="show" required class=input  #show  placeholder='שם המופע' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                  <span class="tooltiptext">שם המופע</span>
+                  </div>
+
+                  <div class="tooltip">
+                    <input class=input #whoWatch placeholder='מי צפה במופע לדוגמא'  />
+                    <span class="tooltiptext">מי צפה במופע לדוגמא</span> 
+                  </div>
+
+                  <div class="tooltip">
+                  <select (change)='onAudienceChange($event)' multiple class=input name="audience" required oninvalid="this.setCustomValidity('יש לבחור לפחות פריט אחד מהרשימה')" oninput="setCustomValidity('')"> 
                       <option [selected]='categories.boys_children' ion-select-option value="ילדים" > ילדים
                       <option [selected]='categories.girls_children' ion-select-option value="ילדות" > ילדות
                       <option [selected]='categories.youth' ion-select-option value="נערות" > נערות
@@ -18,25 +28,37 @@
                       <option [selected]='categories.fathers_and_sons' ion-select-option value="אבות ובנים" > אבות ובנים
                       <option [selected]='categories.golden_age' ion-select-option value="גיל הזהב - נשים" > גיל הזהב - נשים
                       <option [selected]='categories.elementary_girls' ion-select-option value="בנות היסודי" > בנות היסודי  
-                  </select> 
+                  </select>
+                  <span class="tooltiptext">אוכלוסיית יעד אפשרית</span> 
+                  </div>
                 </ion-col>
                 <ion-col>
-                  <input class=input #whoWatch placeholder='מי צפה במופע לדוגמא'  />
+                  
+                  <div class="tooltip">
                   <select  class=input #showType>
-                      <option value="" disabled selected>סוג מופע</option>
+                      <option value="" disabled selected>סוג המופע</option>
                       <option value="הופעה" >הופעה</option>
                       <option value="סדנא">סדנא</option>
                   </select>
+                  <span class="tooltiptext">סוג המופע</span> 
+                  </div>
+
+                  <div class="tooltip">
                   <input  type="tel" class=input placeholder="זמן נדרש להכנות לפני המופע" #timeBefore pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required>
-                  <select name="graphics" required class=input #graphics>
-                      <option value="" disabled selected>יש גרפיקה מוכנה של המופע?</option>
-                      <option value="כן">כן</option>
-                      <option value="לא">לא</option>
-                    </select>
+                  <span class="tooltiptext">זמן נדרש להכנות לפני המופע</span> 
+                  </div>
+
+                  <div class="tooltip">
+                    <input name="priceShow" required type="number" min="0" class=input #priceFirstShow placeholder='עלות מופע ראשון' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <span class="tooltiptext">עלות מופע ראשון</span> 
+                  </div>
+
+                  
                 </ion-col>
                 <ion-col>
-                  <input  name="priceShow" required class=input #priceFirstShow placeholder='עלות מופע ראשון'/>
-                  <select  class=input #showCharacter>
+                  
+                  <div class="tooltip">
+                  <select class=input #showCharacter oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                       <option value="" disabled selected>אופי המופע</option>
                       <option value="הצגה חיה" >הצגה חיה</option>
                       <option value="הקרנה">הקרנה</option>
@@ -49,37 +71,60 @@
                       <option value="סדנת יצירה אישית" >סדנת יצירה אישית</option>
                       <option value="הרצאה">הרצאה</option>
                   </select>
-                  <input  type="tel" class=input placeholder="זמן נדרש לארגון לאחר המופע" #timeAfter pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required>
-                  <input  name="priceDriver" required class=input #priceDriver placeholder='עלות נסיעות' />
+                  <span class="tooltiptext">אופי המופע</span> 
+                  </div>
+                  <div class="tooltip">
+                  <input type="tel" class=input placeholder="זמן נדרש לארגון לאחר המופע" #timeAfter pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                  <span class="tooltiptext">זמן נדרש לארגון לאחר המופע</span> 
+                  </div>
+
+                  <div class="tooltip">
+                    <input name="priceShow" type="number" min="0" class=input #priceSecondShow placeholder='עלות מופע חוזר'/>
+                    <span class="tooltiptext">עלות מופע חוזר</span> 
+                  </div>
                 </ion-col>
                 <ion-col>
-                  <input name="priceShow" required class=input #priceSecondShow placeholder='עלות מופע חוזר'/>
-                  <select name="equipment" required class=input #equipment>
-                      <option value="" disabled selected hidden>ציוד נדרש</option>
-                      <option value="אין צורך בציוד כלל">אין צורך בציוד כלל</option>
-                      <option value="האומן מביא איתו את כל הציוד הנדרש">האומן מביא איתו את כל הציוד הנדרש</option>
-                      <option value="מיקרופון חוטי 1">מיקרופון חוטי 1</option>
-                      <option value="מיקרופון חוטי 2">מיקרופון חוטי 2</option>
-                      <option value="מיקרופון חוטי 3">מיקרופון חוטי 3</option>
-                      <option value="מיקרופון חוטי 4">מיקרופון חוטי 4</option>
-                      <option value="מיקרופון חוטי 5">מיקרופון חוטי 5</option>
-                      <option value="מקרופון אל-חוטי 1">מקרופון אל-חוטי 1</option>
-                      <option value="מקרופון אל-חוטי 2">מקרופון אל-חוטי 2</option>
-                      <option value="מקרופון אל-חוטי 3">מקרופון אל-חוטי 3</option>
-                      <option value="מקרופון אל-חוטי 4">מקרופון אל-חוטי 4</option>
-                      <option value="מקרופון אל-חוטי 5">מקרופון אל-חוטי 5</option>
-                      <option value="מדונה 1">מדונה 1</option>
-                      <option value="מדונה 2">מדונה 2</option>
-                      <option value="מקרן">מקרן</option>
-                      <option value="מסך">מסך</option>
-                      <option value="תאורת במה">תאורת במה</option>
-                      <option value="כסאות כתר">כסאות כתר</option>
-                      <option value="שולחן על הבמה">שולחן על הבמה</option>
-                      <option value="שולחן לסדרן בכניסה לאולם">שולחן לסדרן בכניסה לאולם</option>
-                      <option value="מחשב">מחשב</option>
+                  <div class="tooltip">
+                    <select name="graphics" required class=input #graphics oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
+                      <option value="" disabled selected>יש גרפיקה מוכנה של המופע?</option>
+                      <option value="כן">כן</option>
+                      <option value="לא">לא</option>
+                    </select>
+                  <span class="tooltiptext">יש גרפיקה מוכנה של המופע?</span> 
+                  </div>
+
+                  <div class="tooltip">
+                    <input required type="tel" class=input placeholder="משך זמן המופע" #timeShow pattern="[0-9]{2}:[0-5]{1}[0-9]{1}"/>
+                    <span class="tooltiptext">משך זמן המופע</span> 
+                  </div>
+                  
+                  <div class="tooltip">
+                  <select (change)='onEquipmentChange($event)' multiple class=input name="equipment" required oninvalid="this.setCustomValidity('יש לבחור לפחות פריט אחד מהרשימה')" oninput="setCustomValidity('')">
+                      <option [selected]='e_categories.no_need' ion-select-option value="אין צורך בציוד כלל">אין צורך בציוד כלל
+                      <option [selected]='e_categories.artist' ion-select-option value="האומן מביא איתו את כל הציוד">האומן מביא איתו את כל הציוד
+                      <option [selected]='e_categories.mike1' ion-select-option value="מיקרופון חוטי 1">מיקרופון חוטי 1
+                      <option [selected]='e_categories.mike2' ion-select-option value="מיקרופון חוטי 2">מיקרופון חוטי 2
+                      <option [selected]='e_categories.mike3' ion-select-option value="מיקרופון חוטי 3">מיקרופון חוטי 3
+                      <option [selected]='e_categories.mike4' ion-select-option value="מיקרופון חוטי 4">מיקרופון חוטי 4
+                      <option [selected]='e_categories.mike5' ion-select-option value="מיקרופון חוטי 5">מיקרופון חוטי 5
+                      <option [selected]='e_categories.wireless_mike1' ion-select-option value="מקרופון אל-חוטי 1">מקרופון אל-חוטי 1
+                      <option [selected]='e_categories.wireless_mike2' ion-select-option value="מקרופון אל-חוטי 2">מקרופון אל-חוטי 2
+                      <option [selected]='e_categories.wireless_mike3' ion-select-option value="מקרופון אל-חוטי 3">מקרופון אל-חוטי 3
+                      <option [selected]='e_categories.wireless_mike4' ion-select-option value="מקרופון אל-חוטי 4">מקרופון אל-חוטי 4
+                      <option [selected]='e_categories.wireless_mike5' ion-select-option value="מקרופון אל-חוטי 5">מקרופון אל-חוטי 5
+                      <option [selected]='e_categories.madonna1' ion-select-option value="מדונה 1">מדונה 1
+                      <option [selected]='e_categories.madonna2' ion-select-option value="מדונה 2">מדונה 2
+                      <option [selected]='e_categories.projector' ion-select-option value="מקרן">מקרן
+                      <option [selected]='e_categories.screen' ion-select-option value="מסך">מסך
+                      <option [selected]='e_categories.stage_lighting' ion-select-option value="תאורת במה">תאורת במה
+                      <option [selected]='e_categories.chairs' ion-select-option value="כסאות כתר">כסאות כתר
+                      <option [selected]='e_categories.stage_table' ion-select-option value="שולחן על הבמה">שולחן על הבמה
+                      <option [selected]='e_categories.table_for_usher' ion-select-option value="שולחן לסדרן בכניסה לאולם">שולחן לסדרן בכניסה לאולם
+                      <option [selected]='e_categories.computer' ion-select-option value="מחשב">מחשב
                   </select>
-                  <input   type="tel" class=input placeholder="משך זמן המופע" #timeShow pattern="[0-9]{2}:[0-5]{1}[0-9]{1}" required>  
-                  <input  type="text" class=input #time>  
+                  <span class="tooltiptext">ציוד נדרש</span> 
+                  </div>
+                  
                 </ion-col>
               </ion-row>
             </div>
@@ -88,19 +133,41 @@
                 <h2>פרטי התקשרות</h2>
               <ion-row>
                 <ion-col>
-                  <input  name="Provider" required class=input #Provider placeholder='שם ספק'/>
-                  <input  name="artist" required class=input #artist placeholder='שם האומן'/>
+                    <div class="tooltip">
+                    <input name="Provider" required class=input #Provider placeholder='שם הספק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <span class="tooltiptext">שם הספק</span> 
+                    </div>
+                    <div class="tooltip">
+                    <input name="artist" required class=input #artist placeholder='שם האומן' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <span class="tooltiptext">שם האומן</span> 
+                    </div>
                 </ion-col>
                 <ion-col>
-                  <input  name="phoneProvid" required class=input type = "tel" #phoneProvid placeholder='טלפון ספק' />
-                  <input class=input type = "tel"  #phoneArt placeholder='טלפון ישיר לאומן' />
+                    <div class="tooltip">
+                    <input name="phoneProvid" required class=input type = "tel" #phoneProvid placeholder='טלפון ספק' pattern="[0]{1}[0-9]{2}-[0-9]{7}" oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <span class="tooltiptext">טלפון ספק</span> 
+                    </div>
+                    <div class="tooltip">
+                    <input class=input type = "tel"  #phoneArt placeholder='טלפון ישיר לאומן' pattern="[0]{1}[0-9]{2}-[0-9]{7}"/>
+                    <span class="tooltiptext">טלפון ישיר לאומן</span> 
+                    </div>
                 </ion-col>
                 <ion-col>
-                    <input  class=input type = "tel"  #phone2Provid placeholder='טלפון נוסף של ספק' />
-                    <input   class=input type = "email" #mailArt placeholder='דוא"ל ישיר לאומן' />
+                    <div class="tooltip">
+                    <input class=input type = "tel"  #phone2Provid placeholder='טלפון נוסף של ספק' pattern="[0]{1}[0-9]{2}-[0-9]{7}"/>
+                    <span class="tooltiptext">טלפון נוסף של ספק</span> 
+                    </div>
+                    <div class="tooltip">
+                    <input class=input type = "email" #mailArt placeholder='דוא"ל ישיר לאומן' />
+                    <span class="tooltiptext">דוא"ל ישיר לאומן</span> 
+                    </div>
                 </ion-col>
                 <ion-col>
-                  <input  class=input type = "email"  #mailProvid placeholder='דוא"ל ספק' />
+                    <div class="tooltip">
+                    <input name="mailProvid" required class=input type="email" #mailProvid placeholder='דוא"ל ספק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <span class="tooltiptext">דוא"ל ספק</span> 
+                    </div>
+                    <input type="text" class=input #time>  
                 </ion-col>
               </ion-row>
               </div>
@@ -109,12 +176,16 @@
               <h2>כללי</h2>
               <ion-row>
                   <ion-col>
-                      <select  name="limitParticipants" required class=input #limitParticipants>
+                      <div class="tooltip">
+                      <select  name="limitParticipants" required class=input #limitParticipants oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                           <option value="" disabled selected>הגבלת משתתפים לתמחור?</option>
                           <option value="כן">כן</option>
                           <option value="לא">לא</option>
                       </select>
-                      <select  name="businessType" required class=input #businessType>
+                      <span class="tooltiptext">הגבלת משתתפים לתמחור?</span> 
+                      </div>
+                      <div class="tooltip">
+                      <select  name="businessType" required class=input #businessType oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                           <option value="" disabled selected hidden>סוג עוסק</option>
                           <option value="שכיר">שכיר</option>
                           <option value="עמותה">עמותה</option>
@@ -122,27 +193,47 @@
                           <option value="עוסק פטור">עוסק פטור</option>
                           <option value="עוסק מורשה">עוסק מורשה</option>
                       </select>
+                      <span class="tooltiptext">סוג עוסק</span> 
+                      </div>
                       <input  type="file" name="file" id="file" #bid class="inputfile"/>
                       <label for="file"><strong>העלאת הצע"מ</strong></label>
                   </ion-col>
                   <ion-col>
+                      <div class="tooltip">
                       <input  type="number" name="nuclearPrice" required class=input #nuclearPrice placeholder='מספר משתתפים למחיר גרעיני' />
-                      <input  name="businessNum" required class=input #businessNum placeholder='מספר עוסק' />
+                      <span class="tooltiptext">מספר משתתפים למחיר גרעיני</span> 
+                      </div>
+                      <div class="tooltip">
+                      <input  name="businessNum" required class=input #businessNum placeholder='מספר עוסק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                      <span class="tooltiptext">מספר עוסק</span> 
+                      </div>
                       <input  type="file" name="file" id="file" #imgGraphics class="inputfile"/>
                       <label for="file"><strong>העלאת גרפיקה</strong></label>
                   </ion-col>
                   <ion-col>
+                      <div class="tooltip">
                       <input type="number"  name="extraParticipants" required class=input #extraParticipants placeholder='מספר משתתפים לתוספת' />
-                      <input class=input name ="commants" type="text" #commants placeholder='הערות נוספות' />
+                      <span class="tooltiptext">מספר משתתפים לתוספת</span> 
+                      </div>
+                      <div class="tooltip">
+                        <input name="priceDriver" type="number" min="0" class=input #priceDriver placeholder='עלות נסיעות' />
+                        <span class="tooltiptext">עלות נסיעות</span> 
+                      </div>
                   </ion-col>
                   <ion-col>
+                      <div class="tooltip">
                       <input type="number"  name="extraPrice" required class=input #extraPrice placeholder='מחיר לתוספת משתתפים' />
+                      <span class="tooltiptext">מחיר לתוספת משתתפים</span> 
+                      </div>
+                      <div class="tooltip">
+                        <input class=input name ="commants" type="text" #commants placeholder='הערות נוספות' />
+                        <span class="tooltiptext">הערות נוספות</span> 
+                      </div>
                   </ion-col>
                 </ion-row>
             </div>
         </ion-grid>
         <button ion-button type="submit" class="ok_button" >אישור</button>
-
         <button ion-button class="cancel_button" routerLink="/home/catalog-table" id=button >חזרה לטבלת מופעים</button>
       </form>
 

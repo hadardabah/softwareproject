@@ -7,8 +7,10 @@
           <div class="menu_header">
               <h1>מודיעין עילית</h1>
               <h2>ניהול אירועים</h2>
-              <!--<i class='fa fa-home' style="font-size:20px;color:white;margin-left:80%;padding-bottom: 3%;"></i>-->
-              <i class='fas fa-user' (click)="logout()" style="font-size:20px;color:white;margin-left:80%;"></i>
+              <!--<button (click)="home()" class="home_btn">עמוד הבית<i class="fa fa-home"></i></button>-->
+              <button (click)="logout()" class="logout_btn">התנתק<i class='fas fa-user'></i></button>
+              <!--<i class='fa fa-home' (click)="home()" style="font-size:16px;color:white;margin-left:80%;margin-bottom:1%;"></i>
+              <i class='fas fa-user' (click)="logout()" style="font-size:16px;color:white;margin-left:80%;margin-bottom:1%;"></i>-->
           </div>
           
           <ul>
@@ -17,25 +19,13 @@
               <li><a routerLink="/home/human">משאבי אנוש<i class="fas fa-user-friends" style="margin-left: 10%"></i></a></li>
               <li><a routerLink="/home/budgets">תקציבים<i class="fa fa-money" style="margin-left: 10%"></i></a></li>
               <li><a routerLink="/home/data">מבנים<i class="fa fa-institution" style="margin-left: 10%"></i></a></li>
-              <li><a routerLink="/home/reports">הוספת משתמשים<i class="fa fa-line-chart" style="margin-left: 10%"></i></a></li>
+              <li><a routerLink="/home/reports">הוספת משתמשים<i class="fa fa-plus" style="margin-left: 10%"></i></a></li>
           </ul>  
         </div>
       </div> 
       <div class="left" > 
         
-       <!--<div style='border: 2px solid red; border-radius: 10px; height: 200px; width: 200px;'  *ngFor='let doc of dataFromDatabase'>
-          <h1>Name: {{doc.season}}</h1>
-          <p>
-              Age: {{doc.age}}
-          </p>
-        </div>--> 
-     
         <ion-router-outlet></ion-router-outlet>
-
-
-        <!-- <input #name placeholder='name' />
-        <input #age placeholder='age' />
-        <button (click)='saveData()'>Save!</button> -->
         
         <img class="mod" src="/assets/img/home_background.jpg">
       </div> 
