@@ -11,7 +11,7 @@ export class LoginGuardGuard implements CanActivate  {
   constructor(private userAuth: AngularFireAuth, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    return true
+    //return true
     if(this.userAuth.auth.currentUser == null) {
         this.router.navigateByUrl('login')
     }

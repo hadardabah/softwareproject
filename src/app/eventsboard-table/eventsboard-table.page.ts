@@ -205,13 +205,4 @@ export class EventsboardTablePage implements OnInit {
       }
     }
 }
-
-filter_table_ushers(param){
-  if(param.currentTarget.value== 'הרשימה המלאה')
-  {
-    this.dataFromDatabaseFiltered = this.dataFromDatabase
-    return
-  }
-  this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.ushers)
-}
 }

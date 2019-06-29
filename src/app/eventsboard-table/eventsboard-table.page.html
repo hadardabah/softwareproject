@@ -58,12 +58,6 @@
               <option value="בנות היסודי" > בנות היסודי  </option>
           </select> 
       </ion-col>
-      <ion-col>
-          <select name="ushers" class=input #ushers (change)='filter_table_ushers($event)'>
-              <option value="" disabled selected>סדרנים</option>
-              <option [value]="doc.name"  *ngFor='let doc of humanFromDatabase'>{{doc.name}}</option>
-          </select>
-    </ion-col>
       </ion-row>
     </ion-grid>
       
