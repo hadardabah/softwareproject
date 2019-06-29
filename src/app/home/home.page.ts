@@ -62,10 +62,4 @@ export class HomePage {
     });
     alert.present();
   }
-
-  home(){
-    location.reload();
-    this.router.navigateByUrl('/home')
-    
-  }
 }

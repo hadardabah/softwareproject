@@ -51,10 +51,10 @@
     <ion-grid>
         <ion-row>
             <ion-col>
-                <input class=input #name placeholder='שם פרטי + משפחה' (keyup)='applyFilter($event.target.value)'/>
+                <input class=input #name placeholder='שם פרטי + משפחה' (keyup)='applyNameFilter($event.target.value)'/>
             </ion-col>
             <ion-col>
-                <input class=input #id placeholder='מס זהות' maxlength="9" (keyup)='applyFilter($event.target.value)'/>       
+                <input class=input #id placeholder='מס זהות' maxlength="9" (keyup)='applyIdFilter($event.target.value)'/>       
             </ion-col>
         </ion-row>
     </ion-grid> 

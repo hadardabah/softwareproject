@@ -146,7 +146,7 @@ updateData(docid)
 }
 
 
-applyFilter(filterBy) {
+applyNameFilter(filterBy) {
   if(filterBy === '')
   {
     this.dataFromDatabaseFiltered = this.dataFromDatabase
@@ -157,12 +157,22 @@ applyFilter(filterBy) {
     if(item.name === filterBy) {
       this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
     }
-   else if(item.id === filterBy) {
+  })
+}
+
+applyIdFilter(filterBy) {
+  if(filterBy === '')
+  {
+    this.dataFromDatabaseFiltered = this.dataFromDatabase
+    return
+  }
+  this.dataFromDatabaseFiltered = []
+  this.dataFromDatabase.forEach(item => {
+    if(item.id === filterBy) {
       this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
     }
   })
 }
-
 
 
   delete(docParam) {

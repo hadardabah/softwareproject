@@ -188,7 +188,7 @@ export class EventsboardTablePage implements OnInit {
     }
     this.dataFromDatabaseFiltered = this.dataFromDatabase.filter(item => param.currentTarget.value == item.event_type)
   }
-//to do
+
   filter_table_audience(param){
     if(param.currentTarget.value== 'כלל הקהלים')
     {

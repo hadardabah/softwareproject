@@ -8,7 +8,7 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <input  class=input  #show  placeholder='שם המופע' (keyup)='applyFilter($event.target.value)' />
+          <input  class=input  #show  placeholder='שם המופע' (keyup)='applyShowFilter($event.target.value)' />
         </ion-col>
         <ion-col>
         <select class=input #audience  (change)='filter_audience($event)'> 
@@ -25,10 +25,10 @@
       </select> 
       </ion-col>
       <ion-col>
-      <input  class=input  #artist  placeholder='שם האומן' (keyup)='applyFilter($event.target.value)' />
+      <input  class=input  #artist  placeholder='שם האומן' (keyup)='applyArtistFilter($event.target.value)' />
       </ion-col>
       <ion-col>
-        <input  class=input  #Provider  placeholder='שם הספק' (keyup)='applyFilter($event.target.value)' />
+        <input  class=input  #Provider  placeholder='שם הספק' (keyup)='applyProviderFilter($event.target.value)' />
       </ion-col>
       <ion-col>
 
@@ -49,8 +49,6 @@
     </ion-col>
       </ion-row>
     </ion-grid>
-      
-      <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
       </div>
 
       <div id="scrolltable">     

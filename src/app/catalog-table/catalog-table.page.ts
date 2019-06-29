@@ -140,7 +140,7 @@ export class CatalogTablePage implements OnInit {
     }
   }
 
-  applyFilter(filterBy) {
+  applyArtistFilter(filterBy) {
     if(filterBy === '')
     {
       this.dataFromDatabaseFiltered = this.dataFromDatabase
@@ -151,23 +151,35 @@ export class CatalogTablePage implements OnInit {
       if(item.artist === filterBy) {
         this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
       }
-     else if(item.Provider === filterBy) {
-        this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
-      }
-      else if(item.show === filterBy) {
+    })
+  }
+
+  applyProviderFilter(filterBy) {
+    if(filterBy === '')
+    {
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
+      return
+    }
+    this.dataFromDatabaseFiltered = []
+    this.dataFromDatabase.forEach(item => {
+      if(item.Provider === filterBy) {
         this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
       }
     })
   }
 
- 
-  filter_artist(param){
-    if(param.currentTarget.value== 'כל המופעים')
+  applyShowFilter(filterBy) {
+    if(filterBy === '')
     {
-      this.dataFromDatabase = this.docs
+      this.dataFromDatabaseFiltered = this.dataFromDatabase
       return
     }
-    this.dataFromDatabase = this.docs.filter(item => param.currentTarget.value == item.artist)
+    this.dataFromDatabaseFiltered = []
+    this.dataFromDatabase.forEach(item => {
+      if(item.show === filterBy) {
+        this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, item]
+      }
+    })
   }
 
   async edit(docParam){
