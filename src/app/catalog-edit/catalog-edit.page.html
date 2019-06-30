@@ -144,30 +144,30 @@
                 </ion-col>
                 <ion-col>
                     <div class="tooltip">
-                    <input name="phoneProvid" required class=input type = "tel" #phoneProvid placeholder='טלפון ספק' pattern="[0]{1}[0-9]{2}-[0-9]{7}" oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <input name="phoneProvid" required class=input type = "tel" #phoneProvid placeholder='טלפון ספק'  pattern="[0]{1}[0-9]{2}-[0-9]{7}|[0]{1}[0-9]{1}-[0-9]{7}" oninvalid="this.setCustomValidity('מספר בפורמט 012-1234567 או 01-1234567')" oninput="setCustomValidity('')"/>
                     <span class="tooltiptext">טלפון ספק</span> 
                     </div>
                     <div class="tooltip">
-                    <input class=input type = "tel"  #phoneArt placeholder='טלפון ישיר לאומן' pattern="[0]{1}[0-9]{2}-[0-9]{7}"/>
+                    <input class=input type = "tel"  #phoneArt placeholder='טלפון ישיר לאומן'  pattern="[0]{1}[0-9]{2}-[0-9]{7}|[0]{1}[0-9]{1}-[0-9]{7}" oninvalid="this.setCustomValidity('מספר בפורמט 012-1234567 או 01-1234567')" oninput="setCustomValidity('')"/>
                     <span class="tooltiptext">טלפון ישיר לאומן</span> 
                     </div>
                 </ion-col>
                 <ion-col>
                     <div class="tooltip">
-                    <input class=input type = "tel"  #phone2Provid placeholder='טלפון נוסף של ספק' pattern="[0]{1}[0-9]{2}-[0-9]{7}"/>
+                    <input class=input type = "tel"  #phone2Provid placeholder='טלפון נוסף של ספק'  pattern="[0]{1}[0-9]{2}-[0-9]{7}|[0]{1}[0-9]{1}-[0-9]{7}" oninvalid="this.setCustomValidity('מספר בפורמט 012-1234567 או 01-1234567')" oninput="setCustomValidity('')"/>
                     <span class="tooltiptext">טלפון נוסף של ספק</span> 
                     </div>
                     <div class="tooltip">
-                    <input class=input type = "email" #mailArt placeholder='דוא"ל ישיר לאומן' />
+                    <input class=input type = "email" #mailArt placeholder='דוא"ל ישיר לאומן' oninvalid="this.setCustomValidity('דואר אלקטרוני בפורמט abc@def')" oninput="setCustomValidity('')" />
                     <span class="tooltiptext">דוא"ל ישיר לאומן</span> 
                     </div>
                 </ion-col>
                 <ion-col>
                     <div class="tooltip">
-                    <input name="mailProvid" required class=input type="email" #mailProvid placeholder='דוא"ל ספק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <input name="mailProvid" required class=input type="email" #mailProvid placeholder='דוא"ל ספק' oninvalid="this.setCustomValidity('דואר אלקטרוני בפורמט abc@def')" oninput="setCustomValidity('')"/>
                     <span class="tooltiptext">דוא"ל ספק</span> 
                     </div>
-                    <input type="text" class=input #time>  
+                    <input type="text" class=input #time style="height:0%; width:0%; ">  
                 </ion-col>
               </ion-row>
               </div>
@@ -200,11 +200,11 @@
                   </ion-col>
                   <ion-col>
                       <div class="tooltip">
-                      <input  type="number" name="nuclearPrice" required class=input #nuclearPrice placeholder='מספר משתתפים למחיר גרעיני' />
+                      <input  type="number"  min="0" name="nuclearPrice"  class=input #nuclearPrice placeholder='מספר משתתפים למחיר גרעיני' oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')" />
                       <span class="tooltiptext">מספר משתתפים למחיר גרעיני</span> 
                       </div>
                       <div class="tooltip">
-                      <input  name="businessNum" required class=input #businessNum placeholder='מספר עוסק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                      <input type="number" min="0" name="businessNum" required class=input #businessNum placeholder='מספר עוסק' oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')"/>
                       <span class="tooltiptext">מספר עוסק</span> 
                       </div>
                       <input  type="file" name="file" id="file" #imgGraphics class="inputfile"/>
@@ -212,17 +212,17 @@
                   </ion-col>
                   <ion-col>
                       <div class="tooltip">
-                      <input type="number"  name="extraParticipants" required class=input #extraParticipants placeholder='מספר משתתפים לתוספת' />
+                      <input type="number" min="0"  name="extraParticipants" class=input #extraParticipants placeholder='מספר משתתפים לתוספת' oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')" />
                       <span class="tooltiptext">מספר משתתפים לתוספת</span> 
                       </div>
                       <div class="tooltip">
-                        <input name="priceDriver" type="number" min="0" class=input #priceDriver placeholder='עלות נסיעות' />
+                        <input name="priceDriver" type="number" min="0" class=input #priceDriver placeholder='עלות נסיעות' oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')" />
                         <span class="tooltiptext">עלות נסיעות</span> 
                       </div>
                   </ion-col>
                   <ion-col>
                       <div class="tooltip">
-                      <input type="number"  name="extraPrice" required class=input #extraPrice placeholder='מחיר לתוספת משתתפים' />
+                      <input type="number" min="0"  name="extraPrice"  class=input #extraPrice placeholder='מחיר לתוספת משתתפים' oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')"/>
                       <span class="tooltiptext">מחיר לתוספת משתתפים</span> 
                       </div>
                       <div class="tooltip">

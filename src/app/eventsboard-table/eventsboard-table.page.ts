@@ -190,6 +190,13 @@ export class EventsboardTablePage implements OnInit {
   }
 
   filter_table_audience(param){
+    for(let k = 0; k<this.dataFromDatabase.length;k++){
+      var s = this.dataFromDatabase[k].target_audience.split(',')
+      for(let t = 0; t<s.length;t++){
+        console.log(s[t])
+      }
+    }
+   // console.log(this.dataFromDatabase[1].target_audience[2])
     if(param.currentTarget.value== 'כלל הקהלים')
     {
       this.dataFromDatabaseFiltered = this.dataFromDatabase
@@ -197,9 +204,11 @@ export class EventsboardTablePage implements OnInit {
     }
     this.dataFromDatabaseFiltered = []
     for(let i = 0; i<this.dataFromDatabase.length;i++){
-      for(let j = 0; j<this.dataFromDatabase[i].target_audience.length;j++){
+      var s = this.dataFromDatabase[i].target_audience.split(',')
+
+      for(let j = 0; j<s.length;j++){
         
-        if(this.dataFromDatabase[i].target_audience[j] == param.currentTarget.value){    
+        if(s[j] == param.currentTarget.value){    
           this.dataFromDatabaseFiltered = [...this.dataFromDatabaseFiltered, this.dataFromDatabase[i]]
         }
       }

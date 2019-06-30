@@ -93,15 +93,15 @@
                 <input ngModel name="artist" required class=input #artist placeholder='שם האומן' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
               </ion-col>
               <ion-col>
-                <input ngModel name="phoneProvid" required class=input type = "tel" #phoneProvid placeholder='טלפון ספק' pattern="[0]{1}[0-9]{2}-[0-9]{7}" oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
-                <input class=input type = "tel"  #phoneArt placeholder='טלפון ישיר לאומן' pattern="[0]{1}[0-9]{2}-[0-9]{7}"/>
+                <input ngModel name="phoneProvid" required class=input type = "tel" #phoneProvid placeholder='טלפון ספק' pattern="[0]{1}[0-9]{2}-[0-9]{7}|[0]{1}[0-9]{1}-[0-9]{7}" oninvalid="this.setCustomValidity('מספר בפורמט 012-1234567 או 01-1234567')" oninput="setCustomValidity('')"/>
+                <input class=input type = "tel"  #phoneArt placeholder='טלפון ישיר לאומן' pattern="[0]{1}[0-9]{2}-[0-9]{7}|[0]{1}[0-9]{1}-[0-9]{7}"  oninvalid="this.setCustomValidity('מספר בפורמט 012-1234567 או 01-1234567')" oninput="setCustomValidity('')"/>
               </ion-col>
               <ion-col>
-                  <input class=input type = "tel"  #phone2Provid placeholder='טלפון נוסף של ספק' pattern="[0]{1}[0-9]{2}-[0-9]{7}"/>
-                  <input class=input type = "email" #mailArt placeholder='דוא"ל ישיר לאומן' />
+                  <input class=input type = "tel"  #phone2Provid placeholder='טלפון נוסף של ספק' pattern="[0]{1}[0-9]{2}-[0-9]{7}|[0]{1}[0-9]{1}-[0-9]{7}"/>
+                  <input class=input type = "email" #mailArt placeholder='דוא"ל ישיר לאומן' oninvalid="this.setCustomValidity('דואר אלקטרוני בפורמט abc@def')" oninput="setCustomValidity('')"/>
               </ion-col>
               <ion-col>
-                <input ngModel name="mailProvid" required class=input type="email" #mailProvid placeholder='דוא"ל ספק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                <input ngModel name="mailProvid" required class=input type="email" #mailProvid placeholder='דוא"ל ספק' oninvalid="this.setCustomValidity('דואר אלקטרוני בפורמט abc@def')" oninput="setCustomValidity('')"/>
               </ion-col>
             </ion-row>
             </div>
@@ -127,17 +127,17 @@
                     <label for="file"><strong>העלאת הצע"מ</strong></label>
                 </ion-col>
                 <ion-col>
-                    <input type="number" min="0" name="nuclearPrice" class=input #nuclearPrice placeholder='מספר משתתפים למחיר גרעיני' />
-                    <input ngModel name="businessNum" required type="number" class=input #businessNum placeholder='מספר עוסק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
+                    <input type="number" min="0" name="nuclearPrice" class=input #nuclearPrice placeholder='מספר משתתפים למחיר גרעיני' oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')"/>
+                    <input ngModel name="businessNum"  type="number" class=input #businessNum placeholder='מספר עוסק' oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"/>
                     <input type="file" name="file" #imgGraphics class="inputfile"/>
                     <label for="file"><strong>העלאת גרפיקה</strong></label>
                 </ion-col>
                 <ion-col>
-                    <input type="number" min="0" name="extraParticipants" class=input #extraParticipants placeholder='מספר משתתפים לתוספת' />
-                    <input name="priceDriver" type="number" min="0" class=input #priceDriver placeholder='עלות נסיעות' />
+                    <input type="number" min="0" name="extraParticipants" class=input #extraParticipants placeholder='מספר משתתפים לתוספת' oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')" />
+                    <input name="priceDriver" type="number" min="0" class=input #priceDriver placeholder='עלות נסיעות' oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')"  />
                 </ion-col>
                 <ion-col>
-                    <input type="number"  min="0" name="extraPrice" class=input #extraPrice placeholder='מחיר לתוספת משתתפים' />
+                    <input type="number"  min="0" name="extraPrice" class=input #extraPrice placeholder='מחיר לתוספת משתתפים' oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')"/>
                     <input class=input name ="commants" type="text" #commants placeholder='הערות נוספות' />
                 </ion-col>
               </ion-row>

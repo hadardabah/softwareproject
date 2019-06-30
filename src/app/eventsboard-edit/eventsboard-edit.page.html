@@ -16,7 +16,7 @@
                     <span class="tooltiptext">קהל יעד</span>
                     </div>
                     <div class="tooltip">
-                    <input  placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost>
+                    <input  placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
                     <span class="tooltiptext">עלות כניסה לתושב</span>
                     </div>
                 </ion-col>
@@ -34,19 +34,12 @@
                     <input  class=input #equipment placeholder='ציוד נדרש' />
                     <span class="tooltiptext">ציוד נדרש</span>
                     </div>
-                    <input  type="text" class=input #time>  
+                    <input  type="text" class=input #time style="height:0%; width:0%; " >  
                 </ion-col>
                 <ion-col>
-                    <!--<div class="tooltip">
-                    <select  name="repeat_show" required class=input #repeat_show oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
-                        <option value="" disabled selected>מופע חוזר?</option>
-                        <option value="כן">כן</option>
-                        <option value="לא">לא</option>
-                    </select> 
-                    <span class="tooltiptext">מופע חוזר?</span>
-                    </div>-->
+      
                     <div class="tooltip">
-                    <input  name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                    <input  name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')">
                     <span class="tooltiptext">מספר מופעים חוזרים</span>
                     </div>
                     <div class="tooltip">

@@ -11,10 +11,10 @@
                         <option value="" disabled selected>שם המופע</option>
                         <option [value]="doc.show"  *ngFor='let doc of dataFromDatabase'>{{doc.show}}</option>
                     </select>
-
+                    
                     <input name="target_audience" class=input #target_audience placeholder='קהל יעד' />
 
-                    <input placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost>
+                    <input placeholder='עלות כניסה לתושב' class=input min="0" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #cost   oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')">
                 </ion-col>
                 <ion-col>
                     <select ngModel name="event_type" required class=input #event_type oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
@@ -27,13 +27,8 @@
                     <input class=input #equipment placeholder='ציוד נדרש' />
                 </ion-col>
                 <ion-col>
-                    <!--<select ngModel name="repeat_show" required class=input #repeat_show oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
-                        <option value="" disabled selected>מופע חוזר?</option>
-                        <option value="כן">כן</option>
-                        <option value="לא">לא</option>
-                    </select> -->
-
-                    <input ngModel name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                
+                    <input ngModel name="quantity" required placeholder="מספר מופעים חוזרים" class=input min="0" max="100" type="number" onfocus="(this.type='number')" onblur="(this.type='number')" #quantity oninvalid="this.setCustomValidity('מספר חיובי שלם')" oninput="setCustomValidity('')">
 
                     <select ngModel name="building" required class=input #building oninvalid="this.setCustomValidity('יש לבחור פריט מהרשימה')" oninput="setCustomValidity('')">
                         <option value="" disabled selected>מבנה</option>
